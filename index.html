@@ -3,47 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | مستشار الأحجام والعطور</title>
+    <title>ESSENCE D'ORIENT | نظام الطلب المخصص</title>
     <style>
-        :root { --gold: #c5a059; --dark: #1a1a1a; --light-grey: #f4f4f4; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fff; margin: 0; color: #333; }
+        :root { --gold: #c5a059; --dark: #121212; --bg: #ffffff; --light-grey: #f2f2f2; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; color: #333; text-align: center; }
         
-        /* الهيدر */
-        .header { background: var(--dark); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .header h1 { margin: 0; font-size: 2em; letter-spacing: 3px; }
+        .header { background: var(--dark); color: white; padding: 40px; border-bottom: 5px solid var(--gold); }
+        .header h1 { letter-spacing: 2px; margin: 0; font-weight: 300; }
 
-        /* حاوية الاختبار */
-        .quiz-section { max-width: 700px; margin: 30px auto; padding: 20px; background: var(--light-grey); border-radius: 15px; }
-        .step { display: none; text-align: center; }
-        .step.active { display: block; animation: fadeIn 0.5s; }
-        .opt { display: block; width: 100%; padding: 15px; margin: 10px 0; background: white; border: 1px solid #ddd; cursor: pointer; transition: 0.3s; font-size: 1.1em; }
-        .opt:hover { border-color: var(--gold); background: #fffcf5; }
+        .quiz-container { max-width: 700px; margin: 30px auto; padding: 30px; border: 1px solid #eee; border-radius: 4px; }
+        .progress-bar { width: 100%; height: 3px; background: #eee; margin-bottom: 30px; }
+        .progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.5s; }
 
-        /* قسم القارورات حسب الحجم */
-        .size-section { padding: 50px 20px; max-width: 1100px; margin: 0 auto; }
-        .size-title { text-align: center; font-size: 1.8em; margin-bottom: 40px; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; width: 100%; }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.4s ease; }
         
-        .bottles-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: flex-end; }
+        h2 { font-size: 1.3em; margin-bottom: 25px; color: var(--dark); font-weight: bold; text-align: right; border-right: 4px solid var(--gold); padding-right: 15px; }
         
-        /* بطاقة القارورة */
-        .bottle-card { background: white; border: 1px solid #eee; padding: 20px; text-align: center; transition: 0.3s; flex: 1; min-width: 180px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .bottle-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        
-        /* أحجام القارورات بصرية */
-        .bottle-img { margin: 0 auto 20px; background: linear-gradient(to top, #e0e0e0, #ffffff); border: 2px solid #333; border-radius: 5px 5px 20px 20px; position: relative; }
-        .img-6ml { width: 30px; height: 50px; }
-        .img-12ml { width: 40px; height: 70px; }
-        .img-30ml { width: 50px; height: 90px; }
-        .img-50ml { width: 65px; height: 110px; }
-        .img-100ml { width: 80px; height: 140px; }
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .opt-btn { padding: 15px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 1em; transition: 0.2s; text-align: right; }
+        .opt-btn:hover { background: var(--dark); color: white; border-color: var(--dark); }
 
-        .bottle-cap { width: 60%; height: 15px; background: var(--gold); margin: -15px auto 0; border-radius: 3px; }
-        
-        .capacity { font-weight: bold; font-size: 1.2em; color: var(--dark); margin-top: 10px; display: block; }
-        .usage { font-size: 0.8em; color: #777; margin-top: 5px; }
+        .input-field { width: 100%; padding: 15px; border: 1px solid #ddd; font-size: 1em; box-sizing: border-box; margin-bottom: 10px; text-align: right; }
 
-        .result-box { display: none; text-align: center; background: var(--dark); color: white; padding: 30px; border-radius: 10px; }
-        .wa-btn { background: #25d366; color: white; text-decoration: none; padding: 15px 30px; display: inline-block; margin-top: 20px; font-weight: bold; border-radius: 5px; }
+        .bottle-item { border: 1px solid #eee; padding: 15px; cursor: pointer; text-align: center; transition: 0.3s; }
+        .bottle-item:hover { border-color: var(--gold); background: #fcfcfc; }
+        .bottle-item img { width: 100%; height: 160px; object-fit: contain; }
+        .price { font-weight: bold; color: #333; margin-top: 10px; display: block; }
+
+        #result-area { display: none; padding: 30px; border: 1px solid #25d366; background: #fafffa; }
+        .wa-btn { background: #25d366; color: white; text-decoration: none; padding: 18px 40px; display: inline-block; font-weight: bold; font-size: 1.1em; border-radius: 2px; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -52,101 +41,142 @@
 
     <div class="header">
         <h1>ESSENCE D'ORIENT</h1>
-        <p>اكتشف عطرك وحجمك المثالي</p>
+        <p>نموذج تحديد الهوية العطرية والطلب</p>
     </div>
 
-    <div class="quiz-section">
+    <div class="quiz-container">
+        <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
+
         <div class="step active" id="s1">
-            <h2>1. ما هو الهدف الأساسي من العطر؟</h2>
-            <button class="opt" onclick="next(1)">الاستخدام الشخصي اليومي (نظافة)</button>
-            <button class="opt" onclick="next(1)">لفت الانتباه في المناسبات (قوة)</button>
-            <button class="opt" onclick="next(1)">هدية لشخص عزيز (فخامة)</button>
+            <h2>1. الفئة المستهدفة بالعطر:</h2>
+            <div class="options-grid">
+                <button class="opt-btn" onclick="save('الجنس', 'رجالي', 1)">عطر رجالي</button>
+                <button class="opt-btn" onclick="save('الجنس', 'نسائي', 1)">عطر نسائي</button>
+                <button class="opt-btn" onclick="save('الجنس', 'للجنسين', 1)">عطر للجنسين</button>
+                <button class="opt-btn" onclick="save('الجنس', 'أطفال', 1)">عطر للأطفال</button>
+            </div>
         </div>
 
         <div class="step" id="s2">
-            <h2>2. أين تضع عطرك عادة؟</h2>
-            <button class="opt" onclick="next(2)">على الرقبة واليدين فقط</button>
-            <button class="opt" onclick="next(2)">على الملابس بشكل مكثف</button>
-            <button class="opt" onclick="next(2)">في السيارة أو المكتب</button>
+            <h2>2. توقيت الاستخدام المفضل:</h2>
+            <div class="options-grid">
+                <button class="opt-btn" onclick="save('التوقيت', 'فترة الصباح', 2)">فترة الصباح والنشاط</button>
+                <button class="opt-btn" onclick="save('التوقيت', 'الاستخدام المهني للعمل', 2)">الاستخدام المهني للعمل</button>
+                <button class="opt-btn" onclick="save('التوقيت', 'المناسبات والليل', 2)">المناسبات والليل</button>
+                <button class="opt-btn" onclick="save('التوقيت', 'شامل لكل الأوقات', 2)">شامل لكل الأوقات</button>
+            </div>
         </div>
 
         <div class="step" id="s3">
-            <h2>3. كم مرة تستخدم العطر في اليوم؟</h2>
-            <button class="opt" onclick="next(3)">مرة واحدة في الصباح</button>
-            <button class="opt" onclick="next(3)">أجدده كل 4 ساعات</button>
+            <h2>3. الأجواء المفضلة للرائحة:</h2>
+            <div class="options-grid">
+                <button class="opt-btn" onclick="save('الجو', 'بحرية منعشة', 3)">بحرية منعشة</button>
+                <button class="opt-btn" onclick="save('الجو', 'زهرية ناعمة', 3)">زهرية ناعمة</button>
+                <button class="opt-btn" onclick="save('الجو', 'شرقية خشبية ثقيلة', 3)">شرقية خشبية ثقيلة</button>
+                <button class="opt-btn" onclick="save('الجو', 'عشبية برية', 3)">عشبية برية</button>
+                <button class="opt-btn" onclick="save('الجو', 'روائح الحلويات والفواكه', 3)">روائح الحلويات والفواكه</button>
+            </div>
         </div>
 
         <div class="step" id="s4">
-            <h2>4. ما هو القوام الذي تفضله؟</h2>
-            <button class="opt" onclick="finish('الزيت المركز')">زيت خام ثقيل (يدوم طويلاً)</button>
-            <button class="opt" onclick="finish('عطر بخاخ')">بخاخ خفيف (ينتشر بسرعة)</button>
+            <h2>4. الغرض الأساسي من الاقتناء:</h2>
+            <div class="options-grid">
+                <button class="opt-btn" onclick="save('الغرض', 'استخدام شخصي يومي', 4)">استخدام شخصي يومي</button>
+                <button class="opt-btn" onclick="save('الغرض', 'هدية رسمية', 4)">هدية رسمية</button>
+                <button class="opt-btn" onclick="save('الغرض', 'حفل أو مناسبة خاصة', 4)">حفل أو مناسبة خاصة</button>
+                <button class="opt-btn" onclick="save('الغرض', 'تغيير وتميز', 4)">تغيير وتميز</button>
+            </div>
         </div>
 
-        <div class="result-box" id="res">
-            <h2 style="color:var(--gold)">تم تحليل طلبك:</h2>
-            <p id="perfume-res" style="font-size: 1.4em;"></p>
-            <p>ننصحك باختيار قارورة 50 مل (ميلانو) لأفضل تجربة.</p>
-            <a href="#" id="wa-link" class="wa-btn">اطلب المزيج الآن</a>
+        <div class="step" id="s5">
+            <h2>5. طابع الرائحة المطلوب:</h2>
+            <div class="options-grid">
+                <button class="opt-btn" onclick="save('الطابع', 'رائحة نظافة ومسك', 5)">رائحة نظافة ومسك</button>
+                <button class="opt-btn" onclick="save('الطابع', 'رائحة قوية وفواحة', 5)">رائحة قوية وفواحة</button>
+                <button class="opt-btn" onclick="save('الطابع', 'رائحة كلاسيكية رزينة', 5)">رائحة كلاسيكية رزينة</button>
+                <button class="opt-btn" onclick="save('الطابع', 'رائحة عصرية شبابية', 5)">رائحة عصرية شبابية</button>
+            </div>
         </div>
-    </div>
 
-    <div class="size-section">
-        <div class="size-title">دليل القارورات المتوفرة</div>
-        <div class="bottles-container">
-            
-            <div class="bottle-card">
-                <div class="bottle-img img-6ml"><div class="bottle-cap"></div></div>
-                <span class="capacity">6 مل</span>
-                <div class="usage">تولة صغيرة<br>للزيت الخام والمسك</div>
+        <div class="step" id="s6">
+            <h2>6. اختر الحجم والسعر المناسب:</h2>
+            <div class="options-grid">
+                <div class="bottle-item" onclick="save('الحجم', '6مل (200دج)', 6)">
+                    <img src="https://images.unsplash.com/photo-1583209814683-c023dd2f3667?w=300">
+                    <span>6 مل زجاج</span>
+                    <span class="price">200 دج</span>
+                </div>
+                <div class="bottle-item" onclick="save('الحجم', '30مل (650دج)', 6)">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=300">
+                    <span>30 مل بخاخ</span>
+                    <span class="price">650 دج</span>
+                </div>
+                <div class="bottle-item" onclick="save('الحجم', '50مل (950دج)', 6)">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300">
+                    <span>50 مل ميلانو</span>
+                    <span class="price">950 دج</span>
+                </div>
+                <div class="bottle-item" onclick="save('الحجم', '100مل (1500دج)', 6)">
+                    <img src="https://images.unsplash.com/photo-1544161515-4af6b1d8e179?w=300">
+                    <span>100 مل اقتصادية</span>
+                    <span class="price">1500 دج</span>
+                </div>
             </div>
+        </div>
 
-            <div class="bottle-card">
-                <div class="bottle-img img-12ml"><div class="bottle-cap"></div></div>
-                <span class="capacity">12 مل</span>
-                <div class="usage">تولة كبيرة<br>مثالية للهدايا والزيوت</div>
-            </div>
+        <div class="step" id="s7">
+            <h2>7. معلومات التسليم:</h2>
+            <p style="text-align:right; font-size:0.9em; color:#666;">يرجى كتابة الولاية والبلدية لترتيب الشحن:</p>
+            <input type="text" id="addressInput" class="input-field" placeholder="الولاية، البلدية (مثال: المدية، البرواقية)">
+            <button class="opt-btn" style="text-align:center; background:var(--gold); color:white; border:none;" onclick="finalStep()">تأكيد المعلومات</button>
+        </div>
 
-            <div class="bottle-card">
-                <div class="bottle-img img-30ml"><div class="bottle-cap"></div></div>
-                <span class="capacity">30 مل</span>
-                <div class="usage">حجم الجيب<br>عطر بخاخ للسفر</div>
-            </div>
-
-            <div class="bottle-card">
-                <div class="bottle-img img-50ml"><div class="bottle-cap"></div></div>
-                <span class="capacity">50 مل</span>
-                <div class="usage">حجم ميلانو<br>الأكثر طلباً للاستعمال اليومي</div>
-            </div>
-
-            <div class="bottle-card">
-                <div class="bottle-img img-100ml"><div class="bottle-cap"></div></div>
-                <span class="capacity">100 مل</span>
-                <div class="usage">حجم العائلة<br>للتوفير والاستخدام الطويل</div>
-            </div>
-
+        <div id="result-area">
+            <h2 style="border:none; text-align:center;">اكتمل النموذج بنجاح</h2>
+            <p>يمكنكم الآن إرسال كافة التفاصيل المختارة إلى قسم المبيعات عبر الواتساب لتأكيد طلبكم.</p>
+            <a href="#" id="wa-link" class="wa-btn">إرسال الطلب الآن</a>
         </div>
     </div>
 
     <script>
-        let currentStep = 1;
-        function next(s) {
-            document.getElementById('s' + s).classList.remove('active');
-            currentStep++;
-            document.getElementById('s' + currentStep).classList.add('active');
+        let order = {};
+        const stepsCount = 7;
+
+        function save(key, value, current) {
+            order[key] = value;
+            document.getElementById('s' + current).classList.remove('active');
+            let next = current + 1;
+            document.getElementById('p-fill').style.width = (current / stepsCount * 100) + '%';
+            document.getElementById('s' + next).classList.add('active');
         }
 
-        function finish(type) {
-            document.getElementById('s4').classList.remove('active');
-            document.getElementById('res').style.display = 'block';
-            const name = "مزيج " + type + " مخصص لك";
-            document.getElementById('perfume-res').innerText = name;
-            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=أريد طلب عطر مخصص: ${name}`;
+        function finalStep() {
+            let addr = document.getElementById('addressInput').value;
+            if(!addr) {
+                alert("يرجى إدخال العنوان لإتمام الطلب");
+                return;
+            }
+            order['العنوان'] = addr;
+            document.getElementById('s7').classList.remove('active');
+            document.getElementById('p-fill').style.width = '100%';
+            showFinal();
+        }
+
+        function showFinal() {
+            document.getElementById('result-area').style.display = 'block';
+            
+            let msg = `طلب جديد من الموقع:%0A`;
+            msg += `الفئة: ${order['الجنس']}%0A`;
+            msg += `التوقيت: ${order['التوقيت']}%0A`;
+            msg += `الجو المفضل: ${order['الجو']}%0A`;
+            msg += `الغرض: ${order['الغرض']}%0A`;
+            msg += `الطابع: ${order['الطابع']}%0A`;
+            msg += `الحجم والسعر: ${order['الحجم']}%0A`;
+            msg += `العنوان: ${order['العنوان']}%0A`;
+            msg += `%0Aيرجى مراجعة الطلب وتاكيد التوفر.`;
+
+            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${msg}`;
         }
     </script>
-
-    <div style="background:var(--dark); color:#777; padding:40px; text-align:center; font-size:0.8em;">
-        جميع الحقوق محفوظة لمتجر عطور الفخامة 2026 | الجزائر
-    </div>
-
 </body>
 </html>
