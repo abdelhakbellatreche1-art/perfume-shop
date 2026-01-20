@@ -3,46 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر عطور الفخامة - الجزائر</title>
+    <title>ESSENCE D'ORIENT | متجر الزيوت العطرية</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fdfaf5; text-align: center; padding: 0; margin: 0; color: #333; }
-        .header { background: linear-gradient(135deg, #1a1a1a, #810B98); color: white; padding: 40px 20px; border-radius: 0 0 30px 30px; }
-        .section-title { margin: 40px auto 20px; color: #fff; background: #810B98; display: inline-block; padding: 10px 30px; border-radius: 50px; font-size: 1.3em; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 10px; }
-        .card { background: white; border-radius: 15px; padding: 12px; width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee; position: relative; }
-        @media (min-width: 600px) { .card { width: 230px; } }
-        .card img { width: 100%; border-radius: 10px; height: 150px; object-fit: cover; }
-        .tag { position: absolute; top: 5px; left: 5px; background: #25d366; color: white; font-size: 0.75em; padding: 3px 8px; border-radius: 5px; }
-        h3 { font-size: 0.95em; margin: 10px 0; }
-        .price { font-weight: bold; color: #d35400; margin-bottom: 10px; }
-        .buy-btn { display: block; padding: 10px; background-color: #25d366; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; }
-        .bottle-info { background: #efebe9; padding: 20px; margin-top: 40px; }
+        :root { --gold: #b89552; --dark-brown: #2c241e; --cream: #fcfaf7; }
+        body { font-family: 'Times New Roman', serif; background-color: var(--cream); margin: 0; color: var(--dark-brown); }
+        
+        /* الهيدر الملكي */
+        .header { background: var(--dark-brown); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
+        .header h1 { margin: 0; font-size: 2em; letter-spacing: 3px; font-weight: normal; }
+        .header p { color: var(--gold); font-style: italic; margin-top: 10px; letter-spacing: 1px; }
+
+        .intro { padding: 30px 20px; text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1em; }
+
+        /* حاوية المنتجات */
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; padding: 20px; max-width: 1100px; margin: 0 auto; }
+        @media (min-width: 600px) { .container { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } }
+
+        /* بطاقة الزيت على الطريقة التركية */
+        .oil-card { background: white; border: 1px solid #e0d5c5; padding: 20px; text-align: center; transition: 0.4s; }
+        .oil-card:hover { box-shadow: 0 10px 25px rgba(44,36,30,0.1); border-color: var(--gold); }
+        .oil-card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 20px; filter: sepia(0.2); }
+        
+        .oil-category { font-size: 0.75em; color: var(--gold); text-transform: uppercase; font-weight: bold; margin-bottom: 8px; display: block; }
+        .oil-name { font-size: 1.2em; margin: 10px 0; font-family: 'Segoe UI', sans-serif; }
+        .oil-price { font-size: 1.3em; font-weight: bold; margin: 15px 0; color: var(--dark-brown); }
+        
+        /* أحجام التولة */
+        .size-tags { display: flex; justify-content: center; gap: 5px; margin-bottom: 20px; }
+        .size-tags span { border: 1px solid #ddd; padding: 3px 8px; font-size: 0.7em; border-radius: 3px; }
+
+        .order-btn { background: var(--dark-brown); color: var(--gold); text-decoration: none; padding: 12px; display: block; font-weight: bold; border: 1px solid var(--dark-brown); transition: 0.3s; font-family: 'Segoe UI', sans-serif; }
+        .order-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
+
+        /* قسم القارورات */
+        .bottle-showcase { background: #f4eee6; padding: 50px 20px; margin-top: 40px; }
+        .section-title { font-size: 1.5em; margin-bottom: 30px; text-align: center; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 2px; background: var(--gold); margin: 15px auto; }
     </style>
 </head>
 <body>
+
     <div class="header">
-        <h1>✨ متجر عطور الفخامة ✨</h1>
-        <p>عطور خفيفة، زيوت مركزة، وقارورات تعبئة</p>
+        <h1>ESSENCE D'ORIENT</h1>
+        <p>زيوت عطرية نقية مستوحاة من فخامة إسطنبول</p>
     </div>
 
-    <div class="section-title">🌬️ العطور الخفيفة (بخاخ)</div>
+    <div class="intro">
+        نقدم لكم أرقى أنواع الزيوت العطرية والمسك، مختارة بعناية لنضمن لكم ثباتاً يدوم طويلاً ونقاءً لا يضاهى.
+    </div>
+
     <div class="container">
-        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300"><h3>سواج (خفيف)</h3><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب عطر سواج خفيف" class="buy-btn">اطلب واتساب</a></div>
-        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1588405748353-0c6349511a3d?w=300"><h3>شانيل (خفيف)</h3><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب شانيل خفيف" class="buy-btn">اطلب واتساب</a></div>
-    </div>
+        <div class="oil-card">
+            <span class="oil-category">PURE MUSK</span>
+            <img src="https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?w=400">
+            <div class="oil-name">مسك الطهارة التركي</div>
+            <div class="size-tags"><span>3ml</span><span>6ml</span><span>12ml</span></div>
+            <div class="oil-price">1200 د.ج</div>
+            <a href="https://wa.me/213783147002?text=أريد طلب مسك الطهارة التركي" class="order-btn">SHOP NOW</a>
+        </div>
 
-    <div class="section-title">🏺 الزيوت العطرية المركزة</div>
-    <div class="container">
-        <div class="card"><div class="tag">مركز</div><img src="https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?w=300"><h3>مسك الطهارة</h3><div class="price">1200 د.ج</div><a href="https://wa.me/213783147002?text=طلب زيت المسك" class="buy-btn">اطلب واتساب</a></div>
-        <div class="card"><div class="tag">مركز</div><img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=300"><h3>عود ملكي</h3><div class="price">1800 د.ج</div><a href="https://wa.me/213783147002?text=طلب زيت العود" class="buy-btn">اطلب واتساب</a></div>
-    </div>
+        <div class="oil-card">
+            <span class="oil-category">ROYAL OUD</span>
+            <img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=400">
+            <div class="oil-name">عود مروكي سوبر</div>
+            <div class="size-tags"><span>3ml</span><span>6ml</span><span>12ml</span></div>
+            <div class="oil-price">1800 د.ج</div>
+            <a href="https://wa.me/213783147002?text=أريد طلب عود مروكي سوبر" class="order-btn">SHOP NOW</a>
+        </div>
 
-    <div class="bottle-info">
-        <div class="section-title" style="background:#5d4037">🧴 قارورات التعبئة المتوفرة</div>
-        <div class="container">
-            <div class="card"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300"><h3>قارورة ميلانو</h3><div class="price">متوفرة</div></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=300"><h3>قارورة كريستال</h3><div class="price">متوفرة</div></div>
+        <div class="oil-card">
+            <span class="oil-category">AMBER OIL</span>
+            <img src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?w=400">
+            <div class="oil-name">عنبر عثماني مركز</div>
+            <div class="size-tags"><span>6ml</span><span>12ml</span></div>
+            <div class="oil-price">1500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=أريد طلب عنبر عثماني" class="order-btn">SHOP NOW</a>
+        </div>
+
+        <div class="oil-card">
+            <span class="oil-category">FLOWER EXTRACT</span>
+            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400">
+            <div class="oil-name">روح اللافندر</div>
+            <div class="size-tags"><span>6ml</span><span>12ml</span></div>
+            <div class="oil-price">1000 د.ج</div>
+            <a href="https://wa.me/213783147002?text=أريد طلب روح اللافندر" class="order-btn">SHOP NOW</a>
         </div>
     </div>
+
+    <div class="bottle-showcase">
+        <div class="section-title">تشكيلة قارورات التعبئة (تولة)</div>
+        <div class="container">
+            <div class="oil-card">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400">
+                <div class="oil-name">ميلانو الذهبية</div>
+            </div>
+            <div class="oil-card">
+                <img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=400">
+                <div class="oil-name">كريستال إسطنبول</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: var(--dark-brown); color: #888; padding: 40px; text-align: center; font-size: 0.9em;">
+        <p>© 2026 ESSENCE D'ORIENT | ALGERIA</p>
+        <p style="color: var(--gold);">الجزائر - توصيل متوفر لجميع الولايات</p>
+    </div>
+
 </body>
 </html>
