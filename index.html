@@ -3,164 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | نظام الطلب المخصص</title>
+    <title>ESSENCE D'ORIENT | نظام الطلب الذكي</title>
     <style>
-        :root { --gold: #c5a059; --dark: #121212; --bg: #ffffff; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; color: #333; text-align: center; }
-        .header { background: var(--dark); color: white; padding: 40px; border-bottom: 5px solid var(--gold); }
-        .quiz-container { max-width: 850px; margin: 30px auto; padding: 25px; border: 1px solid #eee; }
-        .progress-bar { width: 100%; height: 4px; background: #f0f0f0; margin-bottom: 30px; }
+        :root { --gold: #c5a059; --dark: #000000; --bg: #ffffff; }
+        body { font-family: 'Times New Roman', serif; background-color: var(--bg); margin: 0; color: #1a1a1a; text-align: center; line-height: 1.6; }
+        
+        .brand-logo { padding: 40px 20px; background: var(--dark); color: var(--gold); border-bottom: 3px solid var(--gold); }
+        .brand-logo h1 { margin: 0; font-size: 2.2em; letter-spacing: 5px; font-weight: bold; }
+        .brand-logo p { margin: 5px 0 0; font-size: 0.9em; letter-spacing: 2px; }
+
+        .price-float { position: fixed; bottom: 20px; left: 20px; background: var(--gold); color: #000; padding: 15px 25px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; font-size: 1.2em; border: 2px solid #000; }
+
+        .quiz-container { max-width: 600px; margin: 20px auto; padding: 20px; padding-bottom: 120px; }
+        .progress-bar { width: 100%; height: 2px; background: #eee; margin-bottom: 30px; }
         .progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.5s; }
+
         .step { display: none; }
         .step.active { display: block; animation: fadeIn 0.4s ease; }
-        h2 { font-size: 1.25em; margin-bottom: 25px; color: var(--dark); text-align: right; border-right: 4px solid var(--gold); padding-right: 15px; }
-        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-        .opt-btn { padding: 16px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 0.95em; transition: 0.2s; text-align: right; }
-        .opt-btn:hover { background: var(--dark); color: white; }
+        h2 { font-size: 1.3em; margin-bottom: 30px; border-bottom: 1px solid var(--gold); padding-bottom: 10px; display: inline-block; }
 
-        /* تنسيق شبكة القوارير المطور */
-        .bottle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
-        .bottle-item { border: 1px solid #eee; padding: 20px; cursor: pointer; transition: 0.3s; background: #fff; border-radius: 4px; }
-        .bottle-item:hover { border-color: var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .bottle-item img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; }
-        .bottle-size { display: block; font-size: 1.4em; font-weight: bold; color: var(--dark); margin-bottom: 5px; }
-        .bottle-desc { display: block; font-size: 0.9em; color: #777; }
+        .options-list { display: flex; flex-direction: column; gap: 12px; }
+        .opt-btn { padding: 18px; border: 1px solid #333; background: #fff; cursor: pointer; font-size: 1em; transition: 0.3s; font-weight: bold; }
+        .opt-btn:hover { background: var(--dark); color: var(--gold); }
 
-        .input-field { width: 100%; padding: 15px; border: 1px solid #ddd; box-sizing: border-box; margin-bottom: 15px; text-align: right; }
-        #result-area { display: none; padding: 30px; border: 1px solid #25d366; background: #fafffa; }
-        .wa-btn { background: #25d366; color: white; text-decoration: none; padding: 18px 40px; display: inline-block; font-weight: bold; }
+        .bottle-stack { display: flex; flex-direction: column; gap: 20px; }
+        .bottle-card { width: 100%; border: 1px solid #eee; padding: 20px; cursor: pointer; transition: 0.3s; box-sizing: border-box; }
+        .bottle-card:hover { border-color: var(--gold); background: #fdfdfd; }
+        .bottle-card img { max-width: 120px; height: auto; margin-bottom: 10px; }
+        .bottle-card .size-tag { font-size: 1.6em; font-weight: bold; display: block; }
+
+        .input-field, select { width: 100%; padding: 15px; border: 2px solid var(--dark); font-size: 1.1em; box-sizing: border-box; margin-bottom: 15px; text-align: center; background: white; }
+
+        #result-area { display: none; padding: 40px; background: #000; color: #fff; }
+        .wa-btn { background: var(--gold); color: #000; text-decoration: none; padding: 20px 50px; display: inline-block; font-weight: bold; font-size: 1.2em; margin-top: 20px; }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>ESSENCE D'ORIENT</h1>
-    <p>تصميم عطرك الخاص بكل تفاصيله</p>
-</div>
+    <div class="price-float" id="live-price">الإجمالي: 0 دج</div>
 
-<div class="quiz-container">
-    <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
-
-    <div class="step active" id="s1">
-        <h2>1. الفئة المستهدفة:</h2>
-        <div class="options-grid">
-            <button class="opt-btn" onclick="save('الجنس', 'رجالي', 1)">عطر رجالي</button>
-            <button class="opt-btn" onclick="save('الجنس', 'نسائي', 1)">عطر نسائي</button>
-            <button class="opt-btn" onclick="save('الجنس', 'للجنسين', 1)">عطر للجنسين</button>
-        </div>
+    <div class="brand-logo">
+        <h1>E S S E N C E</h1>
+        <p>D' O R I E N T</p>
     </div>
 
-    <div class="step" id="s2">
-        <h2>2. توقيت الاستخدام المفضل:</h2>
-        <div class="options-grid">
-            <button class="opt-btn" onclick="save('التوقيت', 'صباحي', 2)">صباحي منعش</button>
-            <button class="opt-btn" onclick="save('التوقيت', 'مسائي', 2)">مسائي رسمي</button>
-            <button class="opt-btn" onclick="save('التوقيت', 'يومي شامل', 2)">للاستخدام اليومي</button>
-        </div>
-    </div>
+    <div class="quiz-container">
+        <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
 
-    <div class="step" id="s3">
-        <h2>3. لادوز (تركيز الزيت العطري):</h2>
-        <div class="options-grid">
-            <button class="opt-btn" onclick="save('لادوز', 'خفيفة (اقتصادية)', 3)">خفيفة (اقتصادية)</button>
-            <button class="opt-btn" onclick="save('لادوز', 'متوازنة (نص نص)', 3)">متوازنة (نص نص)</button>
-            <button class="opt-btn" onclick="save('لادوز', 'شارجي (مركزة)', 3)">شارجي (مركزة جداً)</button>
-        </div>
-    </div>
-
-    <div class="step" id="s4">
-        <h2>4. اختر حجم وشكل القارورة:</h2>
-        <div class="bottle-grid">
-            <div class="bottle-item" onclick="save('القارورة', 'تولة زجاجية 6 مل', 4)">
-                <img src="https://images.unsplash.com/photo-1583209814683-c023dd2f3667?w=400">
-                <span class="bottle-size">6 ML</span>
-                <span class="bottle-desc">تولة زيتية صغيرة</span>
-            </div>
-            <div class="bottle-item" onclick="save('القارورة', 'بخاخ جيب 30 مل', 4)">
-                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400">
-                <span class="bottle-size">30 ML</span>
-                <span class="bottle-desc">مثالية للتنقل والجيب</span>
-            </div>
-            <div class="bottle-item" onclick="save('القارورة', 'ميلانو 50 مل', 4)">
-                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400">
-                <span class="bottle-size">50 ML</span>
-                <span class="bottle-desc">الحجم الأكثر طلباً</span>
-            </div>
-            <div class="bottle-item" onclick="save('القارورة', 'ملكية 100 مل', 4)">
-                <img src="https://images.unsplash.com/photo-1544161515-4af6b1d8e179?w=400">
-                <span class="bottle-size">100 ML</span>
-                <span class="bottle-desc">حجم اقتصادي كبير</span>
+        <div class="step active" id="s1">
+            <h2>اختر حجم القارورة:</h2>
+            <div class="bottle-stack">
+                <div class="bottle-card" onclick="setBottle('6 مل', 200, 1)">
+                    <img src="https://images.unsplash.com/photo-1583209814683-c023dd2f3667?w=300">
+                    <span class="size-tag">6 ML</span>
+                    <span>200 دج</span>
+                </div>
+                <div class="bottle-card" onclick="setBottle('50 مل', 950, 1)">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300">
+                    <span class="size-tag">50 ML</span>
+                    <span>950 دج</span>
+                </div>
+                <div class="bottle-card" onclick="setBottle('100 مل', 1500, 1)">
+                    <img src="https://images.unsplash.com/photo-1544161515-4af6b1d8e179?w=300">
+                    <span class="size-tag">100 ML</span>
+                    <span>1500 دج</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="step" id="s5">
-        <h2>5. هل ترغب في الكتابة على الزجاجة؟</h2>
-        <div class="options-grid" id="p-opt">
-            <button class="opt-btn" onclick="document.getElementById('p-inp').style.display='block'; document.getElementById('p-opt').style.display='none';">نعم، أريد تخصيص نص</button>
-            <button class="opt-btn" onclick="save('الطباعة', 'بدون طباعة', 5)">لا، بدون طباعة</button>
+        <div class="step" id="s2">
+            <h2>نسبة التركيز (لادوز):</h2>
+            <div class="options-list">
+                <button class="opt-btn" onclick="setDose('25% قياسي', 0, 2)">25% (بدون إضافات)</button>
+                <button class="opt-btn" onclick="setDose('50% شارجي', 300, 2)">50% (+300 دج)</button>
+                <button class="opt-btn" onclick="setDose('100% زيت خام', 600, 2)">100% (+600 دج)</button>
+            </div>
         </div>
-        <div id="p-inp" style="display:none; margin-top:15px;">
-            <input type="text" id="p-txt" class="input-field" placeholder="اكتب الاسم أو العبارة هنا">
-            <button class="opt-btn" style="width:100%; text-align:center; background:var(--dark); color:white;" onclick="save('الطباعة', document.getElementById('p-txt').value, 5)">تأكيد النص</button>
+
+        <div class="step" id="s3">
+            <h2>تخصيص الطباعة (+150 دج):</h2>
+            <div class="options-list">
+                <button class="opt-btn" onclick="showInput()">أريد كتابة نص (+150 دج)</button>
+                <button class="opt-btn" onclick="savePrint('بدون طباعة', 0, 3)">لا أريد طباعة (0 دج)</button>
+            </div>
+            <div id="custom-input" style="display:none; margin-top:20px;">
+                <input type="text" id="finalText" class="input-field" placeholder="اكتب الاسم أو العبارة...">
+                <button class="opt-btn" style="width:100%; background:var(--gold);" onclick="saveCustomText()">تأكيد النص</button>
+            </div>
+        </div>
+
+        <div class="step" id="s4">
+            <h2>معلومات الشحن (58 ولاية):</h2>
+            <select id="wilaya" onchange="setShipping(this)">
+                <option value="0" data-price="0">-- اختر الولاية --</option>
+                </select>
+            <input type="text" id="exactAddress" class="input-field" placeholder="العنوان الدقيق (البلدية والحي)">
+            <button class="opt-btn" style="width:100%; background:var(--gold);" onclick="showFinal()">تأكيد وإتمام الطلب</button>
+        </div>
+
+        <div id="result-area">
+            <h1>ملخص الطلب النهائي</h1>
+            <p id="summary-details" style="text-align: right; font-size: 0.9em; border: 1px solid #444; padding: 15px;"></p>
+            <h2 id="summary-price" style="color: var(--gold); border:none;"></h2>
+            <a href="#" id="wa-link" class="wa-btn">إرسال عبر واتساب</a>
         </div>
     </div>
 
-    <div class="step" id="s6">
-        <h2>6. رقم الهاتف للتواصل:</h2>
-        <input type="tel" id="tel" class="input-field" placeholder="0XXXXXXXXX">
-        <button class="opt-btn" style="width:100%; text-align:center;" onclick="save('الهاتف', document.getElementById('tel').value, 6)">المتابعة</button>
-    </div>
+    <script>
+        let order = { shipping: 0, bottle: 0, dose: 0, print: 0 };
+        let details = { wilaya: "", bottleSize: "", doseLevel: "", printText: "بدون", address: "" };
+        const totalSteps = 4;
 
-    <div class="step" id="s7">
-        <h2>7. عنوان التسليم (الولاية والبلدية):</h2>
-        <input type="text" id="adr" class="input-field" placeholder="مثال: المدية، البرواقية">
-        <button class="opt-btn" style="width:100%; text-align:center; background:var(--gold); color:white; border:none;" onclick="save('العنوان', document.getElementById('adr').value, 7)">إنهاء الطلب</button>
-    </div>
+        // قائمة الولايات مع تسعيرة شحن تقريبية (يمكنك تعديل الأسعار هنا)
+        const wilayas = [
+            "أدرار (800)","الشلف (400)","الأغواط (500)","أم البواقي (450)","باتنة (450)","بجاية (450)","بسكرة (500)","بشار (700)","البليدة (350)","البويرة (400)","تمنراست (800)","تبسة (500)","تلمسان (500)","تيارت (450)","تيزي وزو (400)","الجزائر العاصمة (350)","الجلفة (450)","جيجل (450)","سطيف (450)","سعيدة (500)","سكيكدة (450)","سيدي بلعباس (500)","عنابة (450)","قالمة (450)","قسنطينة (450)","المدية (300)","مستغانم (450)","المسيلة (450)","معسكر (450)","ورقلة (600)","وهران (500)","البيض (600)","إليزي (800)","برج بوعريريج (450)","بومرداس (350)","الطارف (500)","تندوف (800)","تيسمسيلت (450)","الوادي (600)","خنشلة (500)","سوق أهراس (500)","تيبازة (400)","ميلة (450)","عين الدفلى (400)","النعامة (600)","عين تموشنت (500)","غرداية (600)","غليزان (450)","تيميمون (800)","برج باجي مختار (800)","أولاد جلال (600)","بني عباس (800)","إن صالح (800)","إن قزام (800)","تقرت (700)","جانت (800)","المغير (700)","المنيعة (700)"
+        ];
 
-    <div id="result-area">
-        <h2 style="border:none; text-align:center;">اكتمل الطلب بنجاح</h2>
-        <p>يرجى النقر على الزر أدناه لإرسال تفاصيل طلبك إلى قسم المبيعات عبر الواتساب.</p>
-        <a href="#" id="wa-link" class="wa-btn">إرسال الطلب الآن</a>
-    </div>
-</div>
+        // تعبئة قائمة الولايات تلقائياً
+        const selectWilaya = document.getElementById('wilaya');
+        wilayas.forEach((w, index) => {
+            let name = w.split(' (')[0];
+            let price = w.split('(')[1].replace(')', '');
+            let opt = document.createElement('option');
+            opt.value = name;
+            opt.setAttribute('data-price', price);
+            opt.innerText = `${index + 1} - ${name} (${price} دج)`;
+            selectWilaya.appendChild(opt);
+        });
 
-<script>
-    let order = {};
-    const total = 7;
-
-    function save(key, val, curr) {
-        if(!val && curr >= 6) { alert("يرجى ملء الحقل المطلوب"); return; }
-        order[key] = val || "غير محدد";
-        document.getElementById('s' + curr).classList.remove('active');
-        let next = curr + 1;
-        document.getElementById('p-fill').style.width = (curr / total * 100) + '%';
-        if(document.getElementById('s' + next)) {
-            document.getElementById('s' + next).classList.add('active');
-        } else {
-            showFinal();
+        function updatePrice() {
+            let total = order.shipping + order.bottle + order.dose + order.print;
+            document.getElementById('live-price').innerText = `الإجمالي: ${total} دج`;
+            return total;
         }
-    }
 
-    function showFinal() {
-        document.getElementById('p-fill').style.width = '100%';
-        document.getElementById('result-area').style.display = 'block';
-        let msg = `طلب شراء عطر مخصص من الموقع%0A`;
-        msg += `--------------------%0A`;
-        msg += `الهاتف: ${order['الهاتف']}%0A`;
-        msg += `العنوان: ${order['العنوان']}%0A`;
-        msg += `--------------------%0A`;
-        msg += `تفاصيل العطر:%0A`;
-        msg += `- الفئة: ${order['الجنس']}%0A`;
-        msg += `- التوقيت: ${order['التوقيت']}%0A`;
-        msg += `- لادوز: ${order['لادوز']}%0A`;
-        msg += `- القارورة المختار: ${order['القارورة']}%0A`;
-        msg += `- نص الطباعة: ${order['الطباعة']}%0A`;
-        msg += `--------------------%0A`;
-        msg += `يرجى التواصل لتاكيد الطلب.`;
-        document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${msg}`;
-    }
-</script>
+        function setBottle(size, price, curr) {
+            details.bottleSize = size;
+            order.bottle = price;
+            updatePrice();
+            nextStep(curr);
+        }
+
+        function setDose(level, extra, curr) {
+            details.doseLevel = level;
+            order.dose = extra;
+            updatePrice();
+            nextStep(curr);
+        }
+
+        function showInput() {
+            document.getElementById('custom-input').style.display = 'block';
+            document.querySelector('#s3 .options-list').style.display = 'none';
+        }
+
+        function saveCustomText() {
+            let txt = document.getElementById('finalText').value;
+            if(!txt) return alert("يرجى كتابة النص");
+            details.printText = txt;
+            order.print = 150;
+            updatePrice();
+            nextStep(3);
+        }
+
+        function savePrint(txt, price, curr) {
+            details.printText = txt;
+            order.print = price;
+            updatePrice();
+            nextStep(curr);
+        }
+
+        function setShipping(el) {
+            let selected = el.options[el.selectedIndex];
+            order.shipping = parseInt(selected.getAttribute('data-price')) || 0;
+            details.wilaya = selected.value;
+            updatePrice();
+        }
+
+        function nextStep(curr) {
+            document.getElementById('s' + curr).classList.remove('active');
+            document.getElementById('p-fill').style.width = (curr / totalSteps * 100) + '%';
+            document.getElementById('s' + (curr + 1)).classList.add('active');
+        }
+
+        function showFinal() {
+            details.address = document.getElementById('exactAddress').value;
+            if(details.wilaya === "0" || !details.address) return alert("يرجى اختيار الولاية وكتابة العنوان");
+
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('p-fill').style.width = '100%';
+            document.getElementById('result-area').style.display = 'block';
+            
+            let total = updatePrice();
+            document.getElementById('summary-price').innerText = `الإجمالي: ${total} دج`;
+            
+            let info = `الحجم: ${details.bottleSize}<br>لادوز: ${details.doseLevel}<br>الطباعة: ${details.printText}<br>الولاية: ${details.wilaya}<br>العنوان: ${details.address}`;
+            document.getElementById('summary-details').innerHTML = info;
+
+            let msg = `طلب شراء رسمي - ESSENCE D'ORIENT%0A`;
+            msg += `----------------------------%0A`;
+            msg += `الحجم: ${details.bottleSize}%0A`;
+            msg += `لادوز: ${details.doseLevel}%0A`;
+            msg += `الطباعة: ${details.printText} (150دج)%0A`;
+            msg += `----------------------------%0A`;
+            msg += `الولاية: ${details.wilaya}%0A`;
+            msg += `العنوان: ${details.address}%0A`;
+            msg += `الشحن: ${order.shipping} دج%0A`;
+            msg += `----------------------------%0A`;
+            msg += `السعر الإجمالي: ${total} دج`;
+
+            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${msg}`;
+        }
+    </script>
 </body>
 </html>
