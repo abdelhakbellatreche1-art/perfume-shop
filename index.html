@@ -3,100 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عطور الفخامة - التشكيلة الكبرى</title>
+    <title>مملكة العطور الفاخرة - الجزائر</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f8f9fa; text-align: center; padding: 10px; color: #333; }
-        .header { background: linear-gradient(135deg, #4e342e, #810B98); color: white; padding: 30px; border-radius: 0 0 30px 30px; margin-bottom: 25px; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .card { background: white; border-radius: 20px; padding: 12px; width: 160px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 4px solid #810B98; position: relative; }
-        @media (min-width: 600px) { .card { width: 240px; } }
-        .card img { width: 100%; border-radius: 15px; height: 160px; object-fit: cover; }
-        .bottle-size { background: #810B98; color: white; position: absolute; top: 10px; left: 10px; padding: 4px 8px; border-radius: 8px; font-size: 0.7em; font-weight: bold; }
-        h3 { font-size: 0.95em; margin: 10px 0 5px; color: #1a1a1a; }
-        .desc { font-size: 0.8em; color: #666; height: 45px; overflow: hidden; margin-bottom: 10px; line-height: 1.4; }
-        .price { font-weight: bold; font-size: 1.1em; color: #e67e22; margin-bottom: 12px; }
-        .buy-btn { display: block; padding: 10px; background-color: #25d366; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 0.85em; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fdfaf5; text-align: center; padding: 10px; color: #333; margin: 0; }
+        .header { background: linear-gradient(135deg, #1a1a1a, #810B98); color: white; padding: 40px 20px; border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .section-title { margin: 30px 0 15px; color: #810B98; font-size: 1.5em; border-bottom: 2px solid #810B98; display: inline-block; padding-bottom: 5px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 10px; }
+        .card { background: white; border-radius: 15px; padding: 12px; width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee; position: relative; transition: 0.3s; }
+        @media (min-width: 600px) { .card { width: 230px; } }
+        .card:hover { transform: scale(1.03); }
+        .card img { width: 100%; border-radius: 10px; height: 150px; object-fit: cover; }
+        @media (min-width: 600px) { .card img { height: 200px; } }
+        .tag { position: absolute; top: 5px; left: 5px; background: #810B98; color: white; font-size: 0.7em; padding: 3px 8px; border-radius: 5px; font-weight: bold; }
+        h3 { font-size: 0.9em; margin: 10px 0 5px; color: #111; }
+        .desc { font-size: 0.75em; color: #666; height: 40px; overflow: hidden; line-height: 1.3; }
+        .price { font-weight: bold; font-size: 1.1em; color: #d35400; margin: 10px 0; }
+        .buy-btn { display: block; padding: 10px; background-color: #25d366; color: white; text-decoration: none; border-radius: 10px; font-size: 0.8em; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>✨ عطور الفخامة والجمال ✨</h1>
-        <p>أكثر من 25 نوع من أرقى العطور والزيوت في الجزائر</p>
+        <h1>✨ مملكة العطور الفاخرة ✨</h1>
+        <p>أكبر تشكيلة عطور وزيوت مركزة في الجزائر - سعر هبال!</p>
     </div>
 
+    <div class="section-title">🏺 زيوت عطرية مركزة</div>
     <div class="container">
-        <div class="card">
-            <div class="bottle-size">زيت 6 مل</div>
-            <img src="https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?w=300" alt="مسك">
-            <h3>مسك الطهارة</h3>
-            <p class="desc">ريحة النظافة لي تدوم أيام، زيت أصلي ومركز.</p>
-            <div class="price">800 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب مسك الطهارة 6 مل" class="buy-btn">اطلب واتساب</a>
-        </div>
+        <div class="card"><div class="tag">6 مل</div><img src="https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?w=300"><h3>مسك الطهارة</h3><p class="desc">ريحة النظافة الأصلية، ثبات خيالي.</p><div class="price">800 د.ج</div><a href="https://wa.me/213783147002?text=طلب مسك الطهارة" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">10 مل</div><img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=300"><h3>عود ملكي</h3><p class="desc">خلاصة العود الصافي للناس لي تحب الفخامة.</p><div class="price">1500 د.ج</div><a href="https://wa.me/213783147002?text=طلب عود ملكي" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">12 مل</div><img src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?w=300"><h3>عنبر كشمير</h3><p class="desc">زيت دافئ وجذاب، يخلي حضورك مميز.</p><div class="price">1800 د.ج</div><a href="https://wa.me/213783147002?text=طلب عنبر كشمير" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">6 مل</div><img src="https://images.unsplash.com/photo-1544161515-4af6b1d8e179?w=300"><h3>صندل أصلي</h3><p class="desc">ريحة الخشب العتيق، رزانة وفوحان.</p><div class="price">900 د.ج</div><a href="https://wa.me/213783147002?text=طلب صندل" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">10 مل</div><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300"><h3>مسك الختام</h3><p class="desc">مزيج مسك وورد، روعة للاستخدام اليومي.</p><div class="price">1200 د.ج</div><a href="https://wa.me/213783147002?text=طلب مسك الختام" class="buy-btn">اطلب واتساب</a></div>
+    </div>
 
-        <div class="card">
-            <div class="bottle-size">زيت 10 مل</div>
-            <img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=300" alt="عود">
-            <h3>عود مروكي</h3>
-            <p class="desc">ريحة العود الفاخرة تاع المناسبات والهمة.</p>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب عود مروكي 10 مل" class="buy-btn">اطلب واتساب</a>
-        </div>
+    <div class="section-title">🤵 عطور رجالية عالمية</div>
+    <div class="container">
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300"><h3>Sauvage</h3><p class="desc">الأسطورة ديور سواج، قوة وجاذبية لا تقاوم.</p><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب سواج" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1588405748353-0c6349511a3d?w=300"><h3>Bleu de Chanel</h3><p class="desc">عطر كلاسيكي فخم، تاع خرجات وهمة.</p><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب بلو دي شانيل" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1619994403073-2cec844b8e63?w=300"><h3>Creed Aventus</h3><p class="desc">عطر الملوك، ريحة الأناناس والمدخن.</p><div class="price">2800 د.ج</div><a href="https://wa.me/213783147002?text=طلب كريد" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1557170334-a7c3c437c9f4?w=300"><h3>Invictus</h3><p class="desc">انتعاش البحر والبطولة، ريحة شبابية.</p><div class="price">2200 د.ج</div><a href="https://wa.me/213783147002?text=طلب انفيكتوس" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=300"><h3>Stronger With You</h3><p class="desc">عطر دافئ وجذاب للسهرات والبرد.</p><div class="price">2400 د.ج</div><a href="https://wa.me/213783147002?text=طلب سترونجر" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300"><h3>1 Million</h3><p class="desc">ريحة الذهب والفخامة، عطر مشهور بزاف.</p><div class="price">2300 د.ج</div><a href="https://wa.me/213783147002?text=طلب وان مليون" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1583467875263-d50dec37a88c?w=300"><h3>Eros Versace</h3><p class="desc">انتعاش النعناع والفانيليا، عطر الحفلات.</p><div class="price">2400 د.ج</div><a href="https://wa.me/213783147002?text=طلب ايروس" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1616948055600-a12117d73c0f?w=300"><h3>Terre d'Hermès</h3><p class="desc">ريحة الأرض والبرتقال، للرجل الراقي.</p><div class="price">2600 د.ج</div><a href="https://wa.me/213783147002?text=طلب هيرميس" class="buy-btn">اطلب واتساب</a></div>
+    </div>
 
-        <div class="card">
-            <div class="bottle-size">زيت 12 مل</div>
-            <img src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?w=300" alt="عنبر">
-            <h3>عنبر كشمير</h3>
-            <p class="desc">زيت دافئ وجذاب، يخلي حضورك ديما مميز.</p>
-            <div class="price">1800 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب عنبر كشمير 12 مل" class="buy-btn">اطلب واتساب</a>
-        </div>
+    <div class="section-title">👸 عطور نسائية راقية</div>
+    <div class="container">
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1616948055600-a12117d73c0f?w=300"><h3>Libre YSL</h3><p class="desc">ريحة الحرية والأنوثة، ورد ولافندر.</p><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب ليبر" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1590156221120-75d32699e74d?w=300"><h3>Scandal</h3><p class="desc">عطر العسل والجاذبية، يخليك ديما منورة.</p><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب سكاندال" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=300"><h3>Black Opium</h3><p class="desc">قهوة وورد أبيض، عطر السهرات الفاخرة.</p><div class="price">2500 د.ج</div><a href="https://wa.me/213783147002?text=طلب بلاك اوبيوم" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=300"><h3>J'adore</h3><p class="desc">باقة من الورد الذهبي، قمة الأناقة الفرنسية.</p><div class="price">2700 د.ج</div><a href="https://wa.me/213783147002?text=طلب جادور" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=300"><h3>Si Armani</h3><p class="desc">عطر المرأة القوية والواثقة، ريحة تهبل.</p><div class="price">2600 د.ج</div><a href="https://wa.me/213783147002?text=طلب عطر سي" class="buy-btn">اطلب واتساب</a></div>
+        <div class="card"><div class="tag">50 مل</div><img src="https://images.unsplash.com/photo-1557170334-a7c3c437c9f4?w=300"><h3>La Vie Est Belle</h3><p class="desc">الحياة جميلة مع هذا العطر الزهري الحلو.</p><div class="price">2400 د.ج</div><a href="https://wa.me/213783147002?text=طلب لافي ايبيل" class="buy-btn">اطلب واتساب</a></div>
+    </div>
 
-        <div  class="card">
-            <div class="bottle-size">بخاخ 50 مل</div>
-            <img src="https://images.unsplash.com/photo-1588405748353-0c6349511a3d?w=300" alt="شانيل">
-            <h3>Bleu de Chanel</h3>
-            <p class="desc">عطر كلاسيكي فخم يلبق للخرجات والخدمة.</p>
-            <div class="price">2500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب بلو دي شانيل" class="buy-btn">اطلب واتساب</a>
-        </div>
+    <div style="padding: 40px; color: #777; font-size: 0.8em;">جميع الحقوق محفوظة لمتجر عطور الفخامة 2026</div>
 
-        <div class="card">
-            <div class="bottle-size">بخاخ 50 مل</div>
-            <img src="https://images.unsplash.com/photo-1557170334-a7c3c437c9f4?w=300" alt="انفيكتوس">
-            <h3>Invictus</h3>
-            <p class="desc">ريحة سبورت ومنعشة، تاع الشبيبة والنشاط.</p>
-            <div class="price">2200 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب انفيكتوس" class="buy-btn">اطلب واتساب</a>
-        </div>
-
-        <div class="card">
-            <div class="bottle-size">بخاخ 50 مل</div>
-            <img src="https://images.unsplash.com/photo-1616948055600-a12117d73c0f?w=300" alt="ليبر">
-            <h3>Libre (ليبر)</h3>
-            <p class="desc">عطر الأنوثة والحرية، ريحة الورد واللافندر.</p>
-            <div class="price">2500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب عطر ليبر" class="buy-btn">اطلب واتساب</a>
-        </div>
-
-        <div class="card">
-            <div class="bottle-size">بخاخ 50 مل</div>
-            <img src="https://images.unsplash.com/photo-1590156221120-75d32699e74d?w=300" alt="سكاندال">
-            <h3>Scandal</h3>
-            <p class="desc">عطر العسل والورد، حلو وجذاب بزاف.</p>
-            <div class="price">2500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب عطر سكاندال" class="buy-btn">اطلب واتساب</a>
-        </div>
-
-        <div class="card">
-            <div class="bottle-size">بخاخ 50 مل</div>
-            <img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=300" alt="بلاك اوبيوم">
-            <h3>Black Opium</h3>
-            <p class="desc">ريحة القهوة والورد، عطر السهرات بامتياز.</p>
-            <div class="price">2500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب بلاك اوبيوم" class="buy-btn">اطلب واتساب</a>
-        </div>
-
-        </div>
-
+</body>
+</html>
