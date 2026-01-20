@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Perfume Lab Pro - التحليل الإستراتيجي</title>
+<title>Perfume Lab Pro - التحليل الإستراتيجي الشامل</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 <style>
@@ -30,7 +30,7 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold);}
 
 <div class="header">
     <h1>PERFUME LAB PRO</h1>
-    <p style="color:#666;font-size:12px;">MÉDÉA - هندسة العطور السيكولوجية</p>
+    <p style="color:#666;font-size:12px;">MÉDÉA - هندسة العطور الشخصية</p>
 </div>
 
 <div class="container">
@@ -38,80 +38,58 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold);}
     <div class="card">
         <div class="section-title">🧠 بروتوكول التصميم الإستراتيجي</div>
         
-        <label><span class="q-num">1.</span> ما هو نوع بشرتك؟ (يؤثر على ثبات العطر)</label>
-        <select id="psy1">
-            <option>دهنية (تمتص العطور وتبرزها بقوة)</option>
-            <option>جافة (تحتاج عطوراً زيتية ومركزة أكثر)</option>
-            <option>عادية/مختلطة</option>
+        <label><span class="q-num">1.</span> الجنس (لمراعاة توازن المكونات)</label>
+        <select id="psy_gender">
+            <option>ذكر</option>
+            <option>أنثى</option>
+            <option>عطر مشترك (Unisex)</option>
         </select>
 
-        <label><span class="q-num">2.</span> في أي بيئة ستقضي معظم وقتك بهذا العطر؟</label>
-        <select id="psy2">
-            <option>مكاتب وأماكن مغلقة مكيفة</option>
-            <option>أماكن مفتوحة ودرجات حرارة متغيرة</option>
-            <option>مناسبات اجتماعية وقاعات فخمة</option>
+        <label><span class="q-num">2.</span> اللون المفضل (يعكس طبيعة الميول الحسية)</label>
+        <select id="psy_color">
+            <option>الأسود / البني (فخامة وغموض)</option>
+            <option>الأزرق / الأخضر (انتعاش وهدوء)</option>
+            <option>الأحمر / الأرجواني (شغف وجاذبية)</option>
+            <option>الأبيض / الأصفر (نقاء وطاقة)</option>
         </select>
 
-        <label><span class="q-num">3.</span> ما هو الموسم الذي تود التركيز عليه؟</label>
-        <select id="psy3">
-            <option>شتوي (دافئ، ثقيل، وتوابل)</option>
-            <option>صيفي (منعش، مائي، وحمضيات)</option>
-            <option>خريفي/ربيعي (متوازن وزهري)</option>
-            <option>عطر عابر للفصول (Signature Scent)</option>
+        <label><span class="q-num">3.</span> مدة الثبات المطلوبة (تحدد تركيز الزيوت)</label>
+        <select id="psy_duration">
+            <option>متوسطة (6 - 8 ساعات)</option>
+            <option>طويلة (12 - 24 ساعة)</option>
+            <option>فائقة (ثبات لعدة أيام على الملابس)</option>
         </select>
 
-        <label><span class="q-num">4.</span> كيف تصف درجة تفاعلك الاجتماعي؟</label>
-        <select id="psy4">
-            <option>كلاسيكي هادئ (أفضل الروائح القريبة من الجلد)</option>
-            <option>منفتح وحيوي (أفضل الروائح التي تملأ المكان)</option>
-            <option>رسمي ومهني (أفضل الروائح التي تعطي انطباعاً بالجدية)</option>
+        <label><span class="q-num">4.</span> نوع البشرة</label>
+        <select id="psy_skin">
+            <option>دهنية</option>
+            <option>جافة</option>
+            <option>عادية</option>
         </select>
 
-        <label><span class="q-num">5.</span> ما هو العنصر العطري الذي يمنحك الراحة الفورية؟</label>
-        <select id="psy5">
-            <option>الأخشاب (صندل، أرز، عود)</option>
-            <option>الأزهار (ياسمين، ورد، لافندر)</option>
-            <option>الأرض (باتشولي، تريكو، طين)</option>
-            <option>الحلو (فانيليا، كراميل، فواكه)</option>
+        <label><span class="q-num">5.</span> الفصل المستهدف</label>
+        <select id="psy_season">
+            <option>شتوي / خريفي</option>
+            <option>صيفي / ربيعي</option>
+            <option>لكل الفصول</option>
         </select>
 
-        <label><span class="q-num">6.</span> ما هو الانطباع الذي تريده أن يُقال عنك في غيابك؟</label>
-        <select id="psy6">
-            <option>"شخص فخم ومهيب"</option>
-            <option>"شخص نظيف ومنعش"</option>
-            <option>"شخص غامض ومثير للفضول"</option>
-            <option>"شخص دافئ وحنون"</option>
+        <label><span class="q-num">6.</span> الانطباع المطلوب</label>
+        <select id="psy_vibes">
+            <option>رسمي وقيادي</option>
+            <option>جذاب ومثير</option>
+            <option>نظيف ومنعش</option>
+            <option>دافئ ومريح</option>
         </select>
 
-        <label><span class="q-num">7.</span> هل تفضل الروائح المستوحاة من الطبيعة أم الروائح التركيبية الحديثة؟</label>
-        <select id="psy7">
-            <option>الطبيعية الخام (زيوت نقية)</option>
-            <option>العصرية (جزيئات مبتكرة مثل الأمبروكسان)</option>
-        </select>
-
-        <label><span class="q-num">8.</span> ما هو الشعور الذي تود التخلص منه عند رش العطر؟</label>
-        <select id="psy8">
-            <option>التوتر (أحتاج عطراً مهدئاً)</option>
-            <option>الخمول (أحتاج عطراً طاقياً)</option>
-            <option>الاعتيادية (أحتاج عطراً يجعلني مختلفاً)</option>
-        </select>
-
-        <label><span class="q-num">9.</span> ما هو لونك المفضل الذي يمثل طاقتك؟</label>
-        <select id="psy9">
-            <option>أبيض/أزرق فاتح</option>
-            <option>أسود/بني غامق</option>
-            <option>أحمر/أرجواني</option>
-            <option>أصفر/برتقالي</option>
-        </select>
-
-        <label><span class="q-num">10.</span> بصمتك الخاصة (اكتب أي شيء آخر تريد إخبارنا به)</label>
-        <textarea id="customPsy" placeholder="هل هناك عطر قديم كنت تحبه؟ أو روائح تسبب لك حساسية؟"></textarea>
+        <label>✨ إضافات خاصة</label>
+        <textarea id="customPsy" placeholder="هل هناك عطر تحبه؟ أو تفصيل آخر تود ذكره للعطار؟"></textarea>
     </div>
 
     <div class="card">
         <div class="section-title">✍️ خدمة الحفر بالليزر (الكاملة 500 دج)</div>
         <label>الاسم</label>
-        <input id="engraveName" placeholder="مثلاً: صهيب الجزائري" oninput="updateTotal()">
+        <input id="engraveName" placeholder="الاسم المراد حفره" oninput="updateTotal()">
         <label>التوقيع الشخصي</label>
         <input id="engraveSig" placeholder="Signature" oninput="updateTotal()">
         <div class="engrave-preview-box">
@@ -143,7 +121,7 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold);}
         <div style="color:#888;font-size:11px;">المبلغ الإجمالي</div>
         <div class="total-price"><span id="totalDisplay">2500</span> دج</div>
     </div>
-    <button class="btn-order" onclick="sendWA()">تأكيد الطلب الإستراتيجي 📩</button>
+    <button class="btn-order" onclick="sendWA()">إرسال الطلب الإستراتيجي 📩</button>
 </div>
 
 <script>
@@ -152,9 +130,8 @@ const geoData = {
     "الجزائر": {price: 300, communes: ["سيدي امحمد", "الدار البيضاء", "الشراقة", "رويبة"]},
     "البليدة": {price: 300, communes: ["البليدة المركز", "بوفاريك", "أولاد يعيش"]},
     "تيبازة": {price: 350, communes: ["تيبازة المركز", "حجوط", "القليعة"]},
-    "الجلفة": {price: 500, communes: ["الجلفة المركز", "عين وسارة"]},
     "وهران": {price: 650, communes: ["وهران المركز", "بير الجير"]},
-    "قสนطينة": {price: 600, communes: ["قسنطينة المركز", "الخروب"]}
+    "قسنطينة": {price: 600, communes: ["قسنطينة المركز", "الخروب"]}
 };
 
 const wilayaSelect = document.getElementById("wilaya");
@@ -194,15 +171,17 @@ function sendWA() {
         alert("يرجى إكمال بيانات الشحن"); return;
     }
     
-    let psySummary = "";
-    for(let i=1; i<=9; i++) {
-        psySummary += `- س${i}: ${document.getElementById("psy"+i).value}\n`;
-    }
+    const details = `*الجنس:* ${document.getElementById("psy_gender").value}\n` +
+                    `*اللون:* ${document.getElementById("psy_color").value}\n` +
+                    `*الثبات:* ${document.getElementById("psy_duration").value}\n` +
+                    `*البشرة:* ${document.getElementById("psy_skin").value}\n` +
+                    `*الفصل:* ${document.getElementById("psy_season").value}\n` +
+                    `*الانطباع:* ${document.getElementById("psy_vibes").value}`;
 
-    let msg = `*طلب عطر (إستراتيجية نيش)* 🏺\n` +
+    let msg = `*طلب عطر (بروتوكول نيش)* 🏺\n` +
               `-------------------\n` +
-              `🧠 *نتائج البروتوكول:*\n${psySummary}` +
-              `✨ *ملاحظات:* ${document.getElementById("customPsy").value || "لا يوجد"}\n` +
+              `🧠 *التحليل الإستراتيجي:*\n${details}\n` +
+              `✨ *إضافات:* ${document.getElementById("customPsy").value || "لا يوجد"}\n` +
               `-------------------\n` +
               `✍️ *الحفر (+500 دج):*\n` +
               `- الاسم: ${document.getElementById("engraveName").value || "بدون"}\n` +
