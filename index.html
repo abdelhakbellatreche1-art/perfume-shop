@@ -3,119 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | المصمم المحترف</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>ESSENCE D'ORIENT | 58 Wilayas Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c79f53; --black: #0a0a0a; --glass: rgba(255, 255, 255, 0.05); }
-        body { font-family: 'Cairo', sans-serif; background: #000; color: #f0e6d2; margin: 0; min-height: 100vh; }
+        body { font-family: 'Cairo', sans-serif; background: #000; color: #f0e6d2; margin: 0; min-height: 100vh; overflow-x: hidden; }
         header { background: #000; padding: 20px; text-align: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .container { max-width: 600px; margin: 20px auto; width: 92%; padding-bottom: 100px; }
-        .price-chip { position: fixed; bottom: 25px; left: 20px; background: var(--gold); color: #000; padding: 12px 20px; border-radius: 40px; font-weight: 900; z-index: 1000; border: 2px solid #fff; }
+        .price-chip { position: fixed; bottom: 25px; left: 20px; background: var(--gold); color: #000; padding: 12px 20px; border-radius: 40px; font-weight: 900; z-index: 1000; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .progress-bar { height: 6px; background: rgba(255,255,255,0.1); margin-bottom: 30px; border-radius: 10px; overflow: hidden; }
         .progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.6s; }
         .step-card { background: var(--glass); border-radius: 25px; padding: 25px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); display: none; animation: slideUp 0.5s ease; flex-direction: column; }
         .step-card.active { display: flex; }
         h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 20px; border-right: 4px solid var(--gold); padding-right: 15px; }
-        
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .choice-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 15px; color: #fff; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Cairo'; }
-        .choice-btn:hover, .choice-btn.selected { border-color: var(--gold); background: rgba(199, 159, 83, 0.15); }
-
-        /* قسم معاينة الكتابة */
-        .preview-area { background: #111; padding: 20px; border-radius: 15px; text-align: center; font-size: 1.8rem; border: 1px dashed var(--gold); margin-bottom: 15px; min-height: 50px; transition: 0.3s; }
-        
-        input, select, textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: #111; color: #fff; margin-bottom: 15px; font-family: 'Cairo'; }
-        .action-btn { background: var(--gold); color: #000; border: none; padding: 18px; border-radius: 15px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .choice-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 15px; color: #fff; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Cairo'; text-align: center; }
+        .choice-btn.selected { border-color: var(--gold); background: rgba(199, 159, 83, 0.2); }
+        .preview-area { background: #111; padding: 20px; border-radius: 15px; text-align: center; font-size: 1.8rem; border: 1px dashed var(--gold); margin-bottom: 15px; min-height: 50px; }
+        input, select, textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: #111; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; box-sizing: border-box; }
+        .action-btn { background: var(--gold); color: #000; border: none; padding: 18px; border-radius: 15px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; margin-top: 10px; }
         .wa-btn { background: #25D366; color: white; text-decoration: none; padding: 18px; border-radius: 15px; text-align: center; font-weight: bold; display: block; margin-top: 15px; }
-        
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <div class="price-chip">الإجمالي: <span id="total-price">0</span> دج</div>
-<header><h1 style="color:var(--gold); margin:0;">ESSENCE D'ORIENT</h1></header>
+<header><h1 style="color:var(--gold); margin:0; font-size: 1.5rem;">ESSENCE D'ORIENT</h1></header>
 
 <div class="container">
     <div class="progress-bar"><div class="progress-fill" id="pb"></div></div>
 
     <div class="step-card active" id="s1">
-        <h2>1. الشعور المطلوب والهوايات:</h2>
-        <select id="mood" onchange="profile.mood = this.value">
-            <option value="">-- ما هو الشعور المطلوب؟ --</option>
-            <option value="الثقة والقوة">🦁 الثقة والقوة</option>
-            <option value="الهدوء والسكينة">🧘 الهدوء والسكينة</option>
-            <option value="الجاذبية">🔮 الجاذبية والغموض</option>
-        </select>
-        <div class="options-grid" style="margin-top:10px;">
-            <button class="choice-btn" onclick="toggleHobby(this, 'الرياضة')">🏋️<span>الرياضة</span></button>
-            <button class="choice-btn" onclick="toggleHobby(this, 'السفر')">🌍<span>السفر</span></button>
+        <h2>1. التحليل النفسي (اختيار متعدد):</h2>
+        <div class="options-grid">
+            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'ثقة')">🦁<span>ثقة وقوة</span></button>
+            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'هدوء')">🧘<span>هدوء</span></button>
+            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'جاذبية')">🔮<span>جاذبية</span></button>
+            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'انتعاش')">⚡<span>انتعاش</span></button>
         </div>
-        <button class="action-btn" style="margin-top:20px;" onclick="next(1)">المتابعة</button>
+        <button class="action-btn" onclick="next(1)">المتابعة</button>
     </div>
 
     <div class="step-card" id="s2">
-        <h2>2. اختر نوع القارورة:</h2>
-        <div class="choice-btn" style="width:100%; margin-bottom:10px;" onclick="setBottle('50ml مربعة', 950, 2)">
-            <b>50 ML مربعة (950 دج)</b>
+        <h2>2. اهتماماتك (اختيار متعدد):</h2>
+        <div class="options-grid">
+            <button class="choice-btn" onclick="toggleMulti(this, 'hobbies', 'رياضة')">🏋️<span>رياضة</span></button>
+            <button class="choice-btn" onclick="toggleMulti(this, 'سفر')">🌍<span>سفر</span></button>
+            <button class="choice-btn" onclick="toggleMulti(this, 'خيل')">🐎<span>خيل</span></button>
+            <button class="choice-btn" onclick="toggleMulti(this, 'تخييم')">⛺<span>تخييم</span></button>
         </div>
-        <div class="choice-btn" style="width:100%;" onclick="setBottle('100ml مستطيلة', 1500, 2)">
-            <b>100 ML مستطيلة (1500 دج)</b>
-        </div>
+        <button class="action-btn" onclick="next(2)">المتابعة</button>
     </div>
 
     <div class="step-card" id="s3">
-        <h2>3. الكتابة على القارورة (+300 دج)</h2>
-        <input type="text" id="engrave-text" placeholder="اكتب الاسم هنا (اتركه فارغاً للإلغاء)" oninput="updateEngraving()">
-        
-        <div class="preview-area" id="preview-box">Preview</div>
-
-        <label style="font-size:0.8rem;">اختر لون الكتابة:</label>
-        <div class="options-grid" style="margin-bottom:15px;">
-            <button class="choice-btn selected" onclick="setColor('ذهبي', '#c79f53', this)">ذهبي</button>
-            <button class="choice-btn" onclick="setColor('فضي', '#e0e0e0', this)">فضي</button>
-            <button class="choice-btn" onclick="setColor('أسود ملكي', '#333', this)">أسود</button>
-            <button class="choice-btn" onclick="setFont('Amiri', this)">خط عربي</button>
-        </div>
-        <button class="action-btn" onclick="next(3)">تأكيد الكتابة</button>
+        <h2>3. حجم القارورة الفاخرة:</h2>
+        <button class="choice-btn" style="width:100%; margin-bottom:10px;" onclick="setBottle('50ml مربعة', 950, 3)"><b>50 ML (950 دج)</b></button>
+        <button class="choice-btn" style="width:100%;" onclick="setBottle('100ml مستطيلة', 1500, 3)"><b>100 ML (1500 دج)</b></button>
     </div>
 
     <div class="step-card" id="s4">
-        <h2>4. معلومات التوصيل:</h2>
+        <h2>4. الكتابة على القارورة (+300 دج):</h2>
+        <input type="text" id="engrave-text" placeholder="اكتب الاسم هنا..." oninput="updateEngraving()">
+        <div class="preview-area" id="preview-box">Preview</div>
+        <div class="options-grid">
+            <button class="choice-btn selected" onclick="setColor('ذهبي', '#c79f53', this)">ذهبي</button>
+            <button class="choice-btn" onclick="setColor('فضي', '#e0e0e0', this)">فضي</button>
+        </div>
+        <button class="action-btn" onclick="next(4)">تأكيد الكتابة</button>
+    </div>
+
+    <div class="step-card" id="s5">
+        <h2>5. معلومات الشحن (58 ولاية):</h2>
         <select id="wilaya" onchange="updateShip()">
             <option value="" data-p="0">-- اختر الولاية --</option>
-            <option value="الجزائر" data-p="350">16 - الجزائر (350 دج)</option>
-            <option value="المدية" data-p="300">26 - المدية (300 دج)</option>
-            <option value="وهران" data-p="450">31 - وهران (450 دج)</option>
-        </select>
+            </select>
+        <input type="text" id="commune" placeholder="البلدية">
         <input type="tel" id="phone" placeholder="رقم الهاتف">
-        <textarea id="notes" placeholder="ملاحظات إضافية..."></textarea>
-        <button class="action-btn" onclick="finish()">إنهاء الطلب</button>
+        <button class="action-btn" onclick="finish()">الطلب النهائي</button>
     </div>
 
     <div class="step-card" id="final">
-        <h2 style="text-align:center;">ملخص الطلب</h2>
-        <div id="summary" style="background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; line-height:2;"></div>
-        <a href="#" id="wa-link" class="wa-btn">إرسال للواتساب</a>
-        <button class="action-btn" style="background:transparent; color:var(--gold); border:1px solid var(--gold); margin-top:10px;" onclick="location.reload()">إعادة</button>
+        <h2 style="text-align:center;">تم تسجيل طلبك</h2>
+        <div id="summary" style="background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; font-size:0.9rem;"></div>
+        <a href="#" id="wa-link" class="wa-btn">إرسال عبر واتساب</a>
     </div>
 </div>
 
 <script>
+    const wilayas = [
+        "أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","إن صالح","إن قزام","تقرت","جانت","المغير","المنيعة"
+    ];
+
     let costs = { b: 0, s: 0, e: 0 };
-    let profile = { hobbies: [], mood: '' };
-    let order = { font: 'Amiri', colorName: 'ذهبي', colorHex: '#c79f53' };
-    const totalSteps = 4;
+    let data = { psych: [], hobbies: [] };
+    let order = { color: 'ذهبي' };
 
-    function toggleHobby(btn, name) {
+    // ملء قائمة الولايات
+    const wSelect = document.getElementById('wilaya');
+    wilayas.forEach((w, i) => {
+        let opt = document.createElement('option');
+        opt.value = w;
+        // سعر افتراضي: العاصمة والمدية 300، البقية 500، الصحراء 800
+        let price = 500;
+        if(i+1 == 16 || i+1 == 26) price = 300;
+        if([1, 8, 11, 33, 37, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58].includes(i+1)) price = 800;
+        opt.dataset.p = price;
+        opt.innerText = `${i+1} - ${w}`;
+        wSelect.appendChild(opt);
+    });
+
+    function toggleMulti(btn, cat, val) {
         btn.classList.toggle('selected');
-        if(profile.hobbies.includes(name)) profile.hobbies = profile.hobbies.filter(h => h !== name);
-        else profile.hobbies.push(name);
+        if(!data[cat]) data[cat] = [];
+        if(data[cat].includes(val)) data[cat] = data[cat].filter(x => x !== val);
+        else data[cat].push(val);
     }
 
-    function setBottle(sz, p, s) { 
-        order.sz = sz; costs.b = p; updateTotal(); next(s); 
-    }
+    function setBottle(sz, p, s) { order.sz = sz; costs.b = p; updateTotal(); next(s); }
 
     function updateEngraving() {
         const txt = document.getElementById('engrave-text').value;
@@ -124,52 +129,37 @@
         updateTotal();
     }
 
-    function setColor(name, hex, btn) {
-        order.colorName = name;
-        order.colorHex = hex;
-        document.getElementById('preview-box').style.color = hex;
-        btn.parentElement.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-    }
-
-    function setFont(f, btn) {
-        order.font = f;
-        document.getElementById('preview-box').style.fontFamily = f;
+    function setColor(n, h, b) {
+        order.color = n; document.getElementById('preview-box').style.color = h;
+        b.parentElement.querySelectorAll('.choice-btn').forEach(x => x.classList.remove('selected'));
+        b.classList.add('selected');
     }
 
     function updateShip() {
-        let opt = document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex];
-        costs.s = parseInt(opt.dataset.p) || 0;
+        costs.s = parseInt(wSelect.options[wSelect.selectedIndex].dataset.p) || 0;
         updateTotal();
     }
 
-    function updateTotal() { 
-        document.getElementById('total-price').innerText = costs.b + costs.s + costs.e; 
-    }
+    function updateTotal() { document.getElementById('total-price').innerText = costs.b + costs.s + costs.e; }
 
     function next(curr) {
         document.getElementById('s' + curr).classList.remove('active');
-        document.getElementById('pb').style.width = (curr / totalSteps * 100) + '%';
+        document.getElementById('pb').style.width = (curr / 5 * 100) + '%';
         document.getElementById('s' + (curr + 1)).classList.add('active');
     }
 
     function finish() {
-        const text = document.getElementById('engrave-text').value || "لا توجد";
-        const wilaya = document.getElementById('wilaya').value;
-        const phone = document.getElementById('phone').value;
-        const note = document.getElementById('notes').value || "لا يوجد";
-
-        let total = costs.b + costs.s + costs.e;
-        let sum = `📦 <b>الحجم:</b> ${order.sz}<br>✍️ <b>الكتابة:</b> ${text} (${order.colorName})<br>📍 <b>الولاية:</b> ${wilaya}<br>💰 <b>الإجمالي:</b> ${total} دج`;
-        document.getElementById('summary').innerHTML = sum;
-
-        let msg = `طلب عطر%0Aالحجم: ${order.sz}%0Aالكتابة: ${text}%0Aاللون: ${order.colorName}%0Aالولاية: ${wilaya}%0Aالهاتف: ${phone}%0Aالملاحظات: ${note}%0Aالإجمالي: ${total}دج`;
-        document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${msg}`;
+        const txt = document.getElementById('engrave-text').value || "بدون كتابة";
+        const total = costs.b + costs.s + costs.e;
+        const summary = `<b>المزاج:</b> ${data.psych.join('-')}<br><b>الهوايات:</b> ${data.hobbies.join('-')}<br><b>الحجم:</b> ${order.sz}<br><b>الكتابة:</b> ${txt}<br><b>الولاية:</b> ${wSelect.value}<br><b>الإجمالي:</b> ${total} دج`;
+        document.getElementById('summary').innerHTML = summary;
         
-        document.getElementById('s4').classList.remove('active');
+        let msg = `طلب عطر VIP%0Aالمزاج: ${data.psych.join('-')}%0Aالهوايات: ${data.hobbies.join('-')}%0Aالحجم: ${order.sz}%0Aالكتابة: ${txt}%0Aاللون: ${order.color}%0Aالولاية: ${wSelect.value}%0Aالبلدية: ${document.getElementById('commune').value}%0Aالهاتف: ${document.getElementById('phone').value}%0Aالإجمالي: ${total}دج`;
+        document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
+        
+        document.getElementById('s5').classList.remove('active');
         document.getElementById('final').classList.add('active');
     }
 </script>
-
 </body>
 </html>
