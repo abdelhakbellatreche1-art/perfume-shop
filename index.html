@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | تجربة العطر المخصص</title>
+    <title>ESSENCE D'ORIENT | مستشار الأحجام والعطور</title>
     <style>
-        :root { --gold: #c5a059; --dark: #121212; --bg: #fdfdfd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; color: #333; }
+        :root { --gold: #c5a059; --dark: #1a1a1a; --light-grey: #f4f4f4; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fff; margin: 0; color: #333; }
         
-        /* تصميم الهيدر الجديد */
-        .header { background: var(--dark); color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid var(--gold); }
-        .header h1 { margin: 0; font-size: 2.2em; letter-spacing: 4px; font-weight: 300; }
-        .header p { color: var(--gold); font-size: 0.9em; letter-spacing: 2px; margin-top: 10px; }
+        /* الهيدر */
+        .header { background: var(--dark); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
+        .header h1 { margin: 0; font-size: 2em; letter-spacing: 3px; }
 
-        /* حاوية الأسئلة */
-        .quiz-section { max-width: 650px; margin: -40px auto 40px; background: white; padding: 40px; border-radius: 2px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-top: 5px solid var(--gold); }
-        .progress-bar { width: 100%; height: 3px; background: #eee; margin-bottom: 30px; }
-        .progress-fill { height: 100%; background: var(--gold); width: 8%; transition: 0.5s; }
+        /* حاوية الاختبار */
+        .quiz-section { max-width: 700px; margin: 30px auto; padding: 20px; background: var(--light-grey); border-radius: 15px; }
+        .step { display: none; text-align: center; }
+        .step.active { display: block; animation: fadeIn 0.5s; }
+        .opt { display: block; width: 100%; padding: 15px; margin: 10px 0; background: white; border: 1px solid #ddd; cursor: pointer; transition: 0.3s; font-size: 1.1em; }
+        .opt:hover { border-color: var(--gold); background: #fffcf5; }
 
-        .step { display: none; }
-        .step.active { display: block; animation: fadeIn 0.6s; }
-        h2 { font-weight: 400; font-size: 1.4em; margin-bottom: 25px; color: var(--dark); }
+        /* قسم القارورات حسب الحجم */
+        .size-section { padding: 50px 20px; max-width: 1100px; margin: 0 auto; }
+        .size-title { text-align: center; font-size: 1.8em; margin-bottom: 40px; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; width: 100%; }
         
-        .opt { display: block; width: 100%; padding: 18px; margin-bottom: 12px; border: 1px solid #eee; background: #fff; cursor: pointer; text-align: right; transition: 0.3s; font-size: 1em; }
-        .opt:hover { background: var(--dark); color: white; border-color: var(--dark); padding-right: 30px; }
+        .bottles-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: flex-end; }
+        
+        /* بطاقة القارورة */
+        .bottle-card { background: white; border: 1px solid #eee; padding: 20px; text-align: center; transition: 0.3s; flex: 1; min-width: 180px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .bottle-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        
+        /* أحجام القارورات بصرية */
+        .bottle-img { margin: 0 auto 20px; background: linear-gradient(to top, #e0e0e0, #ffffff); border: 2px solid #333; border-radius: 5px 5px 20px 20px; position: relative; }
+        .img-6ml { width: 30px; height: 50px; }
+        .img-12ml { width: 40px; height: 70px; }
+        .img-30ml { width: 50px; height: 90px; }
+        .img-50ml { width: 65px; height: 110px; }
+        .img-100ml { width: 80px; height: 140px; }
 
-        /* تصميم القارورات الجديد (Grid عصرية) */
-        .bottles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
-        .b-card { position: relative; overflow: hidden; background: white; border: 1px solid #f0f0f0; transition: 0.5s; }
-        .b-card img { width: 100%; height: 300px; object-fit: cover; transition: 0.5s; }
-        .b-card:hover img { transform: scale(1.1); filter: brightness(70%); }
-        .b-info { padding: 20px; text-align: center; }
-        .b-title { font-size: 1.2em; color: var(--dark); font-weight: bold; margin-bottom: 5px; }
-        .b-use { color: var(--gold); font-size: 0.8em; text-transform: uppercase; font-weight: bold; }
+        .bottle-cap { width: 60%; height: 15px; background: var(--gold); margin: -15px auto 0; border-radius: 3px; }
+        
+        .capacity { font-weight: bold; font-size: 1.2em; color: var(--dark); margin-top: 10px; display: block; }
+        .usage { font-size: 0.8em; color: #777; margin-top: 5px; }
 
-        .result-box { display: none; text-align: center; padding: 30px; }
-        .wa-btn { background: #25d366; color: white; text-decoration: none; padding: 15px 40px; display: inline-block; border-radius: 0; font-weight: bold; margin-top: 25px; letter-spacing: 1px; }
+        .result-box { display: none; text-align: center; background: var(--dark); color: white; padding: 30px; border-radius: 10px; }
+        .wa-btn { background: #25d366; color: white; text-decoration: none; padding: 15px 30px; display: inline-block; margin-top: 20px; font-weight: bold; border-radius: 5px; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -44,119 +52,78 @@
 
     <div class="header">
         <h1>ESSENCE D'ORIENT</h1>
-        <p>ARTISAN PARFUMEUR</p>
+        <p>اكتشف عطرك وحجمك المثالي</p>
     </div>
 
     <div class="quiz-section">
-        <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
-
         <div class="step active" id="s1">
-            <h2>1. ما هي الذكرى التي تود استحضارها عند شم عطرك؟</h2>
-            <button class="opt" onclick="next(1)">ذكريات الطفولة والنظافة</button>
-            <button class="opt" onclick="next(1)">السفر والمغامرة في الغابات</button>
-            <button class="opt" onclick="next(1)">الفخامة والهيبة في المجالس</button>
+            <h2>1. ما هو الهدف الأساسي من العطر؟</h2>
+            <button class="opt" onclick="next(1)">الاستخدام الشخصي اليومي (نظافة)</button>
+            <button class="opt" onclick="next(1)">لفت الانتباه في المناسبات (قوة)</button>
+            <button class="opt" onclick="next(1)">هدية لشخص عزيز (فخامة)</button>
         </div>
 
         <div class="step" id="s2">
-            <h2>2. أي لون يمثل شخصيتك أكثر؟</h2>
-            <button class="opt" onclick="next(2)">الأبيض النقي</button>
-            <button class="opt" onclick="next(2)">الأزرق العميق</button>
-            <button class="opt" onclick="next(2)">الأسود الملكي</button>
+            <h2>2. أين تضع عطرك عادة؟</h2>
+            <button class="opt" onclick="next(2)">على الرقبة واليدين فقط</button>
+            <button class="opt" onclick="next(2)">على الملابس بشكل مكثف</button>
+            <button class="opt" onclick="next(2)">في السيارة أو المكتب</button>
         </div>
 
         <div class="step" id="s3">
-            <h2>3. ما هو الملمس الذي تفضله؟</h2>
-            <button class="opt" onclick="next(3)">الحرير الناعم</button>
-            <button class="opt" onclick="next(3)">الجلد الفاخر</button>
-            <button class="opt" onclick="next(3)">القطن المنعش</button>
+            <h2>3. كم مرة تستخدم العطر في اليوم؟</h2>
+            <button class="opt" onclick="next(3)">مرة واحدة في الصباح</button>
+            <button class="opt" onclick="next(3)">أجدده كل 4 ساعات</button>
         </div>
 
         <div class="step" id="s4">
-            <h2>4. كيف تحب أن يشعر الآخرون بوجودك؟</h2>
-            <button class="opt" onclick="next(4)">بشكل غير مرئي (رائحة تكتشف عند الاقتراب)</button>
-            <button class="opt" onclick="next(4)">بشكل صارخ (رائحة تسبق حضورك)</button>
-        </div>
-
-        <div class="step" id="s5">
-            <h2>5. أي طعم تفضله في التحلية؟</h2>
-            <button class="opt" onclick="next(5)">الكراميل والفانيليا</button>
-            <button class="opt" onclick="next(5)">التوابل الحارة والقرفة</button>
-            <button class="opt" onclick="next(5)">حموضة الليمون والبرتقال</button>
-        </div>
-
-        <div class="step" id="s6">
-            <h2>6. ما هو مكانك المفضل للتأمل؟</h2>
-            <button class="opt" onclick="next(6)">أمام البحر تماماً</button>
-            <button class="opt" onclick="next(6)">وسط بستان من الزهور</button>
-            <button class="opt" onclick="next(6)">في غرفة معتمة بها بخور</button>
-        </div>
-
-        <div class="step" id="s7">
-            <h2>7. أي نوع من الموسيقى تفضل؟</h2>
-            <button class="opt" onclick="next(7)">كلاسيكية هادئة</button>
-            <button class="opt" onclick="next(7)">قوية وصاخبة</button>
-        </div>
-
-        <div class="step" id="s8">
-            <h2>8. ما هو رد الفعل الذي تنتظره من الناس؟</h2>
-            <button class="opt" onclick="next(8)">"يا له من عطر نظيف!"</button>
-            <button class="opt" onclick="next(8)">"من أين لك هذا العطر الفخم؟"</button>
-        </div>
-
-        <div class="step" id="s9">
-            <h2>9. هل تفضل العطر الذي يتغير مع الوقت أم يبقى ثابتاً؟</h2>
-            <button class="opt" onclick="next(9)">يتطور ويخرج روائح مختلفة كل ساعة</button>
-            <button class="opt" onclick="next(9)">يبقى كما هو من البداية للنهاية</button>
-        </div>
-
-        <div class="step" id="s10">
-            <h2>10. ما هو نوع اللباس الذي ترتديه غالباً؟</h2>
-            <button class="opt" onclick="next(10)">كلاسيكي رسمي</button>
-            <button class="opt" onclick="next(10)">كاجوال ورياضي</button>
-        </div>
-
-        <div class="step" id="s11">
-            <h2>11. ما هي قوة الثبات التي تطمح إليها؟</h2>
-            <button class="opt" onclick="next(11)">ثبات متوسط (يوم عمل)</button>
-            <button class="opt" onclick="next(11)">ثبات أبدي (يبقى في الملابس بعد غسلها)</button>
-        </div>
-
-        <div class="step" id="s12">
-            <h2>12. وأخيراً، ما هو شعورك الآن؟</h2>
-            <button class="opt" onclick="finish()">متحمس لاكتشاف عطري</button>
-            <button class="opt" onclick="finish()">أبحث عن شيء يغير مزاجي</button>
+            <h2>4. ما هو القوام الذي تفضله؟</h2>
+            <button class="opt" onclick="finish('الزيت المركز')">زيت خام ثقيل (يدوم طويلاً)</button>
+            <button class="opt" onclick="finish('عطر بخاخ')">بخاخ خفيف (ينتشر بسرعة)</button>
         </div>
 
         <div class="result-box" id="res">
-            <h2 style="color:var(--gold)">تم تصميم عطرك الفريد!</h2>
-            <p id="perfume-res" style="font-size: 1.5em; font-weight: bold;"></p>
-            <p id="desc-res"></p>
-            <a href="#" id="wa-link" class="wa-btn">احجز عطرك الآن</a>
+            <h2 style="color:var(--gold)">تم تحليل طلبك:</h2>
+            <p id="perfume-res" style="font-size: 1.4em;"></p>
+            <p>ننصحك باختيار قارورة 50 مل (ميلانو) لأفضل تجربة.</p>
+            <a href="#" id="wa-link" class="wa-btn">اطلب المزيج الآن</a>
         </div>
     </div>
 
-    <h2 style="text-align:center; letter-spacing: 2px;">COLLECTION DE FLACONS</h2>
-    <div class="bottles-grid">
-        <div class="b-card">
-            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500">
-            <div class="b-info">
-                <div class="b-use">للعطور الفواخة والملء</div>
-                <div class="b-title">ميلانو بريميوم (Milano)</div>
+    <div class="size-section">
+        <div class="size-title">دليل القارورات المتوفرة</div>
+        <div class="bottles-container">
+            
+            <div class="bottle-card">
+                <div class="bottle-img img-6ml"><div class="bottle-cap"></div></div>
+                <span class="capacity">6 مل</span>
+                <div class="usage">تولة صغيرة<br>للزيت الخام والمسك</div>
             </div>
-        </div>
-        <div class="b-card">
-            <img src="https://images.unsplash.com/photo-1583209814683-c023dd2f3667?w=500">
-            <div class="b-info">
-                <div class="b-use">للزيت الخام والمسك</div>
-                <div class="b-title">تولة الكريستال الملكية</div>
+
+            <div class="bottle-card">
+                <div class="bottle-img img-12ml"><div class="bottle-cap"></div></div>
+                <span class="capacity">12 مل</span>
+                <div class="usage">تولة كبيرة<br>مثالية للهدايا والزيوت</div>
             </div>
-        </div>
-        <div class="b-card">
-            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500">
-            <div class="b-info">
-                <div class="b-use">للاستخدام اليومي والجيب</div>
-                <div class="b-title">قارورة التعبئة العصرية</div>
+
+            <div class="bottle-card">
+                <div class="bottle-img img-30ml"><div class="bottle-cap"></div></div>
+                <span class="capacity">30 مل</span>
+                <div class="usage">حجم الجيب<br>عطر بخاخ للسفر</div>
             </div>
+
+            <div class="bottle-card">
+                <div class="bottle-img img-50ml"><div class="bottle-cap"></div></div>
+                <span class="capacity">50 مل</span>
+                <div class="usage">حجم ميلانو<br>الأكثر طلباً للاستعمال اليومي</div>
+            </div>
+
+            <div class="bottle-card">
+                <div class="bottle-img img-100ml"><div class="bottle-cap"></div></div>
+                <span class="capacity">100 مل</span>
+                <div class="usage">حجم العائلة<br>للتوفير والاستخدام الطويل</div>
+            </div>
+
         </div>
     </div>
 
@@ -165,28 +132,20 @@
         function next(s) {
             document.getElementById('s' + s).classList.remove('active');
             currentStep++;
-            if(document.getElementById('s' + currentStep)) {
-                document.getElementById('s' + currentStep).classList.add('active');
-                document.getElementById('p-fill').style.width = (currentStep / 12 * 100) + '%';
-            }
+            document.getElementById('s' + currentStep).classList.add('active');
         }
 
-        function finish() {
-            document.getElementById('s12').classList.remove('active');
+        function finish(type) {
+            document.getElementById('s4').classList.remove('active');
             document.getElementById('res').style.display = 'block';
-            document.getElementById('p-fill').style.width = '100%';
-            
-            const name = "مزيج العود الملكي المقطر بالمسك الجبلي";
-            const desc = "هذا العطر صمم خصيصاً ليحاكي تطلعاتك للفخامة والهيبة مع لمسة من الانتعاش الخفي.";
-            
+            const name = "مزيج " + type + " مخصص لك";
             document.getElementById('perfume-res').innerText = name;
-            document.getElementById('desc-res').innerText = desc;
-            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=أريد طلب العطر المخصص: ${name}`;
+            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=أريد طلب عطر مخصص: ${name}`;
         }
     </script>
 
-    <div style="background:var(--dark); color:#555; padding:50px; text-align:center; font-size:0.7em; letter-spacing: 2px;">
-        ALGERIA | ESSENCE D'ORIENT 2026
+    <div style="background:var(--dark); color:#777; padding:40px; text-align:center; font-size:0.8em;">
+        جميع الحقوق محفوظة لمتجر عطور الفخامة 2026 | الجزائر
     </div>
 
 </body>
