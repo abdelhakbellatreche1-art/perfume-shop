@@ -2,28 +2,26 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Perfume Lab Pro - التحليل الإستراتيجي الشامل</title>
+<title>Perfume Lab Pro - الأسعار المخفضة</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#d4af37;--bg:#000;--card:#111;--input:#1a1a1a;}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;padding-bottom:170px;direction:rtl;}
-.header{text-align:center;padding:30px;border-bottom:1px solid #222;background: linear-gradient(to bottom, #151515, #000);}
+.header{text-align:center;padding:30px;border-bottom:1px solid #222;}
 .header h1{font-family:'Amiri',serif;color:var(--gold);font-size:30px;margin:0;}
 .container{padding:15px;max-width:600px;margin:auto;}
-.card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;}
 .section-title{color:var(--gold);font-size:16px;font-weight:700;margin-bottom:20px;border-right:4px solid var(--gold);padding-right:12px;}
-label{display:block;font-size:13px;color:#bbb;margin:18px 0 8px;font-weight:bold;line-height:1.5;}
-select,input,textarea{width:100%;background:var(--input);border:1px solid #333;color:#fff;padding:14px;border-radius:12px;font-family:'Cairo';box-sizing:border-box;outline:none;font-size:14px;}
-select:focus, input:focus, textarea:focus{border-color: var(--gold);}
+label{display:block;font-size:13px;color:#bbb;margin:18px 0 8px;font-weight:bold;}
+select,input,textarea{width:100%;background:var(--input);border:1px solid #333;color:#fff;padding:14px;border-radius:12px;font-family:'Cairo';box-sizing:border-box;outline:none;}
 .price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(15px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
 .total-price{font-size:24px;font-weight:700;color:var(--gold);}
-.btn-order{background:var(--gold);color:#000;border:none;padding:15px 35px;border-radius:12px;font-weight:700;cursor:pointer;font-size:16px;}
+.btn-order{background:var(--gold);color:#000;border:none;padding:15px 35px;border-radius:12px;font-weight:700;cursor:pointer;}
 .engrave-preview-box{text-align:center;border:1px dashed var(--gold);border-radius:15px;padding:25px;margin-top:20px;background: radial-gradient(circle, #1a1a1a, #050505);}
 #previewName{font-family:'Amiri',serif;color:#fff;font-size:26px;display:block;}
 #previewSig{font-family:'Monsieur La Doulaise', cursive;color:var(--gold);font-size:35px;display:block;transform: rotate(-3deg);margin-top:10px;}
 .ship-badge{display:block;background:rgba(212,175,55,0.05);color:var(--gold);padding:10px;border-radius:10px;font-size:12px;margin-top:15px;text-align:center;border:1px solid rgba(212,175,55,0.15);}
-.q-num{color:var(--gold);margin-left:5px;}
 </style>
 </head>
 <body>
@@ -36,54 +34,15 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold);}
 <div class="container">
     
     <div class="card">
-        <div class="section-title">🧠 بروتوكول التصميم الإستراتيجي</div>
-        
-        <label><span class="q-num">1.</span> الجنس (لمراعاة توازن المكونات)</label>
-        <select id="psy_gender">
-            <option>ذكر</option>
-            <option>أنثى</option>
-            <option>عطر مشترك (Unisex)</option>
+        <div class="section-title">🧠 بروتوكول التصميم الاستراتيجي</div>
+        <label>الجنس واللون والمدة</label>
+        <select id="psy_main">
+            <option>ذكر - أسود - ثبات فائق</option>
+            <option>أنثى - أحمر - ثبات فائق</option>
+            <option>Unisex - أزرق - ثبات طويل</option>
         </select>
-
-        <label><span class="q-num">2.</span> اللون المفضل (يعكس طبيعة الميول الحسية)</label>
-        <select id="psy_color">
-            <option>الأسود / البني (فخامة وغموض)</option>
-            <option>الأزرق / الأخضر (انتعاش وهدوء)</option>
-            <option>الأحمر / الأرجواني (شغف وجاذبية)</option>
-            <option>الأبيض / الأصفر (نقاء وطاقة)</option>
-        </select>
-
-        <label><span class="q-num">3.</span> مدة الثبات المطلوبة (تحدد تركيز الزيوت)</label>
-        <select id="psy_duration">
-            <option>متوسطة (6 - 8 ساعات)</option>
-            <option>طويلة (12 - 24 ساعة)</option>
-            <option>فائقة (ثبات لعدة أيام على الملابس)</option>
-        </select>
-
-        <label><span class="q-num">4.</span> نوع البشرة</label>
-        <select id="psy_skin">
-            <option>دهنية</option>
-            <option>جافة</option>
-            <option>عادية</option>
-        </select>
-
-        <label><span class="q-num">5.</span> الفصل المستهدف</label>
-        <select id="psy_season">
-            <option>شتوي / خريفي</option>
-            <option>صيفي / ربيعي</option>
-            <option>لكل الفصول</option>
-        </select>
-
-        <label><span class="q-num">6.</span> الانطباع المطلوب</label>
-        <select id="psy_vibes">
-            <option>رسمي وقيادي</option>
-            <option>جذاب ومثير</option>
-            <option>نظيف ومنعش</option>
-            <option>دافئ ومريح</option>
-        </select>
-
-        <label>✨ إضافات خاصة</label>
-        <textarea id="customPsy" placeholder="هل هناك عطر تحبه؟ أو تفصيل آخر تود ذكره للعطار؟"></textarea>
+        <label>ملاحظات إضافية للعطار</label>
+        <textarea id="customPsy" placeholder="اكتب هنا أي تفصيل آخر يهمك..."></textarea>
     </div>
 
     <div class="card">
@@ -99,13 +58,14 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold);}
     </div>
 
     <div class="card">
-        <div class="section-title">📍 الشحن والتوصيل</div>
+        <div class="section-title">📍 تفاصيل الطلب والشحن</div>
         <label>حجم القارورة</label>
         <select id="size" onchange="updateTotal()">
-            <option data-p="1500">30ml - 1500 دج</option>
-            <option data-p="2500" selected>50ml - 2500 دج</option>
-            <option data-p="4500">100ml - 4500 دج</option>
+            <option data-p="300">30ml - 300 دج</option>
+            <option data-p="500" selected>50ml - 500 دج</option>
+            <option data-p="700">100ml - 700 دج</option>
         </select>
+        
         <label>الولاية</label>
         <select id="wilaya" onchange="updateCommunes()"></select>
         <label>البلدية</label>
@@ -119,19 +79,17 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold);}
 <div class="price-bar">
     <div>
         <div style="color:#888;font-size:11px;">المبلغ الإجمالي</div>
-        <div class="total-price"><span id="totalDisplay">2500</span> دج</div>
+        <div class="total-price"><span id="totalDisplay">500</span> دج</div>
     </div>
-    <button class="btn-order" onclick="sendWA()">إرسال الطلب الإستراتيجي 📩</button>
+    <button class="btn-order" onclick="sendWA()">تأكيد الطلب 📩</button>
 </div>
 
 <script>
 const geoData = {
-    "المدية": {price: 200, communes: ["المدية المركز", "البرواقية", "قصر البخاري", "وزرة"]},
-    "الجزائر": {price: 300, communes: ["سيدي امحمد", "الدار البيضاء", "الشراقة", "رويبة"]},
+    "المدية": {price: 200, communes: ["المدية المركز", "البرواقية", "قصر البخاري"]},
+    "الجزائر": {price: 300, communes: ["سيدي امحمد", "الدار البيضاء", "الشراقة"]},
     "البليدة": {price: 300, communes: ["البليدة المركز", "بوفاريك", "أولاد يعيش"]},
-    "تيبازة": {price: 350, communes: ["تيبازة المركز", "حجوط", "القليعة"]},
-    "وهران": {price: 650, communes: ["وهران المركز", "بير الجير"]},
-    "قسنطينة": {price: 600, communes: ["قسنطينة المركز", "الخروب"]}
+    "تيبازة": {price: 350, communes: ["تيبازة المركز", "حجوط", "القليعة"]}
 };
 
 const wilayaSelect = document.getElementById("wilaya");
@@ -157,11 +115,15 @@ function updateCommunes() {
 function updateTotal() {
     const s = document.getElementById("size");
     const sizePrice = parseInt(s.options[s.selectedIndex].dataset.p);
-    const engText = document.getElementById("engraveName").value.trim() || document.getElementById("engraveSig").value.trim();
-    const engCost = engText ? 500 : 0;
     
-    document.getElementById("previewName").textContent = document.getElementById("engraveName").value || "الاسم هنا";
-    document.getElementById("previewSig").textContent = document.getElementById("engraveSig").value || "Signature";
+    const nameText = document.getElementById("engraveName").value.trim();
+    const sigText = document.getElementById("engraveSig").value.trim();
+    
+    // سعر الحفر ثابت عند 500 دج
+    const engCost = (nameText || sigText) ? 500 : 0;
+    
+    document.getElementById("previewName").textContent = nameText || "الاسم هنا";
+    document.getElementById("previewSig").textContent = sigText || "Signature";
     
     totalDisplay.textContent = sizePrice + shipPrice + engCost;
 }
@@ -171,26 +133,15 @@ function sendWA() {
         alert("يرجى إكمال بيانات الشحن"); return;
     }
     
-    const details = `*الجنس:* ${document.getElementById("psy_gender").value}\n` +
-                    `*اللون:* ${document.getElementById("psy_color").value}\n` +
-                    `*الثبات:* ${document.getElementById("psy_duration").value}\n` +
-                    `*البشرة:* ${document.getElementById("psy_skin").value}\n` +
-                    `*الفصل:* ${document.getElementById("psy_season").value}\n` +
-                    `*الانطباع:* ${document.getElementById("psy_vibes").value}`;
-
-    let msg = `*طلب عطر (بروتوكول نيش)* 🏺\n` +
+    let msg = `*طلب عطر (Perfume Lab)* 🏺\n` +
               `-------------------\n` +
-              `🧠 *التحليل الإستراتيجي:*\n${details}\n` +
-              `✨ *إضافات:* ${document.getElementById("customPsy").value || "لا يوجد"}\n` +
+              `🧠 *التحليل:* ${document.getElementById("psy_main").value}\n` +
               `-------------------\n` +
-              `✍️ *الحفر (+500 دج):*\n` +
-              `- الاسم: ${document.getElementById("engraveName").value || "بدون"}\n` +
-              `- التوقيع: ${document.getElementById("engraveSig").value || "بدون"}\n` +
+              `✍️ *الحفر (+500 دج):*\n- الاسم: ${document.getElementById("engraveName").value || "بدون"}\n- التوقيع: ${document.getElementById("engraveSig").value || "بدون"}\n` +
               `-------------------\n` +
               `📦 *الطلب:* ${document.getElementById("size").options[document.getElementById("size").selectedIndex].text}\n` +
-              `📍 *الشحن:* ${wilayaSelect.value} - ${communeSelect.value}\n` +
-              `📞 *الهاتف:* ${document.getElementById("phone").value}\n` +
-              `💰 *الإجمالي:* ${totalDisplay.textContent} دج`;
+              `📍 *الشحن:* ${wilayaSelect.value} (${shipPrice} دج)\n` +
+              `💰 *الإجمالي النهائي:* ${totalDisplay.textContent} دج`;
 
     window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
 }
