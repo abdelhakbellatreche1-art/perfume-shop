@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Perfume Lab Pro - التحليل العطري المتكامل</title>
+<title>Perfume Lab Pro - العرض الخاص</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 <style>
@@ -18,6 +18,8 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;pad
 .options-grid {display: flex; flex-wrap: wrap; gap: 8px;}
 .option-box {flex: 1; min-width: 85px; background: var(--input); border: 1px solid #333; padding: 10px; border-radius: 10px; text-align: center; font-size: 11px; cursor: pointer; transition: 0.3s; color: #bbb;}
 .option-box.selected {background: rgba(212, 175, 55, 0.15); border-color: var(--gold); color: var(--gold); font-weight: bold;}
+.option-box.promo {border: 1px solid #27ae60; color: #27ae60;}
+.option-box.promo.selected {background: rgba(39, 174, 96, 0.2); border-color: #2ecc71; color: #fff;}
 select, input[type="text"], input[type="tel"], textarea {width:100%; background:var(--input); border:1px solid #333; color:#fff; padding:14px; border-radius:12px; font-family:'Cairo'; box-sizing:border-box; outline:none; margin-bottom:15px;}
 .price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(15px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
 .total-price{font-size:24px;font-weight:700;color:var(--gold);}
@@ -29,7 +31,7 @@ select, input[type="text"], input[type="tel"], textarea {width:100%; background:
 
 <div class="header">
     <h1>PERFUME LAB PRO</h1>
-    <p style="color:#666;font-size:12px;">MÉDÉA - بروتوكول الـ 16 سؤالاً للتحليل العطري</p>
+    <p style="color:#666;font-size:12px;">MÉDÉA - ابتكارات عطرية منزلية فاخرة</p>
 </div>
 
 <div class="container">
@@ -41,7 +43,7 @@ select, input[type="text"], input[type="tel"], textarea {width:100%; background:
     <div class="card">
         <div class="section-title">✍️ تخصيص القارورة والغلاف</div>
         <label class="question-label">الاسم المكتوب على القارورة</label>
-        <input type="text" id="bottleName" placeholder="أكتب الاسم الذي تريده على العطر...">
+        <input type="text" id="bottleName" placeholder="أكتب الاسم الذي تريده...">
         
         <label class="question-label">توقيع المصمم على الغلاف؟</label>
         <div class="options-grid" id="sign-options">
@@ -53,11 +55,12 @@ select, input[type="text"], input[type="tel"], textarea {width:100%; background:
 
     <div class="card">
         <div class="section-title">📍 تفاصيل الطلب والتوصيل</div>
-        <label class="question-label">اختر الحجم</label>
+        <label class="question-label">اختر الحجم أو العرض الخاص</label>
         <div class="options-grid" id="size-options">
             <div class="option-box selected" onclick="selectSize(this, 500)">30ml (500دج)</div>
             <div class="option-box" onclick="selectSize(this, 700)">50ml (700دج)</div>
             <div class="option-box" onclick="selectSize(this, 1000)">100ml (1000دج)</div>
+            <div class="option-box promo" onclick="selectSize(this, 2500)">💥 عرض 3 قارورات (2500دج)</div>
         </div>
         <br>
         <select id="wilaya" onchange="updateShipping()">
@@ -68,7 +71,7 @@ select, input[type="text"], input[type="tel"], textarea {width:100%; background:
         </select>
         <input id="commune" type="text" placeholder="البلدية">
         <input id="phone" type="tel" placeholder="رقم الهاتف">
-        <textarea id="notes" placeholder="ملاحظات إضافية عن ذوقك..."></textarea>
+        <textarea id="notes" placeholder="ملاحظات إضافية..."></textarea>
     </div>
 </div>
 
@@ -138,6 +141,7 @@ function updateShipping() {
     const w = document.getElementById("wilaya").value;
     if(w === "المدية") shipPrice = 200;
     else if(w === "الجزائر") shipPrice = 400;
+    else if(w === "") shipPrice = 0;
     else shipPrice = 600;
     updateTotal();
 }
@@ -151,7 +155,7 @@ function sendWA() {
     const p = document.getElementById("phone").value;
     const bName = document.getElementById("bottleName").value || "بدون اسم";
     
-    if(!w || !p) { alert("من فضلك أكمل معلومات التوصيل"); return; }
+    if(!w || !p) { alert("يرجى إكمال معلومات التوصيل"); return; }
     
     let ansStr = "";
     for(let i=1; i<=16; i++) {
