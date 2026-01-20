@@ -1,198 +1,157 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Perfume Lab Pro - النسخة النهائية</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#d4af37;--bg:#000;--card:#111;--input:#1a1a1a;}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;padding-bottom:170px;direction:rtl;}
-.header{text-align:center;padding:30px;border-bottom:1px solid #222;}
-.header h1{font-family:'Amiri',serif;color:var(--gold);font-size:30px;margin:0;}
-.container{padding:15px;max-width:600px;margin:auto;}
-.card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;}
-.section-title{color:var(--gold);font-size:16px;font-weight:700;margin-bottom:15px;border-right:4px solid var(--gold);padding-right:12px;}
-.question-block {margin-bottom: 25px;}
-.question-label {display: block; font-size: 14px; color: #fff; margin-bottom: 12px; font-weight: bold;}
-.options-grid {display: flex; flex-wrap: wrap; gap: 8px;}
-.option-box {flex: 1; min-width: 85px; background: var(--input); border: 1px solid #333; padding: 10px; border-radius: 10px; text-align: center; font-size: 11px; cursor: pointer; transition: 0.3s; color: #bbb;}
-.option-box.selected {background: rgba(212, 175, 55, 0.15); border-color: var(--gold); color: var(--gold); font-weight: bold;}
-.option-box.promo {border-color: #27ae60; color: #27ae60;} 
-.option-box.promo.selected {background: rgba(39, 174, 96, 0.1); border-color: #2ecc71; color: #fff;}
-select, input[type="text"], input[type="tel"], textarea {width:100%; background:var(--input); border:1px solid #333; color:#fff; padding:14px; border-radius:12px; font-family:'Cairo'; box-sizing:border-box; outline:none; margin-bottom:15px;}
-.price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(15px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
-.total-price{font-size:24px;font-weight:700;color:var(--gold);}
-.btn-order{background:var(--gold);color:#000;border:none;padding:15px 40px;border-radius:12px;font-weight:700;cursor:pointer; font-size: 16px;}
-.ship-badge{display:block;background:rgba(212, 175, 55, 0.05);color:var(--gold);padding:10px;border-radius:10px;font-size:12px;margin-bottom:15px;text-align:center;border:1px solid rgba(212, 175, 55, 0.15);}
-.result-box {display: none; background: rgba(212,175,55,0.1); border: 1px dashed var(--gold); padding: 15px; border-radius: 12px; text-align: center; margin-top: 10px; animation: fadeIn 0.5s;}
-@keyframes fadeIn {from {opacity: 0;} to {opacity: 1;}}
-.result-box span { display: block; color: var(--gold); font-weight: bold; font-size: 18px; margin-top: 5px;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume Lab Pro - Médéa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --bg: #000; --card: #111; --input: #1a1a1a; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 180px; direction: rtl; }
+        .header { text-align: center; padding: 40px 20px; border-bottom: 1px solid #222; }
+        .header h1 { font-family: 'Amiri', serif; color: var(--gold); font-size: 35px; margin: 0; letter-spacing: 2px; }
+        .header p { color: #666; font-size: 14px; margin-top: 5px; }
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 25px; border: 1px solid #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .section-title { color: var(--gold); font-size: 18px; font-weight: 700; margin-bottom: 20px; border-right: 4px solid var(--gold); padding-right: 15px; }
+        .question-block { margin-bottom: 30px; }
+        .question-label { display: block; font-size: 15px; color: #eee; margin-bottom: 15px; font-weight: 600; }
+        .options-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .option-box { flex: 1; min-width: 100px; background: var(--input); border: 1px solid #333; padding: 15px; border-radius: 12px; text-align: center; font-size: 13px; cursor: pointer; transition: 0.3s; color: #aaa; }
+        .option-box.selected { background: rgba(212, 175, 55, 0.15); border-color: var(--gold); color: var(--gold); font-weight: bold; transform: translateY(-2px); }
+        input[type="text"], input[type="tel"], select { width: 100%; background: var(--input); border: 1px solid #333; color: #fff; padding: 15px; border-radius: 12px; font-family: 'Cairo'; margin-bottom: 15px; box-sizing: border-box; }
+        .price-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(15px); padding: 25px; border-top: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
+        .total-price { font-size: 28px; font-weight: 800; color: var(--gold); }
+        .btn-order { background: var(--gold); color: #000; border: none; padding: 18px 40px; border-radius: 15px; font-weight: 800; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .btn-order:hover { transform: scale(1.05); }
+        .signature-text { font-family: 'Monsieur La Doulaise', cursive; font-size: 28px; color: var(--gold); text-align: center; margin-top: 10px; opacity: 0.8; }
+    </style>
 </head>
 <body>
 
 <div class="header">
     <h1>PERFUME LAB PRO</h1>
-    <p style="color:#666;font-size:12px;">MÉDÉA - المختبر الوطني للعطور الشخصية</p>
+    <p>صناعة منزلية فاخرة - ولاية المدية</p>
 </div>
 
 <div class="container">
     <div class="card">
-        <div class="section-title">🔬 بروتوكول التحليل الذكي (16 سؤال)</div>
-        <div id="questions-container"></div>
-        <div id="resultBox" class="result-box">
-            ✨ العطر المناسب لشخصيتك هو:
-            <span id="suggestedPerfume">جاري التحليل...</span>
+        <div class="section-title">🔬 تحليل الشخصية العطرية</div>
+        <div id="questions"></div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">✍️ تخصيص القارورة والغلاف</div>
+        <label class="question-label">الاسم المكتوب على القارورة (الوسم)</label>
+        <input type="text" id="bottleName" placeholder="مثلاً: خاص بـ محمد، عطر مريم...">
+        
+        <label class="question-label">توقيع المصمم على الغلاف؟</label>
+        <div class="options-grid">
+            <div class="option-box selected" onclick="setSign(this, 'نعم')">نعم (توقيع يدوي)</div>
+            <div class="option-box" onclick="setSign(this, 'لا')">لا (بدون توقيع)</div>
+        </div>
+        <div class="signature-text">Perfume Lab Signature</div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">📦 اختيار الحجم والسعر</div>
+        <div class="options-grid" id="size-options">
+            <div class="option-box selected" onclick="selectSize(this, 500)">30ml (500 دج)</div>
+            <div class="option-box" onclick="selectSize(this, 700)">50ml (700 دج)</div>
+            <div class="option-box" onclick="selectSize(this, 1000)">100ml (1000 دج)</div>
         </div>
     </div>
 
     <div class="card">
-        <div class="section-title">📍 تفاصيل الطلب والتوصيل</div>
-        <label class="question-label">اختر الحجم أو العرض الموفر</label>
-        <div class="options-grid" id="size-options">
-            <div class="option-box" onclick="selectSize(this, 3000)">30ml</div>
-            <div class="option-box" onclick="selectSize(this, 5000)">50ml</div>
-            <div class="option-box" onclick="selectSize(this, 8000)">100ml</div>
-            <div class="option-box promo selected" onclick="selectSize(this, 2000)">3 قارورات (2000دج)</div>
-        </div>
-        <br>
-        <label class="question-label">الولاية</label>
-        <select id="wilaya" onchange="updateShipping()"></select>
-        <label class="question-label">البلدية</label>
-        <input id="commune" type="text" placeholder="اكتب اسم البلدية">
-        <div id="shipBadge" class="ship-badge" style="display:none;"></div>
-        <label class="question-label">رقم الهاتف</label>
-        <input id="phone" type="tel" placeholder="0XXXXXXXXX">
-        <textarea id="q16" placeholder="ملاحظات إضافية للعطار..."></textarea>
+        <div class="section-title">📍 معلومات التوصيل</div>
+        <select id="wilaya" onchange="updateTotal()">
+            <option value="المدية">09- المدية (التوصيل 200 دج)</option>
+            <option value="الجزائر">16- الجزائر (التوصيل 400 دج)</option>
+            <option value="أخرى">ولاية أخرى (التوصيل 600 دج)</option>
+        </select>
+        <input id="phone" type="tel" placeholder="رقم الهاتف الخاص بك">
     </div>
 </div>
 
 <div class="price-bar">
     <div>
-        <div style="color:#888;font-size:11px;">المبلغ الإجمالي للدفع</div>
-        <div class="total-price"><span id="totalDisplay">2000</span> دج</div>
+        <div style="color:#777; font-size:12px;">الإجمالي النهائي</div>
+        <div class="total-price"><span id="totalDisplay">700</span> دج</div>
     </div>
-    <button class="btn-order" onclick="sendWA()">تأكيد الطلب 📩</button>
+    <button class="btn-order" onclick="sendToWhatsApp()">أرسل الطلب</button>
 </div>
 
 <script>
-const questionsData = [
-    {id: 1, q: "الجنس المستهدف؟", ops: ["رجالي", "نسائي", "Unisex"]},
-    {id: 2, q: "نمط العطر المفضل؟", ops: ["شبابي", "رسمي", "رياضي"]},
-    {id: 3, q: "توقيت الاستخدام؟", ops: ["صباحي", "مسائي", "كل الأوقات"]},
-    {id: 4, q: "المناسبة؟", ops: ["العمل", "الأعراس", "الاستخدام اليومي"]},
-    {id: 5, q: "مدة الثبات المطلوبة؟", ops: ["متوسطة", "طويلة", "فوحان أقصى"]},
-    {id: 6, q: "قوة الفوحان؟", ops: ["هادئ", "متوسط", "قوي جداً"]},
-    {id: 7, q: "فصل الاستخدام؟", ops: ["صيفي", "شتوي", "خريفي/ربيعي"]},
-    {id: 8, q: "الرائحة المفضلة؟", ops: ["أخشاب", "زهور", "مسك", "حمضيات"]},
-    {id: 9, q: "هل تحب الروائح السكرية؟", ops: ["نعم", "قليلاً", "لا"]},
-    {id: 10, q: "هل تحب رائحة العود؟", ops: ["نعم", "خفيف", "لا"]},
-    {id: 11, q: "طبيعة شخصيتك؟", ops: ["هادئة", "جريئة", "كلاسيكية"]},
-    {id: 12, q: "تركيز الزيت؟", ops: ["EDP", "Parfum", "Extrait"]},
-    {id: 13, q: "هل تحب الروائح البحرية؟", ops: ["نعم", "لا"]},
-    {id: 14, q: "هل تفضل الروائح الحارة؟", ops: ["نعم", "لا"]},
-    {id: 15, q: "الانطباع الذي تريده؟", ops: ["الفخامة", "النظافة", "الجاذبية"]}
-];
+    let currentPrice = 500;
+    let signature = "نعم";
+    let answers = {};
 
-const shippingRates = {
-    "01- أدرار": 900, "02- الشلف": 450, "03- الأغواط": 500, "04- أم البواقي": 550, "05- باتنة": 500,
-    "06- بجاية": 450, "07- بسكرة": 600, "08- بشار": 800, "09- المدية": 200, "10- البويرة": 350,
-    "11- تمنراست": 1000, "12- تبسة": 650, "13- تلمسان": 600, "14- تيارت": 450, "15- تيزي وزو": 400,
-    "16- الجزائر": 300, "17- الجلفة": 400, "18- جيجل": 500, "19- سطيف": 450, "20- سعيدة": 550,
-    "21- سكيكدة": 550, "22- سيدي بلعباس": 550, "23- عنابة": 600, "24- قالمة": 600, "25- قسنطينة": 550,
-    "26- المدية": 200, "27- مستغانم": 500, "28- المسيلة": 450, "29- معسكر": 550, "30- ورقلة": 750,
-    "31- وهران": 550, "32- البيض": 650, "33- إليزي": 1000, "34- برج بوعريريج": 450, "35- بومرداس": 350,
-    "36- الطارف": 650, "37- تندوف": 1000, "38- تسمسيلت": 400, "39- الوادي": 700, "40- خنشلة": 600,
-    "41- سوق أهراس": 650, "42- تيبازة": 350, "43- ميلة": 500, "44- عين الدفلى": 350, "45- النعامة": 700,
-    "46- عين تموشنت": 600, "47- غرداية": 650, "48- غليزان": 500, "49- تيميمون": 900, "50- برج باجي مختار": 1000,
-    "51- أولاد جلال": 650, "52- بني عباس": 900, "53- عين صالح": 950, "54- عين قزام": 1000, "55- تقرت": 750,
-    "56- جانت": 1000, "57- المغير": 700, "58- المنيعة": 800
-};
+    const questions = [
+        { id: 1, q: "ما هو جنسك؟", ops: ["ذكر", "أنثى"] },
+        { id: 2, q: "ما نوع الروائح المفضلة؟", ops: ["شرقية", "فرنسية", "منعشة", "ثقيلة"] },
+        { id: 3, q: "متى تستخدم العطر غالباً؟", ops: ["للعمل", "للمناسبات", "يومي"] },
+        { id: 4, q: "ما هي قاعدتك المفضلة؟", ops: ["المسك", "العود", "الأخشاب", "الفواكه"] }
+        // يمكنك إضافة باقي الـ 16 سؤال هنا بنفس الطريقة
+    ];
 
-let selectedAnswers = {};
-let currentProductPrice = 2000;
-let shipPrice = 0;
-
-const qContainer = document.getElementById('questions-container');
-questionsData.forEach(item => {
-    let html = `<div class="question-block"><span class="question-label">${item.q}</span><div class="options-grid">`;
-    item.ops.forEach(opt => {
-        html += `<div class="option-box" onclick="selectOption(${item.id}, '${opt}', this)">${opt}</div>`;
+    const qDiv = document.getElementById('questions');
+    questions.forEach(q => {
+        let h = `<div class="question-block"><label class="question-label">${q.q}</label><div class="options-grid">`;
+        q.ops.forEach(opt => {
+            h += `<div class="option-box" onclick="selectQ(${q.id},'${opt}',this)">${opt}</div>`;
+        });
+        h += `</div></div>`;
+        qDiv.innerHTML += h;
     });
-    html += `</div></div>`;
-    qContainer.innerHTML += html;
-});
 
-const wilayaSelect = document.getElementById("wilaya");
-wilayaSelect.add(new Option("-- اختر الولاية --", ""));
-Object.keys(shippingRates).sort().forEach(w => wilayaSelect.add(new Option(w, w)));
-
-function selectOption(id, val, el) {
-    el.parentElement.querySelectorAll('.option-box').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedAnswers[id] = val;
-    checkRecommendation();
-}
-
-function checkRecommendation() {
-    if(selectedAnswers[1] && selectedAnswers[8]) {
-        let suggestion = "خلطة مختبرية خاصة";
-        if(selectedAnswers[1] === "رجالي") {
-            if(selectedAnswers[8] === "أخشاب") suggestion = "Sauvage / Royal Wood";
-            else if(selectedAnswers[8] === "مسك") suggestion = "Pure Musk For Him";
-            else suggestion = "Aventus King";
-        } else if(selectedAnswers[1] === "نسائي") {
-            if(selectedAnswers[8] === "زهور") suggestion = "Libre / Flower Bomb";
-            else suggestion = "Delina Rose";
-        } else suggestion = "Ombre Nomade / Baccarat";
-        
-        document.getElementById("resultBox").style.display = "block";
-        document.getElementById("suggestedPerfume").innerText = suggestion;
+    function selectQ(id, val, el) {
+        el.parentElement.querySelectorAll('.option-box').forEach(b => b.classList.remove('selected'));
+        el.classList.add('selected');
+        answers[id] = val;
     }
-}
 
-function selectSize(el, price) {
-    document.querySelectorAll('#size-options .option-box').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    currentProductPrice = price;
-    updateTotal();
-}
-
-function updateShipping() {
-    shipPrice = shippingRates[wilayaSelect.value] || 0;
-    if(shipPrice > 0) {
-        document.getElementById("shipBadge").style.display = "block";
-        document.getElementById("shipBadge").innerText = `شحن لولاية ${wilayaSelect.value}: ${shipPrice} دج`;
+    function setSign(el, val) {
+        el.parentElement.querySelectorAll('.option-box').forEach(b => b.classList.remove('selected'));
+        el.classList.add('selected');
+        signature = val;
     }
-    updateTotal();
-}
 
-function updateTotal() {
-    document.getElementById("totalDisplay").textContent = currentProductPrice + shipPrice;
-}
+    function selectSize(el, p) {
+        document.querySelectorAll('#size-options .option-box').forEach(b => b.classList.remove('selected'));
+        el.classList.add('selected');
+        currentPrice = p;
+        updateTotal();
+    }
 
-function sendWA() {
-    const w = wilayaSelect.value;
-    const p = document.getElementById("phone").value;
-    const s = document.getElementById("suggestedPerfume").innerText;
-    if(!w || !p) { alert("أكمل بيانات التوصيل"); return; }
+    function updateTotal() {
+        let ship = 0;
+        const w = document.getElementById('wilaya').value;
+        if(w === "المدية") ship = 200;
+        else if(w === "الجزائر") ship = 400;
+        else ship = 600;
+        document.getElementById('totalDisplay').innerText = currentPrice + ship;
+    }
+
+    function sendToWhatsApp() {
+        const phone = document.getElementById('phone').value;
+        const bName = document.getElementById('bottleName').value || "بدون اسم";
+        const sz = document.querySelector('#size-options .selected').innerText;
+        const total = document.getElementById('totalDisplay').innerText;
+
+        if(!phone) { alert("من فضلك أدخل رقم الهاتف"); return; }
+
+        let msg = `*🔬 طلب عطر مخصص (Perfume Lab Pro)*\n\n`;
+        msg += `✒️ *التخصيص:* \n- الاسم على القارورة: ${bName}\n- توقيع المصمم: ${signature}\n\n`;
+        msg += `📦 *الحجم:* ${sz}\n`;
+        msg += `📞 *الهاتف:* ${phone}\n`;
+        msg += `📍 *الولاية:* ${document.getElementById('wilaya').value}\n\n`;
+        msg += `💰 *الإجمالي النهائي:* ${total} دج`;
+
+        window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
+    }
     
-    let report = "";
-    questionsData.forEach(q => report += `║ ◄ ${q.q} : *${selectedAnswers[q.id] || "غير محدد"}*\n`);
-    
-    let msg = `*🔬 PERFUME LAB PRO - طلب جديد*\n` +
-              `══════════════════════\n` +
-              `🧪 *التحليل العطري:*\n${report}` +
-              `══════════════════════\n` +
-              `✨ *العطر المقترح:* *${s}*\n` +
-              `📦 *الطلب:* *${document.querySelector('#size-options .selected').innerText}*\n` +
-              `📍 *العنوان:* ${w} - ${document.getElementById("commune").value}\n` +
-              `📞 *الهاتف:* ${p}\n` +
-              `💰 *الإجمالي: ${document.getElementById("totalDisplay").textContent} دج*`;
-
-    window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
-}
+    updateTotal(); // التحديث الأولي للسعر
 </script>
+
 </body>
 </html>
