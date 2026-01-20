@@ -2,9 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Perfume Lab Pro - المصمم العطري</title>
+<title>Perfume Lab Pro - المختبر الذكي</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#d4af37;--bg:#000;--card:#111;--input:#1a1a1a;}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;padding-bottom:170px;direction:rtl;}
@@ -14,17 +14,17 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;pad
 .card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;}
 .section-title{color:var(--gold);font-size:16px;font-weight:700;margin-bottom:15px;border-right:4px solid var(--gold);padding-right:12px;}
 .question-block {margin-bottom: 25px;}
-.question-label {display: block; font-size: 14px; color: #fff; margin-bottom: 12px; font-weight: bold; line-height: 1.6;}
+.question-label {display: block; font-size: 14px; color: #fff; margin-bottom: 12px; font-weight: bold;}
 .options-grid {display: flex; flex-wrap: wrap; gap: 8px;}
 .option-box {flex: 1; min-width: 100px; background: var(--input); border: 1px solid #333; padding: 12px 8px; border-radius: 10px; text-align: center; font-size: 11px; cursor: pointer; transition: 0.3s; color: #bbb;}
 .option-box.selected {background: rgba(212, 175, 55, 0.15); border-color: var(--gold); color: var(--gold); font-weight: bold;}
-.option-box.promo {border: 1px solid #27ae60; color: #27ae60;}
-.option-box.promo.selected {background: rgba(39, 174, 96, 0.2); border-color: #2ecc71; color: #fff;}
-select, input[type="text"], input[type="tel"], textarea {width:100%; background:var(--input); border:1px solid #333; color:#fff; padding:14px; border-radius:12px; font-family:'Cairo'; box-sizing:border-box; outline:none; margin-bottom:15px;}
+.recommendation-box { background: #0a0a0a; border: 1px dashed var(--gold); padding: 15px; border-radius: 12px; margin-top: 10px; display: none; }
+.rec-item { display: inline-block; background: #222; padding: 8px 15px; border-radius: 20px; margin: 5px; font-size: 12px; cursor: pointer; border: 1px solid transparent; }
+.rec-item.active { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.1); }
+select, input, textarea {width:100%; background:var(--input); border:1px solid #333; color:#fff; padding:14px; border-radius:12px; font-family:'Cairo'; box-sizing:border-box; outline:none; margin-bottom:15px;}
 .price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(15px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
 .total-price{font-size:24px;font-weight:700;color:var(--gold);}
 .btn-order{background:var(--gold);color:#000;border:none;padding:15px 35px;border-radius:12px;font-weight:700;cursor:pointer;}
-.signature-preview { font-family: 'Monsieur La Doulaise', cursive; color: var(--gold); font-size: 24px; text-align: center; margin: 10px 0; border: 1px solid #222; padding: 10px; border-radius: 10px; background: #050505; }
 </style>
 </head>
 <body>
@@ -36,165 +36,146 @@ select, input[type="text"], input[type="tel"], textarea {width:100%; background:
 
 <div class="container">
     <div class="card">
-        <div class="section-title">🔬 ميثاق التحليل الشامل (16 معياراً)</div>
+        <div class="section-title">🔬 بروتوكول التحليل (أجب ليظهر اقتراحنا)</div>
         <div id="questions-container"></div>
     </div>
 
-    <div class="card">
-        <div class="section-title">✍️ لمسة التخصيص الحصرية</div>
-        
-        <label class="question-label">الاسم المكتوب على القارورة (Owner Name)</label>
-        <input type="text" id="bottleName" placeholder="مثلاً: خاص بـ سارة ..">
-
-        <label class="question-label">الاسم المقترح للعطر (Fragrance Title)</label>
-        <input type="text" id="perfumeTitle" placeholder="مثلاً: سر الليل، العود الملكي، النسمة النقية..">
-        
-        <label class="question-label">توقيع المصمم على الغلاف الخارجي؟</label>
-        <div class="options-grid" id="sign-options">
-            <div class="option-box selected" onclick="toggleSignature(this, 'نعم')">نعم (بصمة يدوية)</div>
-            <div class="option-box" onclick="toggleSignature(this, 'لا')">بدون توقيع</div>
-        </div>
-        <div class="signature-preview">Perfume Lab Signature</div>
+    <div id="recommendation-card" class="card" style="display:none; border: 1px solid var(--gold);">
+        <div class="section-title">✨ العطور العالمية المقترحة لذوقك</div>
+        <p style="font-size: 12px; color: #888;">بناءً على تحليلك، ننشح لك هذه التوليفات. اضغط على العطر الذي تفضله:</p>
+        <div id="rec-list" class="options-grid"></div>
+        <input type="hidden" id="selectedRecommendation" value="">
     </div>
 
     <div class="card">
-        <div class="section-title">📍 البيانات اللوجستية</div>
-        <label class="question-label">اختر حجم الإصدار أو العرض التوفيري</label>
+        <div class="section-title">✍️ تخصيص القارورة</div>
+        <input type="text" id="bottleName" placeholder="الاسم المكتوب على القارورة">
+        <input type="text" id="perfumeTitle" placeholder="الاسم المقترح للعطر (مثلاً: الملكي)">
+    </div>
+
+    <div class="card">
+        <div class="section-title">📍 التوصيل والطلب</div>
         <div class="options-grid" id="size-options">
             <div class="option-box selected" onclick="selectSize(this, 500)">30ml (500دج)</div>
             <div class="option-box" onclick="selectSize(this, 700)">50ml (700دج)</div>
             <div class="option-box" onclick="selectSize(this, 1000)">100ml (1000دج)</div>
-            <div class="option-box promo" onclick="selectSize(this, 2500)">💥 عرض 3 قارورات (2500دج)</div>
+            <div class="option-box" style="border-color:#27ae60" onclick="selectSize(this, 2500)">💥 عرض 3 (2500دج)</div>
         </div>
         <br>
         <select id="wilaya" onchange="updateShipping()">
-            <option value="">-- اختر ولاية الإقامة --</option>
+            <option value="">-- اختر الولاية --</option>
         </select>
-        <input id="commune" type="text" placeholder="البلدية بالتفصيل">
-        <input id="phone" type="tel" placeholder="رقم الهاتف للتواصل">
-        <textarea id="notes" placeholder="ملاحظات خاصة للمصمم (اختياري)..."></textarea>
+        <input id="commune" type="text" placeholder="البلدية">
+        <input id="phone" type="tel" placeholder="رقم الهاتف">
     </div>
 </div>
 
 <div class="price-bar">
     <div>
-        <div style="color:#888;font-size:11px;">مستحقات الطلب</div>
+        <div style="color:#888;font-size:11px;">الإجمالي</div>
         <div class="total-price"><span id="totalDisplay">500</span> دج</div>
     </div>
-    <button class="btn-order" onclick="sendWA()">اعتماد الطلب الآن 📩</button>
+    <button class="btn-order" onclick="sendWA()">إرسال الطلب 📩</button>
 </div>
 
 <script>
-let wantSignature = "نعم";
+const wilayas = ["01- أدرار", "02- الشلف", "03- الأغواط", "04- أم البواقي", "05- باتنة", "06- بجاية", "07- بسكرة", "08- بشار", "09- البليدة", "10- البويرة", "11- تمنراست", "12- تبسة", "13- تلمسان", "14- تيارت", "15- تيزي وزو", "16- الجزائر", "17- الجلفة", "18- جيجل", "19- سطيف", "20- سعيدة", "21- سكيكدة", "22- سيدي بلعباس", "23- عنابة", "24- قالمة", "25- قسنطينة", "26- المدية", "27- مستغانم", "28- المسيلة", "29- معسكر", "30- ورقلة", "31- وهران", "32- البيض", "33- إليزي", "34- برج بوعريريج", "35- بومرداس", "36- الطارف", "37- تندوف", "38- تسمسيلت", "39- الوادي", "40- خنشلة", "41- سوق أهراس", "42- تيبازة", "43- ميلة", "44- عين الدفلى", "45- النعامة", "46- عين تموشنت", "47- غرداية", "48- غليزان", "49- تيميمون", "50- برج باجي مختار", "51- أولاد جلال", "52- بني عباس", "53- عين صالح", "54- عين قزام", "55- تقرت", "56- جانت", "57- المغير", "58- المنيعة"];
+
 const questionsData = [
-    {id: 1, q: "لمن هذا الإصدار العطري؟", ops: ["رجل أنيق", "سيدة راقية", "للجنسين (Unisex)"]},
-    {id: 2, q: "ما هي الهوية التي تمثلك؟", ops: ["كلاسيكي رصين", "عصري متحرر", "غامض وجذاب", "هادئ وبسيط", "رياضي مفعم بالحيوية"]},
-    {id: 3, q: "متى يفوح عطرك المفضل؟", ops: ["في ضياء الصباح", "في سكون المساء", "للمناسبات الفخمة فقط", "للاستخدام اليومي"]},
-    {id: 4, q: "إلى أي مدرسة عطرية تميل؟", ops: ["الفرنسية المنعشة", "الشرقية الثقيلة", "الإيطالية الحمضية", "العربية (بخور وعود)"]},
-    {id: 5, q: "كيف تصف حضور عطرك في المكان؟", ops: ["فواح يترك أثراً", "خجول يلامس الجلد", "متزن (بين الهادئ والقوي)"]},
-    {id: 6, q: "ما هي التوليفة التي تبهج حواسك؟", ops: ["أخشاب وغابات", "زهور وورود", "فواكه سكرية", "توابل حادة", "روائح مائية"]},
-    {id: 7, q: "ما هو الفصل الذي يكتمل فيه جمالك؟", ops: ["شتاء دافئ", "صيف منعش", "خريف هادئ", "ربيع مزهر"]},
-    {id: 8, q: "أين ستصحب هذا العطر؟", ops: ["إلى العمل", "لقاء خاص", "حفلة زفاف", "النادي الرياضي", "البيت والاسترخاء"]},
-    {id: 9, q: "كيف تفضل قاعدة العطر (الثبات)؟", ops: ["مسك أبيض نقِي", "عنبر ملكي دافئ", "عود كمبودي فاخر", "فانيليا ناعمة", "باتشولي ترابي"]},
-    {id: 10, q: "ما هو اللون الذي يعبر عن ذوقك؟", ops: ["الأسود الملكي", "الأبيض الصافي", "الأزرق العميق", "الأحمر الجريء", "الأخضر الطبيعي"]},
-    {id: 11, q: "طبيعة بشرتك (لتحديد تركيز الزيوت)؟", ops: ["جافة", "دهنية", "حساسة", "عادية"]},
-    {id: 12, q: "هل تحب رائحة 'النظافة' (بودرة/صابون)؟", ops: ["بشدة (رائحة النقاء)", "لا، أفضل الروائح العميقة", "بشكل خفيف جداً"]},
-    {id: 13, q: "ما هو العمر العطري الذي تستهدفه؟", ops: ["شبابي حيوي", "ناضج ووقور", "عابر للأعمار"]},
-    {id: 14, q: "هل تفضل لمسة الحمضيات (ليمون/برغموت)؟", ops: ["نعم، تعطيني طاقة", "لا، أفضل السكريات", "نعم، ولكن بلمسة خشبية"]},
-    {id: 15, q: "ما مدى أهمية 'الفوحان' مقابل 'الثبات'؟", ops: ["الفوحان أولاً", "الثبات لساعات طويلة", "التوازن بينهما"]},
-    {id: 16, q: "هل تود أن يكون العطر مستوحى من ماركة عالمية؟", ops: ["نعم (اذكرها في الملاحظات)", "لا، أريد ابتكاراً خاصاً"]}
+    {id: 1, q: "لمن هذا العطر؟", ops: ["ذكر", "أنثى", "للجنسين"]},
+    {id: 2, q: "نوع الروائح التي تفضلها؟", ops: ["منعشة وحمضيات", "ثقيلة وشرقية", "زهور وفواكه", "بخور وعود", "نظافة وبودرة"]},
+    {id: 3, q: "قوة الفوحان المطلوبة؟", ops: ["قوي جداً", "هادئ وقريب"]}
 ];
 
-const wilayas = [
-    "01- أدرار", "02- الشلف", "03- الأغواط", "04- أم البواقي", "05- باتنة", "06- بجاية", "07- بسكرة", "08- بشار", "09- البليدة", "10- البويرة",
-    "11- تمنراست", "12- تبسة", "13- تلمسان", "14- تيارت", "15- تيزي وزو", "16- الجزائر", "17- الجلفة", "18- جيجل", "19- سطيف", "20- سعيدة",
-    "21- سكيكدة", "22- سيدي بلعباس", "23- عنابة", "24- قالمة", "25- قسنطينة", "26- المدية", "27- مستغانم", "28- المسيلة", "29- معسكر", "30- ورقلة",
-    "31- وهران", "32- البيض", "33- إليزي", "34- برج بوعريريج", "35- بومرداس", "36- الطارف", "37- تندوف", "38- تسمسيلت", "39- الوادي", "40- خنشلة",
-    "41- سوق أهراس", "42- تيبازة", "43- ميلة", "44- عين الدفلى", "45- النعامة", "46- عين تموشنت", "47- غرداية", "48- غليزان", "49- تيميمون", "50- برج باجي مختار",
-    "51- أولاد جلال", "52- بني عباس", "53- عين صالح", "54- عين قزام", "55- تقرت", "56- جانت", "57- المغير", "58- المنيعة"
-];
+const perfumeLibrary = {
+    "ذكر-منعشة وحمضيات": ["Sauvage Dior", "Bleu de Chanel", "Acqua di Gio"],
+    "ذكر-ثقيلة وشرقية": ["Stronger With You", "Tobacco Vanille", "Ombre Nomade"],
+    "ذكر-بخور وعود": ["Interlude Amouage", "Black Afgano", "Oud Wood"],
+    "أنثى-زهور وفواكه": ["Libre YSL", "Miss Dior", "Si Armani"],
+    "أنثى-منعشة وحمضيات": ["Light Blue", "Chance Chanel", "Versace Eros Pour Femme"],
+    "أنثى-نظافة وبودرة": ["Narciso Rodriguez", "Chloe", "Musk Therapy"],
+    "للجنسين-بخور وعود": ["Santorini", "Baccarat Rouge 540", "Halfeti Penhaligon's"]
+};
 
 let selectedAnswers = {};
 let currentProductPrice = 500;
 let shipPrice = 0;
 
-const selectWilaya = document.getElementById('wilaya');
-wilayas.forEach(w => {
-    let opt = document.createElement('option');
-    opt.value = w;
-    opt.innerHTML = w;
-    selectWilaya.appendChild(opt);
-});
+// توليد الولايات
+const sw = document.getElementById('wilaya');
+wilayas.forEach(w => { let o = document.createElement('option'); o.value=w; o.innerText=w; sw.appendChild(o); });
 
-const qContainer = document.getElementById('questions-container');
+// توليد الأسئلة
+const qCont = document.getElementById('questions-container');
 questionsData.forEach(item => {
-    let html = `<div class="question-block"><span class="question-label">${item.id}- ${item.q}</span><div class="options-grid">`;
-    item.ops.forEach(opt => {
-        html += `<div class="option-box" onclick="selectOption(${item.id}, '${opt}', this)">${opt}</div>`;
-    });
-    html += `</div></div>`;
-    qContainer.innerHTML += html;
+    let h = `<div class="question-block"><span class="question-label">${item.q}</span><div class="options-grid">`;
+    item.ops.forEach(opt => { h += `<div class="option-box" onclick="handleSelect(${item.id},'${opt}',this)">${opt}</div>`; });
+    qCont.innerHTML += h + `</div></div>`;
 });
 
-function selectOption(id, val, el) {
+function handleSelect(qid, val, el) {
     el.parentElement.querySelectorAll('.option-box').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
-    selectedAnswers[id] = val;
+    selectedAnswers[qid] = val;
+    checkRecommendations();
 }
 
-function toggleSignature(el, val) {
-    document.querySelectorAll('#sign-options .option-box').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    wantSignature = val;
+function checkRecommendations() {
+    if(selectedAnswers[1] && selectedAnswers[2]) {
+        let key = `${selectedAnswers[1]}-${selectedAnswers[2]}`;
+        let list = perfumeLibrary[key] || ["عطر Lab المخصص"];
+        let recCard = document.getElementById('recommendation-card');
+        let recList = document.getElementById('rec-list');
+        
+        recCard.style.display = 'block';
+        recList.innerHTML = "";
+        list.forEach(perfume => {
+            let div = document.createElement('div');
+            div.className = 'option-box';
+            div.innerText = perfume;
+            div.onclick = function() {
+                recList.querySelectorAll('.option-box').forEach(b => b.classList.remove('selected'));
+                div.classList.add('selected');
+                document.getElementById('selectedRecommendation').value = perfume;
+            };
+            recList.appendChild(div);
+        });
+    }
 }
 
-function selectSize(el, price) {
+function selectSize(el, p) {
     document.querySelectorAll('#size-options .option-box').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
-    currentProductPrice = price;
+    currentProductPrice = p;
     updateTotal();
 }
 
 function updateShipping() {
     const w = document.getElementById("wilaya").value;
     if(w.includes("المدية")) shipPrice = 200;
-    else if(w.includes("الجزائر") || w.includes("البليدة") || w.includes("تيبازة") || w.includes("عين الدفلى")) shipPrice = 400;
-    else if(w.includes("البويرة") || w.includes("بومرداس") || w.includes("الشلف") || w.includes("تيزي وزو")) shipPrice = 600;
-    else if(w.includes("سطيف") || w.includes("برج بوعريريج") || w.includes("تيارت") || w.includes("الجلفة") || w.includes("بجاية")) shipPrice = 800;
-    else if(w === "") shipPrice = 0;
-    else shipPrice = 1000;
+    else if(w.includes("الجزائر") || w.includes("البليدة")) shipPrice = 400;
+    else shipPrice = 600;
     updateTotal();
 }
 
-function updateTotal() {
-    document.getElementById("totalDisplay").textContent = currentProductPrice + shipPrice;
-}
+function updateTotal() { document.getElementById("totalDisplay").innerText = currentProductPrice + shipPrice; }
 
 function sendWA() {
     const w = document.getElementById("wilaya").value;
     const p = document.getElementById("phone").value;
-    const bName = document.getElementById("bottleName").value || "بدون اسم";
-    const pTitle = document.getElementById("perfumeTitle").value || "غير محدد";
+    const rec = document.getElementById('selectedRecommendation').value;
     
-    if(!w || !p) { alert("يرجى إكمال بيانات العنوان والهاتف"); return; }
-    
-    let ansStr = "";
-    for(let i=1; i<=16; i++) {
-        if(selectedAnswers[i]) ansStr += `س${i}: ${selectedAnswers[i]}\n`;
-    }
+    if(!w || !p) { alert("أكمل البيانات"); return; }
+    if(!rec) { alert("يرجى اختيار العطر المقترح الذي أعجبك من القائمة الذهبية"); return; }
 
-    let msg = `*🔬 طلب تصميم عطر مخصص (Perfume Lab)*\n` +
+    let msg = `*🔬 طلب عطر مخصص (Perfume Lab)*\n` +
               `══════════════════════\n` +
-              `🖋️ *تخصيص الهوية:* \n` +
-              `║ اسم المالك: *${bName}*\n` +
-              `║ اسم العطر: *${pTitle}*\n` +
-              `║ التوقيع اليدوي: *${wantSignature}*\n` +
-              `══════════════════════\n` +
-              `📦 *نوع الإصدار:* *${document.querySelector('#size-options .selected').innerText}*\n` +
-              `📍 *العنوان:* ${w} - ${document.getElementById("commune").value}\n` +
-              `📞 *الهاتف:* ${p}\n\n` +
-              `🧪 *البروتوكول التحليلي:*\n${ansStr}\n` +
-              `💰 *الإجمالي النهائي:* ${document.getElementById("totalDisplay").textContent} دج`;
+              `✨ *العطر المختار:* *${rec}*\n` +
+              `🖋️ *الاسم على القارورة:* ${document.getElementById('bottleName').value}\n` +
+              `📦 *الحجم:* ${document.querySelector('#size-options .selected').innerText}\n` +
+              `📍 *العنوان:* ${w}\n` +
+              `📞 *الهاتف:* ${p}\n` +
+              `💰 *الإجمالي:* ${document.getElementById('totalDisplay').innerText} دج`;
 
     window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
 }
