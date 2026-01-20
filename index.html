@@ -2,171 +2,165 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>عطرك يشبهك – VIP+</title>
+<title>عطرك يشبهك PRO</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#d4af37;--bg:#000;--card:#111;--input:#1a1a1a;}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;padding-bottom:170px;direction:rtl;}
-.header{text-align:center;padding:25px;border-bottom:1px solid #222;}
-.header h1{font-family:'Amiri',serif;color:var(--gold);font-size:26px;margin:0;}
-.container{padding:15px;max-width:600px;margin:auto;}
-.card{background:var(--card);border-radius:20px;padding:20px;margin-bottom:20px;border:1px solid #222;}
-.section-title{color:var(--gold);font-size:16px;font-weight:700;margin-bottom:15px;border-right:3px solid var(--gold);padding-right:10px;}
-label{display:block;font-size:11px;color:#888;margin:10px 0 5px;}
-select,input,textarea{width:100%;background:var(--input);border:1px solid #333;color:#fff;padding:12px;border-radius:12px;font-family:'Cairo';box-sizing:border-box;outline:none;}
-.price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
-.total-price{font-size:22px;font-weight:700;color:var(--gold);}
-.btn-order{background:var(--gold);color:#000;border:none;padding:15px 30px;border-radius:12px;font-weight:700;cursor:pointer;}
-.ship-badge{display:inline-block;background:rgba(212,175,55,.1);color:var(--gold);padding:8px;border-radius:8px;font-size:11px;margin-top:10px;width:100%;text-align:center;border:1px solid rgba(212,175,55,0.2);}
-.engrave-box{text-align:center;border:1px dashed #333;border-radius:10px;padding:10px;margin-top:10px;}
-#previewText{font-family:'Amiri',serif;color:var(--gold);font-size:22px;min-height:30px;}
+    :root { --gold: #d4af37; --dark: #0a0a0a; --card-bg: #151515; --input-bg: #000; }
+    body { font-family: 'Cairo', sans-serif; background: var(--dark); color: #eee; padding: 15px; margin: 0; padding-bottom: 100px; }
+    
+    .header { text-align: center; padding: 20px 0; }
+    .header h2 { color: var(--gold); margin: 0; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .header p { color: #888; font-size: 14px; margin-top: 5px; }
+
+    .card { background: var(--card-bg); border-radius: 20px; padding: 18px; margin-bottom: 15px; border: 1px solid #222; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    h3 { color: var(--gold); font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    
+    select, input, textarea { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #333; background: var(--input-bg); color: #fff; margin: 5px 0; box-sizing: border-box; font-family: 'Cairo'; }
+    select:focus, input:focus { border-color: var(--gold); outline: none; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    
+    .preview-box { background: #000; border: 1px dashed var(--gold); padding: 15px; border-radius: 12px; text-align: center; color: var(--gold); font-size: 20px; font-weight: bold; margin-top: 10px; min-height: 30px; }
+    
+    .price-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--gold); color: #000; padding: 15px; text-align: center; font-weight: bold; font-size: 18px; z-index: 1000; display: flex; justify-content: space-around; align-items: center; box-shadow: 0 -5px 15px rgba(0,0,0,0.2); }
+    
+    .btn-send { background: #25d366; color: white; border: none; padding: 15px; border-radius: 12px; width: 100%; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+    .btn-send:active { transform: scale(0.98); }
+
+    .badge { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 2px 8px; border-radius: 5px; font-size: 11px; float: left; }
 </style>
 </head>
 <body>
 
 <div class="header">
-    <h1>عطرك يشبهك – VIP+</h1>
-    <p style="color:#666;font-size:11px;">مقرنا المدية | شحن سريع لكل البلديات</p>
+    <h2>🏷️ صمّم عطرك الخاص</h2>
+    <p>اختر مكوناتك ودعنا نصنع لك سحرك الخاص</p>
 </div>
 
-<div class="container">
-    <div class="card">
-        <div class="section-title">🧠 تحليل الشخصية والتركيز</div>
-        <label>الشخصية</label>
-        <select id="personality" onchange="genName()">
-            <option>غامض</option><option>فاخر</option><option>كلاسيكي</option><option>رياضي</option><option>رومانسي</option>
+<div class="card">
+    <h3>🧠 المواصفات الأساسية</h3>
+    <div class="row">
+        <select id="personality" onchange="updateAll()">
+            <option value="كلاسيكي">كلاسيك</option>
+            <option value="غامض">غامض</option>
+            <option value="فاخر">فاخر</option>
+            <option value="رياضي">رياضي</option>
         </select>
-        <label>الجنس</label>
-        <select id="gender" onchange="genName()">
-            <option>ذكر</option><option>أنثى</option><option>للجنسين</option>
-        </select>
-        <label>التركيز</label>
-        <select id="concentration" onchange="updateTotal()">
-            <option value="0">EDT (+0)</option>
-            <option value="300">EDP (+300)</option>
-            <option value="600">Extrait (+600)</option>
+        <select id="gender">
+            <option>ذكر</option>
+            <option>أنثى</option>
+            <option>للجنسين</option>
         </select>
     </div>
+    <select id="notes" onchange="updateAll()">
+        <option value="الأخشاب">نوتات خشبية (عميقة)</option>
+        <option value="الزهور">نوتات زهرية (ناعمة)</option>
+        <option value="الشرق">نوتات شرقية (دافئة)</option>
+        <option value="الانتعاش">نوتات حمضية (فواحة)</option>
+    </select>
+</div>
 
-    <div class="card">
-        <div class="section-title">🏺 تفاصيل القارورة والحفر</div>
-        <label>الحجم</label>
-        <select id="size" onchange="updateTotal()">
-            <option data-p="1500">30ml - 1500 دج</option>
-            <option data-p="2500" selected>50ml - 2500 دج</option>
-            <option data-p="4500">100ml - 4500 دج</option>
-        </select>
-        <label>الكتابة بالليزر على الزجاجة (+300 دج)</label>
-        <input id="engraveInput" placeholder="اكتب الاسم أو التاريخ..." oninput="updateTotal()">
-        <div class="engrave-box">
-            <div id="previewText">معاينة النقش</div>
-        </div>
-        <label>الاسم المقترح لعطرك</label>
-        <input id="autoName" readonly style="color:var(--gold);">
-    </div>
+<div class="card">
+    <h3>🏺 الحجم والتخصيص</h3>
+    <select id="size" onchange="updatePrice()">
+        <option value="50" data-p="1200">50 ML - 1200 دج</option>
+        <option value="75" data-p="1700">75 ML - 1700 دج</option>
+        <option value="100" data-p="2200">100 ML - 2200 دج</option>
+    </select>
+    
+    <h3 style="margin-top:15px;">✍️ خدمة الحفر <span class="badge">+300 دج</span></h3>
+    <input id="engrave" placeholder="الاسم المراد حفره (اختياري)" maxlength="20">
+    <select id="engraveColor">
+        <option>ذهبي</option><option>فضي</option><option>أسود</option>
+    </select>
+    <div class="preview-box" id="engravePreview">PREVIEW</div>
+</div>
 
-    <div class="card">
-        <div class="section-title">📍 معلومات الشحن</div>
-        <label>الولاية</label>
-        <select id="wilaya" onchange="updateCommunes()"></select>
-        <label>البلدية</label>
-        <select id="commune"></select>
-        <label>رقم الهاتف</label>
-        <input id="phone" type="tel" placeholder="05 / 06 / 07 ...">
-        <div id="shipBadge" class="ship-badge" style="display:none;"></div>
-    </div>
+<div class="card">
+    <h3>✨ اسم عطرك الفريد</h3>
+    <input id="autoName" readonly style="color: var(--gold); text-align: center; font-weight: bold; font-size: 18px; border: none; background: transparent;">
+</div>
+
+<div class="card">
+    <h3>📍 معلومات التوصيل</h3>
+    <select id="wilaya" onchange="updateShip()"></select>
+    <input id="commune" placeholder="البلدية">
+    <input id="phone" type="tel" placeholder="رقم الهاتف">
+    <button class="btn-send" onclick="sendWA()">📩 إرسال عبر واتساب</button>
 </div>
 
 <div class="price-bar">
-    <div>
-        <div style="color:#888;font-size:11px;">السعر الإجمالي</div>
-        <div class="total-price"><span id="totalDisplay">2500</span> دج</div>
-    </div>
-    <button class="btn-order" onclick="sendWA()">تأكيد الطلب 📩</button>
+    <span>الإجمالي:</span>
+    <span id="total">0</span> <span>دج</span>
 </div>
 
 <script>
-const geoData = {
-    "المدية": {price: 200, communes: ["المدية المركز", "البرواقية", "قصر البخاري", "وزرة", "بني سليمان", "تابلاط", "سي المحجوب", "وامري"]},
-    "الجزائر": {price: 300, communes: ["سيدي امحمد", "الدار البيضاء", "الشراقة", "دالي براهيم", "بئر مراد رايس", "رويبة", "باب الوادي"]},
-    "البليدة": {price: 300, communes: ["البليدة المركز", "بوفاريك", "أولاد يعيش", "موزاية", "العفرون", "الأربعاء"]},
-    "تيبازة": {price: 350, communes: ["تيبازة المركز", "حجوط", "القليعة", "بوسماعيل", "شرشال"]},
-    "بومرداس": {price: 400, communes: ["بومرداس المركز", "بودواو", "خميس الخشنة", "برج منايل"]},
-    "عين الدفلى": {price: 400, communes: ["عين الدفلى المركز", "خميس مليانة", "مليانة", "العطاف"]},
-    "الجلفة": {price: 500, communes: ["الجلفة المركز", "عين وسارة", "حاسي بحبح", "مسعد"]},
-    "سطيف": {price: 550, communes: ["سطيف المركز", "العلمة", "عين أرنات", "بوقاعة"]},
-    "وهران": {price: 650, communes: ["وهران المركز", "بير الجير", "السانيا", "أرزيو", "عين الترك"]},
-    "قسنطينة": {price: 600, communes: ["قسنطينة المركز", "الخروب", "عين سمارة", "حامة بوزيان"]},
-    "باتنة": {price: 550, communes: ["باتنة المركز", "عين توتة", "بريكة", "أريس"]},
-    "ورقلة": {price: 800, communes: ["ورقلة المركز", "حاسي مسعود", "تقرت"]},
-    "أدرار": {price: 1000, communes: ["أدرار المركز", "تيميمون", "رغان"]},
-    "تمنراست": {price: 1000, communes: ["تمنراست المركز", "عين صالح", "عين قزام"]}
-};
+let basePrice = 1200, ship = 0, engraveCost = 0;
 
-const wilayaSelect = document.getElementById("wilaya");
-const communeSelect = document.getElementById("commune");
-const totalDisplay = document.getElementById("totalDisplay");
-const engraveInput = document.getElementById("engraveInput");
-const previewText = document.getElementById("previewText");
+const prefixes = { "كلاسيكي": "إرث", "غامض": "سحر", "فاخر": "سلطان", "رياضي": "طاقة" };
+const wilayas = [
+    "أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة",
+    "تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة",
+    "سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة",
+    "وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة",
+    "سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان"
+];
 
-let shipPrice = 0;
-
-// ملء الولايات
-wilayaSelect.innerHTML = '<option value="">-- اختر الولاية --</option>';
-Object.keys(geoData).sort().forEach(w => {
-    wilayaSelect.add(new Option(w, w));
+// تهيئة الولايات
+const wSelect = document.getElementById("wilaya");
+wSelect.innerHTML = '<option value="" data-p="0">-- اختر الولاية --</option>';
+wilayas.forEach((w, i) => {
+    let p = (w === "الجزائر") ? 200 : 500;
+    let opt = new Option(`${i+1}. ${w} (${p} دج)`, w);
+    opt.dataset.p = p;
+    wSelect.add(opt);
 });
 
-function updateCommunes() {
-    const w = wilayaSelect.value;
-    communeSelect.innerHTML = '<option value="">-- اختر البلدية --</option>';
-    if (w && geoData[w]) {
-        geoData[w].communes.forEach(c => communeSelect.add(new Option(c, c)));
-        shipPrice = geoData[w].price;
-        document.getElementById("shipBadge").style.display = "block";
-        document.getElementById("shipBadge").innerText = `شحن من المدية إلى ${w}: ${shipPrice} دج`;
-    } else {
-        shipPrice = 0;
-        document.getElementById("shipBadge").style.display = "none";
-    }
+function updateShip() {
+    ship = parseInt(wSelect.options[wSelect.selectedIndex].dataset.p) || 0;
     updateTotal();
 }
 
-function updateTotal() {
-    const s = document.getElementById("size");
-    const sizePrice = parseInt(s.options[s.selectedIndex].dataset.p);
-    const conc = parseInt(document.getElementById("concentration").value);
-    const engText = engraveInput.value.trim();
-    const engCost = engText ? 300 : 0;
-    previewText.textContent = engText || "معاينة النقش";
-    
-    totalDisplay.textContent = sizePrice + conc + shipPrice + engCost;
+function updatePrice() {
+    basePrice = parseInt(document.getElementById("size").options[document.getElementById("size").selectedIndex].dataset.p);
+    updateTotal();
 }
 
-function genName() {
-    const p = document.getElementById("personality").value;
-    const g = document.getElementById("gender").value;
-    const map = {كلاسيكي: "عظمة", غامض: "لغز", فاخر: "ملك", رياضي: "نَفَس", رومانسي: "حب"};
-    document.getElementById("autoName").value = `${map[p]} ${g === "أنثى" ? "Femme" : "Homme"}`;
+function updateAll() {
+    let p = document.getElementById("personality").value;
+    let n = document.getElementById("notes").value;
+    document.getElementById("autoName").value = `${prefixes[p]} ${n}`;
+    updateTotal();
+}
+
+document.getElementById("engrave").addEventListener("input", function() {
+    engraveCost = this.value.trim() !== "" ? 300 : 0;
+    document.getElementById("engravePreview").innerText = this.value || "PREVIEW";
+    updateTotal();
+});
+
+function updateTotal() {
+    document.getElementById("total").innerText = basePrice + ship + engraveCost;
 }
 
 function sendWA() {
-    if (!wilayaSelect.value || !document.getElementById("phone").value || !communeSelect.value) {
-        alert("يرجى إكمال بيانات الشحن والهاتف"); return;
-    }
-    let msg = `*طلب عطر VIP+ جديد* 🏺\n` +
-              `-------------------\n` +
-              `🏷️ الاسم: ${document.getElementById("autoName").value}\n` +
-              `📦 الحجم: ${document.getElementById("size").options[document.getElementById("size").selectedIndex].text}\n` +
-              `✍️ النقش: ${engraveInput.value || "بدون"}\n` +
-              `📍 الموقع: ${wilayaSelect.value} - ${communeSelect.value}\n` +
-              `📞 الهاتف: ${document.getElementById("phone").value}\n` +
-              `💰 الإجمالي: ${totalDisplay.textContent} دج`;
+    if(!wSelect.value || !phone.value) { alert("يرجى ملء بيانات التوصيل"); return; }
+    
+    let msg = `*طلب عطر PRO* 🏷️\n` +
+              `--------------------------\n` +
+              `✨ *الاسم:* ${document.getElementById("autoName").value}\n` +
+              `🏺 *الحجم:* ${document.getElementById("size").value}ML\n` +
+              `✍️ *الحفر:* ${document.getElementById("engrave").value || "لا يوجد"}\n` +
+              `📍 *الولاية:* ${wSelect.value}\n` +
+              `📞 *الهاتف:* ${document.getElementById("phone").value}\n` +
+              `💰 *الإجمالي:* ${document.getElementById("total").innerText} دج`;
+
     window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
 }
 
-genName(); updateTotal();
+updateAll(); updatePrice();
 </script>
+
 </body>
 </html>
