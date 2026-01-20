@@ -1,229 +1,198 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | التصميم العطري الفاخر</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root { --gold: #d4af37; --gold-dark: #aa8a2e; --black: #050505; --dark-grey: #1a1a1a; --glass: rgba(255, 255, 255, 0.03); }
-        body { font-family: 'Cairo', sans-serif; background: var(--black); color: #e0e0e0; margin: 0; line-height: 1.6; overflow-x: hidden; }
-        
-        /* تصميم الهيدر */
-        header { background: rgba(0,0,0,0.9); padding: 25px; text-align: center; border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
-        .logo { font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--gold); letter-spacing: 3px; margin: 0; text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عطرك يشبهك | تصميم عطرك الخاص</title>
 
-        .container { max-width: 650px; margin: 0 auto; padding: 20px; padding-bottom: 120px; }
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 
-        /* شريط السعر والتقدم */
-        .price-chip { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; padding: 15px 40px; border-radius: 50px; font-weight: 900; z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border: 2px solid #fff; font-size: 1.2rem; width: 80%; text-align: center; max-width: 400px; }
-        .progress-bar { height: 4px; background: #222; margin-bottom: 40px; border-radius: 10px; }
-        .progress-fill { height: 100%; background: linear-gradient(to left, var(--gold), #fff); width: 0%; transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
-
-        /* البطاقات والخيارات */
-        .step-card { background: var(--dark-grey); border-radius: 30px; padding: 30px; border: 1px solid rgba(212, 175, 55, 0.1); display: none; animation: fadeIn 0.6s ease; flex-direction: column; }
-        .step-card.active { display: flex; }
-        h2 { color: var(--gold); font-size: 1.4rem; margin-top: 0; text-align: center; font-weight: 900; }
-        p.subtitle { text-align: center; color: #888; font-size: 0.9rem; margin-top: -15px; margin-bottom: 25px; }
-
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .choice-btn { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 20px 15px; border-radius: 20px; color: #fff; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: 'Cairo'; position: relative; overflow: hidden; }
-        .choice-btn:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
-        .choice-btn.selected { border-color: var(--gold); background: rgba(212, 175, 55, 0.15); box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); }
-        .choice-btn.selected::after { content: '✓'; position: absolute; top: 10px; left: 10px; color: var(--gold); font-weight: bold; }
-
-        /* معاينة الكتابة */
-        .preview-box { background: #000; border: 1px dashed var(--gold); padding: 30px; border-radius: 20px; text-align: center; font-size: 2rem; margin: 20px 0; min-height: 60px; display: flex; align-items: center; justify-content: center; color: var(--gold); transition: 0.3s; }
-
-        input, select, textarea { width: 100%; padding: 18px; border-radius: 15px; border: 1px solid #333; background: #0c0c0c; color: #fff; margin-bottom: 15px; font-family: 'Cairo'; font-size: 1rem; }
-        input:focus { border-color: var(--gold); outline: none; }
-
-        .action-btn { background: linear-gradient(45deg, var(--gold-dark), var(--gold)); color: #000; border: none; padding: 20px; border-radius: 20px; font-weight: 900; font-size: 1.2rem; cursor: pointer; transition: 0.3s; margin-top: 15px; }
-        .action-btn:active { transform: scale(0.98); }
-
-        .info-tag { font-size: 0.8rem; background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 5px 12px; border-radius: 5px; margin-bottom: 10px; display: inline-block; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* ملخص الطلب */
-        .summary-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #222; font-size: 0.95rem; }
-    </style>
+<style>
+:root{--gold:#d4af37;--gold-dark:#aa8a2e;--black:#050505;--dark-grey:#1a1a1a;--glass:rgba(255,255,255,.03)}
+body{font-family:'Cairo',sans-serif;background:var(--black);color:#e0e0e0;margin:0;line-height:1.6;overflow-x:hidden}
+header{background:rgba(0,0,0,.9);padding:25px;text-align:center;border-bottom:1px solid var(--gold);position:sticky;top:0;z-index:1000}
+.logo{font-family:'Amiri',serif;font-size:2.2rem;color:var(--gold);letter-spacing:3px;margin:0}
+.container{max-width:650px;margin:0 auto;padding:20px;padding-bottom:120px}
+.price-chip{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;padding:15px 40px;border-radius:50px;font-weight:900;z-index:2000;width:80%;max-width:400px;text-align:center}
+.progress-bar{height:4px;background:#222;margin-bottom:40px;border-radius:10px}
+.progress-fill{height:100%;background:linear-gradient(to left,var(--gold),#fff);width:0%;transition:.8s}
+.step-card{background:var(--dark-grey);border-radius:30px;padding:30px;border:1px solid rgba(212,175,55,.1);display:none;animation:fadeIn .6s ease;flex-direction:column}
+.step-card.active{display:flex}
+h2{color:var(--gold);font-size:1.4rem;margin-top:0;text-align:center;font-weight:900}
+p.subtitle{text-align:center;color:#888;font-size:.9rem;margin-top:-15px;margin-bottom:25px}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.choice-btn{background:var(--glass);border:1px solid rgba(255,255,255,.05);padding:20px 15px;border-radius:20px;color:#fff;cursor:pointer;transition:.3s;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative}
+.choice-btn:hover{border-color:var(--gold)}
+.choice-btn.selected{border-color:var(--gold);background:rgba(212,175,55,.15)}
+.choice-btn.selected:after{content:'✓';position:absolute;top:10px;left:10px;color:var(--gold);font-weight:bold}
+.choice-btn img{width:70px;margin-bottom:8px}
+.preview-box{background:#000;border:1px dashed var(--gold);padding:30px;border-radius:20px;text-align:center;font-size:2rem;margin:20px 0;min-height:60px;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+input,select,textarea{width:100%;padding:18px;border-radius:15px;border:1px solid #333;background:#0c0c0c;color:#fff;margin-bottom:15px;font-size:1rem}
+.action-btn{background:linear-gradient(45deg,var(--gold-dark),var(--gold));color:#000;border:none;padding:20px;border-radius:20px;font-weight:900;font-size:1.2rem;cursor:pointer}
+.info-tag{font-size:.8rem;background:rgba(212,175,55,.1);color:var(--gold);padding:5px 12px;border-radius:5px;margin-bottom:10px;display:inline-block}
+.summary-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222;font-size:.95rem}
+.wa-btn{display:block;text-align:center;background:#25D366;color:#000;padding:18px;border-radius:18px;font-weight:900;margin-bottom:10px;text-decoration:none}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
+
 <body>
 
-<header><h1 class="logo">ESSENCE D'ORIENT</h1></header>
+<header><h1 class="logo">عطرك يشبهك</h1></header>
 
 <div class="container">
-    <div class="progress-bar"><div class="progress-fill" id="pb"></div></div>
+<div class="progress-bar"><div class="progress-fill" id="pb"></div></div>
 
-    <div class="step-card active" id="s1">
-        <span class="info-tag">المرحلة 1: البصمة النفسية</span>
-        <h2>من أنت اليوم؟</h2>
-        <p class="subtitle">اختر الحالات التي تعبر عن شخصيتك (اختيار متعدد)</p>
-        <div class="options-grid">
-            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'قيادي وشجاع')">🦁<span>قيادي وشجاع</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'غامض وساحر')">🔮<span>غامض وساحر</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'هادئ ومتأمل')">🧘<span>هادئ ومتأمل</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'psych', 'عصري ومنطلق')">⚡<span>عصري ومنطلق</span></button>
-        </div>
-        <button class="action-btn" onclick="next(1)">متابعة التحليل</button>
-    </div>
+<!-- STEP 1 -->
+<div class="step-card active" id="s1">
+<span class="info-tag">المرحلة 1</span>
+<h2>من أنت اليوم؟</h2>
+<div class="options-grid">
+<button class="choice-btn" onclick="toggleMulti(this,'psych','قيادي وشجاع')">🦁<span>قيادي وشجاع</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'psych','غامض وساحر')">🔮<span>غامض وساحر</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'psych','هادئ ومتأمل')">🧘<span>هادئ ومتأمل</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'psych','عصري ومنطلق')">⚡<span>عصري ومنطلق</span></button>
+</div>
+<button class="action-btn" onclick="next(1)">متابعة</button>
+</div>
 
-    <div class="step-card" id="s2">
-        <span class="info-tag">المرحلة 2: نمط الحياة</span>
-        <h2>أين سترافقك الرائحة؟</h2>
-        <p class="subtitle">هواياتك تساعدنا في تحديد ثبات العطر</p>
-        <div class="options-grid">
-            <button class="choice-btn" onclick="toggleMulti(this, 'hobbies', 'الخيل والفروسية')">🐎<span>الخيل</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'الرياضة والجيم')">🏋️<span>الرياضة</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'اجتماعات العمل')">💼<span>أعمال</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'السفر والاستكشاف')">🌍<span>سفر</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'الخرجات الليلية')">🌙<span>سهرات</span></button>
-            <button class="choice-btn" onclick="toggleMulti(this, 'المطالعة والهدوء')">📖<span>هدوء</span></button>
-        </div>
-        <button class="action-btn" onclick="next(2)">تحديد الحجم</button>
-    </div>
+<!-- STEP 2 -->
+<div class="step-card" id="s2">
+<span class="info-tag">المرحلة 2</span>
+<h2>نمط حياتك</h2>
+<div class="options-grid">
+<button class="choice-btn" onclick="toggleMulti(this,'hobbies','الخيل والفروسية')">🐎<span>الخيل</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'hobbies','الرياضة والجيم')">🏋️<span>الرياضة</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'hobbies','اجتماعات العمل')">💼<span>أعمال</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'hobbies','السفر والاستكشاف')">🌍<span>سفر</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'hobbies','الخرجات الليلية')">🌙<span>سهرات</span></button>
+<button class="choice-btn" onclick="toggleMulti(this,'hobbies','المطالعة والهدوء')">📖<span>هدوء</span></button>
+</div>
+<button class="action-btn" onclick="next(2)">التالي</button>
+</div>
 
-    <div class="step-card" id="s3">
-        <span class="info-tag">المرحلة 3: المنتج</span>
-        <h2>اختر قارورتك المفضلة</h2>
-        <div class="choice-btn" style="width:100%; margin-bottom:15px; flex-direction: row; justify-content: space-between; padding: 25px;" onclick="setBottle('50ml Luxury Square', 950, 3)">
-            <div style="text-align: right;"><b>50 ML مربعة</b><br><small style="color: #888;">تركيز عالي - مثالية للتنقل</small></div>
-            <b style="color: var(--gold);">950 دج</b>
-        </div>
-        <div class="choice-btn" style="width:100%; flex-direction: row; justify-content: space-between; padding: 25px;" onclick="setBottle('100ml Royal Rect', 1500, 3)">
-            <div style="text-align: right;"><b>100 ML مستطيلة</b><br><small style="color: #888;">الحجم الملكي - حضور طاغٍ</small></div>
-            <b style="color: var(--gold);">1500 دج</b>
-        </div>
-    </div>
+<!-- STEP 3 -->
+<div class="step-card" id="s3">
+<h2>اختر القارورة</h2>
+<div class="choice-btn" onclick="setBottle('50ml',950,3)">
+<img src="bottle50.png">
+<b>50 ML</b> – 950 دج
+</div>
+<div class="choice-btn" onclick="setBottle('100ml',1500,3)">
+<img src="bottle100.png">
+<b>100 ML</b> – 1500 دج
+</div>
+</div>
 
-    <div class="step-card" id="s4">
-        <span class="info-tag">المرحلة 4: اللمسة الشخصية</span>
-        <h2>حفر اسمك على الزجاجة</h2>
-        <p class="subtitle">خدمة الحفر بالليزر (+300 دج)</p>
-        <input type="text" id="engrave-text" placeholder="اكتب الاسم (مثلاً: MR. AHMED)" oninput="updateEngraving()">
-        <div class="preview-box" id="preview-box">PREVIEW</div>
-        <div class="options-grid">
-            <button class="choice-btn selected" id="g-btn" onclick="setColor('ذهبي', '#d4af37', this)">حفر ذهبي</button>
-            <button class="choice-btn" id="s-btn" onclick="setColor('فضي', '#c0c0c0', this)">حفر فضي</button>
-        </div>
-        <button class="action-btn" onclick="next(4)">تأكيد التخصيص</button>
-    </div>
+<!-- STEP 4 -->
+<div class="step-card" id="s4">
+<h2>الحفر بالليزر (+300 دج)</h2>
+<input type="text" id="engrave-text" placeholder="اكتب الاسم" oninput="updateEngraving()">
+<div class="preview-box" id="preview-box">PREVIEW</div>
+<div class="options-grid">
+<button class="choice-btn selected" onclick="setColor('ذهبي','#d4af37',this)">ذهبي</button>
+<button class="choice-btn" onclick="setColor('فضي','#c0c0c0',this)">فضي</button>
+</div>
+<button class="action-btn" onclick="next(4)">التالي</button>
+</div>
 
-    <div class="step-card" id="s5">
-        <span class="info-tag">المرحلة الأخيرة: التوصيل</span>
-        <h2>أين نرسل تحفتك؟</h2>
-        <select id="wilaya" onchange="updateShip()">
-            <option value="" data-p="0">-- اختر الولاية --</option>
-        </select>
-        <input type="text" id="commune" placeholder="البلدية">
-        <input type="tel" id="phone" placeholder="رقم الهاتف">
-        <textarea id="notes" placeholder="أي ملاحظات إضافية عن العطر أو التوصيل؟"></textarea>
-        <button class="action-btn" onclick="finish()">تأكيد الطلب والحساب</button>
-    </div>
+<!-- STEP 5 -->
+<div class="step-card" id="s5">
+<h2>التوصيل</h2>
+<select id="wilaya" onchange="updateShip()"><option value="">اختر الولاية</option></select>
+<input type="text" id="commune" placeholder="البلدية">
+<input type="tel" id="phone" placeholder="رقم الهاتف">
+<textarea id="notes" placeholder="ملاحظات"></textarea>
+<div style="background:#111;padding:12px;border-radius:12px;margin:10px 0;">💵 الدفع عند الاستلام</div>
+<button class="action-btn" onclick="finish()">تأكيد الطلب</button>
+</div>
 
-    <div id="final" class="step-card">
-        <h2>تقرير طلبك الفاخر</h2>
-        <div id="summary-content" style="margin-top: 10px;"></div>
-        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; margin: 20px 0; font-size: 0.85rem;">
-            🛡️ <b>ضمان ESSENCE:</b> نضمن لك ثبات العطر لمدة 24 ساعة كحد أدنى.
-        </div>
-        <a href="#" id="wa-link" class="wa-btn">إرسال الطلب عبر WhatsApp</a>
-        <button class="action-btn" style="background:transparent; color:#888; border:1px solid #444;" onclick="location.reload()">إلغاء وإعادة التصميم</button>
-    </div>
+<!-- FINAL -->
+<div id="final" class="step-card">
+<h2>ملخص الطلب</h2>
+<div id="summary-content"></div>
+<a href="#" id="wa-link" class="wa-btn">إرسال عبر واتساب</a>
+<button class="action-btn" onclick="location.reload()">إعادة</button>
+</div>
+
 </div>
 
 <div class="price-chip">الإجمالي: <span id="total-price">0</span> دج</div>
 
 <script>
-    const wilayas = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","إن صالح","إن قزام","تقرت","جانت","المغير","المنيعة"];
+const wilayas=["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية"];
+let costs={b:0,s:0,e:0};
+let data={psych:[],hobbies:[]};
+let order={color:'ذهبي'};
 
-    let costs = { b: 0, s: 0, e: 0 };
-    let data = { psych: [], hobbies: [] };
-    let order = { color: 'ذهبي' };
+const wSelect=document.getElementById('wilaya');
+wilayas.forEach(w=>{let o=document.createElement('option');o.value=w;o.innerText=w;o.dataset.p=500;wSelect.appendChild(o)});
 
-    // تعبئة الولايات
-    const wSelect = document.getElementById('wilaya');
-    wilayas.forEach((w, i) => {
-        let opt = document.createElement('option');
-        opt.value = w;
-        let p = 500;
-        if(i+1==16 || i+1==26) p = 300;
-        if([1, 11, 33, 37, 50, 53, 54, 56].includes(i+1)) p = 800;
-        opt.dataset.p = p;
-        opt.innerText = `${i+1}. ${w}`;
-        wSelect.appendChild(opt);
-    });
+function toggleMulti(btn,cat,val){
+btn.classList.toggle('selected');
+if(!data[cat])data[cat]=[];
+if(data[cat].includes(val))data[cat]=data[cat].filter(x=>x!==val);
+else data[cat].push(val)
+}
 
-    function toggleMulti(btn, cat, val) {
-        btn.classList.toggle('selected');
-        if(!data[cat]) data[cat] = [];
-        if(data[cat].includes(val)) data[cat] = data[cat].filter(x => x !== val);
-        else data[cat].push(val);
-    }
+function setBottle(sz,p,s){order.sz=sz;costs.b=p;updateTotal();next(s)}
 
-    function setBottle(sz, p, s) { order.sz = sz; costs.b = p; updateTotal(); next(s); }
+function updateEngraving(){
+const txt=document.getElementById('engrave-text').value;
+costs.e=txt.trim()?300:0;
+document.getElementById('preview-box').innerText=txt||"PREVIEW";
+updateTotal()
+}
 
-    function updateEngraving() {
-        const txt = document.getElementById('engrave-text').value;
-        costs.e = txt.trim() !== "" ? 300 : 0;
-        document.getElementById('preview-box').innerText = txt || "PREVIEW";
-        updateTotal();
-    }
+function setColor(n,h,b){
+order.color=n;
+document.getElementById('preview-box').style.color=h;
+b.parentElement.querySelectorAll('.choice-btn').forEach(x=>x.classList.remove('selected'));
+b.classList.add('selected')
+}
 
-    function setColor(n, h, b) {
-        order.color = n; document.getElementById('preview-box').style.color = h;
-        b.parentElement.querySelectorAll('.choice-btn').forEach(x => x.classList.remove('selected'));
-        b.classList.add('selected');
-    }
+function updateShip(){costs.s=parseInt(wSelect.options[wSelect.selectedIndex].dataset.p)||0;updateTotal()}
 
-    function updateShip() {
-        costs.s = parseInt(wSelect.options[wSelect.selectedIndex].dataset.p) || 0;
-        updateTotal();
-    }
+function updateTotal(){document.getElementById('total-price').innerText=(costs.b+costs.s+costs.e)}
 
-    function updateTotal() { 
-        document.getElementById('total-price').innerText = (costs.b + costs.s + costs.e).toLocaleString(); 
-    }
+function next(curr){
+document.getElementById('s'+curr).classList.remove('active');
+document.getElementById('pb').style.width=((curr)/4*100)+'%';
+document.getElementById('s'+(curr+1)).classList.add('active');
+window.scrollTo(0,0)
+}
 
-    function next(curr) {
-        document.getElementById('s' + curr).classList.remove('active');
-        document.getElementById('pb').style.width = (curr / 5 * 100) + '%';
-        document.getElementById('s' + (curr + 1)).classList.add('active');
-        window.scrollTo(0,0);
-    }
+function finish(){
+if(!order.sz)return alert("اختر الحجم");
+if(!wSelect.value)return alert("اختر الولاية");
+if(!document.getElementById('phone').value)return alert("أدخل الهاتف");
 
-    function finish() {
-        const txt = document.getElementById('engrave-text').value || "لا يوجد حفر";
-        const total = costs.b + costs.s + costs.e;
-        
-        let summaryHTML = `
-            <div class="summary-item"><span>الحجم المختارة:</span> <b>${order.sz}</b></div>
-            <div class="summary-item"><span>البصمة النفسية:</span> <b>${data.psych.join(' - ') || 'كلاسيك'}</b></div>
-            <div class="summary-item"><span>الحفر على الزجاج:</span> <b>${txt} (${order.color})</b></div>
-            <div class="summary-item"><span>جهة التوصيل:</span> <b>${wSelect.value}</b></div>
-            <div class="summary-item" style="border:none; font-size:1.2rem; color:var(--gold); margin-top:10px;"><span>الإجمالي المستحق:</span> <b>${total} دج</b></div>
-        `;
-        
-        document.getElementById('summary-content').innerHTML = summaryHTML;
-        
-        let msg = `طلب تصميم عطر VIP 🏺%0A` +
-                  `---------------------------%0A` +
-                  `👤 المزاج: ${data.psych.join(' | ')}%0A` +
-                  `🎨 الهوايات: ${data.hobbies.join(' | ')}%0A` +
-                  `🏺 الحجم: ${order.sz}%0A` +
-                  `✍️ الكتابة: ${txt} (${order.color})%0A` +
-                  `📍 العنوان: ${wSelect.value} - ${document.getElementById('commune').value}%0A` +
-                  `📞 الهاتف: ${document.getElementById('phone').value}%0A` +
-                  `💰 الإجمالي: ${total} دج%0A` +
-                  `---------------------------%0A` +
-                  `ملاحظات: ${document.getElementById('notes').value || 'لا يوجد'}`;
+const txt=document.getElementById('engrave-text').value||"لا يوجد";
+const total=costs.b+costs.s+costs.e;
 
-        document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
-        document.getElementById('s5').classList.remove('active');
-        document.getElementById('final').classList.add('active');
-        updateTotal();
-    }
+document.getElementById('summary-content').innerHTML=`
+<div class="summary-item"><span>الحجم</span><b>${order.sz}</b></div>
+<div class="summary-item"><span>الشخصية</span><b>${data.psych.join(" - ")}</b></div>
+<div class="summary-item"><span>الهوايات</span><b>${data.hobbies.join(" - ")}</b></div>
+<div class="summary-item"><span>الحفر</span><b>${txt} (${order.color})</b></div>
+<div class="summary-item"><span>الولاية</span><b>${wSelect.value}</b></div>
+<div class="summary-item"><span>الإجمالي</span><b>${total} دج</b></div>
+`;
+
+let msg=`طلب عطر VIP%0Aالحجم: ${order.sz}%0Aالشخصية: ${data.psych}%0Aالهوايات: ${data.hobbies}%0Aالحفر: ${txt} (${order.color})%0Aالولاية: ${wSelect.value}%0Aالهاتف: ${document.getElementById('phone').value}%0Aالإجمالي: ${total} دج`;
+
+document.getElementById('wa-link').href=`https://wa.me/213YOURNUMBER?text=${encodeURIComponent(msg)}`;
+
+fetch("PASTE_GOOGLE_SCRIPT_URL_HERE",{method:"POST",body:JSON.stringify({
+size:order.sz,psych:data.psych.join(","),hobbies:data.hobbies.join(","),engraving:txt,color:order.color,
+wilaya:wSelect.value,commune:document.getElementById('commune').value,phone:document.getElementById('phone').value,total:total
+})});
+
+document.getElementById('s5').classList.remove('active');
+document.getElementById('final').classList.add('active');
+updateTotal()
+}
 </script>
+
 </body>
 </html>
