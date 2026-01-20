@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Perfume Lab Pro - النسخة المحدثة</title>
+<title>Perfume Lab Pro - بروتوكول تفاعلي 16 سؤالاً</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 <style>
@@ -11,17 +11,16 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;pad
 .header{text-align:center;padding:30px;border-bottom:1px solid #222;background: linear-gradient(to bottom, #151515, #000);}
 .header h1{font-family:'Amiri',serif;color:var(--gold);font-size:30px;margin:0;letter-spacing:1px;}
 .container{padding:15px;max-width:600px;margin:auto;}
-.card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;}
 .section-title{color:var(--gold);font-size:16px;font-weight:700;margin-bottom:20px;border-right:4px solid var(--gold);padding-right:12px;}
-
 .question-row {display: flex; align-items: center; margin: 18px 0 8px;}
-.question-row input[type="checkbox"] {width: 18px; height: 18px; accent-color: var(--gold); margin-left: 10px; cursor: pointer;}
-label{font-size:13px;color:#bbb;font-weight:bold;line-height:1.5; cursor: pointer;}
-select,input[type="text"],input[type="tel"],textarea{width:100%;background:var(--input);border:1px solid #333;color:#fff;padding:14px;border-radius:12px;font-family:'Cairo';box-sizing:border-box;outline:none;transition:0.3s;font-size:14px;}
-select:focus, input:focus, textarea:focus{border-color: var(--gold); background: #222;}
+.question-row input[type="checkbox"] {width: 18px; height: 18px; accent-color: var(--gold); margin-left: 10px; pointer-events: none;}
+label{font-size:13px;color:#bbb;font-weight:bold;line-height:1.5;}
+select,input[type="text"],input[type="tel"],textarea{width:100%;background:var(--input);border:1px solid #333;color:#fff;padding:14px;border-radius:12px;font-family:'Cairo';box-sizing:border-box;outline:none;font-size:14px;transition: 0.3s;}
+select:focus, textarea:focus {border-color: var(--gold);}
 .price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(15px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
 .total-price{font-size:24px;font-weight:700;color:var(--gold);}
-.btn-order{background:var(--gold);color:#000;border:none;padding:15px 35px;border-radius:12px;font-weight:700;cursor:pointer;font-size:16px;}
+.btn-order{background:var(--gold);color:#000;border:none;padding:15px 35px;border-radius:12px;font-weight:700;cursor:pointer;}
 .engrave-preview-box{text-align:center;border:1px dashed var(--gold);border-radius:15px;padding:25px;margin-top:20px;background: radial-gradient(circle, #1a1a1a 0%, #050505 100%);}
 #previewName{font-family:'Amiri',serif;color:#fff;font-size:26px;display:block;}
 #previewSig{font-family:'Monsieur La Doulaise', cursive;color:var(--gold);font-size:35px;display:block;transform: rotate(-3deg);margin-top:10px;}
@@ -32,57 +31,67 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold); background:
 
 <div class="header">
     <h1>PERFUME LAB PRO</h1>
-    <p style="color:#666;font-size:12px;">MÉDÉA - مصنع العطور الشخصية</p>
+    <p style="color:#666;font-size:12px;">MÉDÉA - بروتوكول التصميم المخبري</p>
 </div>
 
 <div class="container">
     
     <div class="card">
-        <div class="section-title">🔬 بروتوكول التصميم المخبري</div>
+        <div class="section-title">🔬 بروتوكول التحليل التفاعلي</div>
         
-        <div class="question-row">
-            <input type="checkbox" id="check1">
-            <label for="check1">الجنس (ذكر / أنثى / Unisex)</label>
-        </div>
-        <select id="psy_gender">
-            <option>ذكر</option>
-            <option>أنثى</option>
-            <option>عطر مشترك (Unisex)</option>
-        </select>
+        <div class="question-row"><input type="checkbox" id="cb1"><label>1. الجنس المستهدف؟</label></div>
+        <select id="q1" onchange="check(1)"><option value="" disabled selected>اختر الإجابة</option><option>رجالي</option><option>نسائي</option><option>Unisex</option></select>
 
-        <div class="question-row">
-            <input type="checkbox" id="check2">
-            <label for="check2">اللون المفضل (أسود / أزرق / أحمر / أبيض)</label>
-        </div>
-        <select id="psy_color">
-            <option>الأسود (فخامة)</option>
-            <option>الأزرق (انتعاش)</option>
-            <option>الأحمر (جاذبية)</option>
-            <option>الأبيض (نقاء)</option>
-        </select>
+        <div class="question-row"><input type="checkbox" id="cb2"><label>2. نوع البشرة؟</label></div>
+        <select id="q2" onchange="check(2)"><option value="" disabled selected>اختر الإجابة</option><option>دهنية</option><option>جافة</option><option>عادية</option></select>
 
-        <div class="question-row">
-            <input type="checkbox" id="check3">
-            <label for="check3">مدة الثبات المطلوبة</label>
-        </div>
-        <select id="psy_duration">
-            <option>طويلة (12 - 24 ساعة)</option>
-            <option>فائقة (ثبات لعدة أيام)</option>
-        </select>
+        <div class="question-row"><input type="checkbox" id="cb3"><label>3. التوقيت المفضل؟</label></div>
+        <select id="q3" onchange="check(3)"><option value="" disabled selected>اختر الإجابة</option><option>صباحي</option><option>مسائي</option><option>طوال اليوم</option></select>
 
-        <div class="question-row">
-            <input type="checkbox" id="check4">
-            <label for="check4">ملاحظات إضافية للعطار</label>
-        </div>
-        <textarea id="customPsy" placeholder="اكتب هنا تفاصيل إضافية تهمك..."></textarea>
+        <div class="question-row"><input type="checkbox" id="cb4"><label>4. الفصل المفضل؟</label></div>
+        <select id="q4" onchange="check(4)"><option value="" disabled selected>اختر الإجابة</option><option>شتوي</option><option>صيفي</option><option>ربيعي/خريفي</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb5"><label>5. مدة الثبات؟</label></div>
+        <select id="q5" onchange="check(5)"><option value="" disabled selected>اختر الإجابة</option><option>12 ساعة</option><option>24 ساعة</option><option>أكثر من يومين</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb6"><label>6. قوة الفوحان؟</label></div>
+        <select id="q6" onchange="check(6)"><option value="" disabled selected>اختر الإجابة</option><option>هادئ</option><option>متوسط</option><option>قوي جداً</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb7"><label>7. لون الطاقة؟</label></div>
+        <select id="q7" onchange="check(7)"><option value="" disabled selected>اختر الإجابة</option><option>أسود</option><option>أبيض</option><option>أزرق</option><option>أحمر</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb8"><label>8. القاعدة المفضلة؟</label></div>
+        <select id="q8" onchange="check(8)"><option value="" disabled selected>اختر الإجابة</option><option>أخشاب</option><option>مسك</option><option>زهور</option><option>حمضيات</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb9"><label>9. الطابع العام؟</label></div>
+        <select id="q9" onchange="check(9)"><option value="" disabled selected>اختر الإجابة</option><option>كلاسيكي</option><option>عصري</option><option>رياضي</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb10"><label>10. حساسية عطرية؟</label></div>
+        <select id="q10" onchange="check(10)"><option value="" disabled selected>اختر الإجابة</option><option>لا</option><option>نعم</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb11"><label>11. العمر التقريبي؟</label></div>
+        <select id="q11" onchange="check(11)"><option value="" disabled selected>اختر الإجابة</option><option>شبابي</option><option>متوسط العمر</option><option>وقور</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb12"><label>12. المناسبة الأساسية؟</label></div>
+        <select id="q12" onchange="check(12)"><option value="" disabled selected>اختر الإجابة</option><option>عمل</option><option>أفراح</option><option>يومي</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb13"><label>13. التركيز المطلوب؟</label></div>
+        <select id="q13" onchange="check(13)"><option value="" disabled selected>اختر الإجابة</option><option>Parfum</option><option>Extrait de Parfum</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb14"><label>14. روائح سويت؟</label></div>
+        <select id="q14" onchange="check(14)"><option value="" disabled selected>اختر الإجابة</option><option>نعم</option><option>لا</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb15"><label>15. الهواية المفضلة؟</label></div>
+        <select id="q15" onchange="check(15)"><option value="" disabled selected>اختر الإجابة</option><option>الرياضة</option><option>المطالعة</option><option>السفر</option><option>العمل</option></select>
+
+        <div class="question-row"><input type="checkbox" id="cb16"><label>16. ملاحظات إضافية؟</label></div>
+        <textarea id="q16" placeholder="اكتب ملاحظاتك..." oninput="check(16)"></textarea>
     </div>
 
     <div class="card">
-        <div class="section-title">✍️ خدمة الحفر بالليزر (الكاملة 500 دج)</div>
-        <label>الاسم</label>
-        <input id="engraveName" type="text" placeholder="الاسم المراد حفره" oninput="updateTotal()">
-        <label>التوقيع الشخصي</label>
-        <input id="engraveSig" type="text" placeholder="Signature" oninput="updateTotal()">
+        <div class="section-title">✍️ خدمة الحفر الملكي (500 دج)</div>
+        <input id="engraveName" type="text" placeholder="الاسم" oninput="updateTotal()">
+        <input id="engraveSig" type="text" placeholder="Signature" oninput="updateTotal()" style="margin-top:10px;">
         <div class="engrave-preview-box">
             <div id="previewName">الاسم هنا</div>
             <div id="previewSig">Signature</div>
@@ -90,7 +99,7 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold); background:
     </div>
 
     <div class="card">
-        <div class="section-title">📍 تفاصيل الطلب والشحن</div>
+        <div class="section-title">📍 الطلب والشحن</div>
         <label>حجم القارورة</label>
         <select id="size" onchange="updateTotal()">
             <option data-p="300">30ml - 300 دج</option>
@@ -102,7 +111,7 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold); background:
         <label>البلدية</label>
         <select id="commune"></select>
         <label>رقم الهاتف</label>
-        <input id="phone" type="tel" placeholder="05 / 06 / 07 ...">
+        <input id="phone" type="tel" placeholder="رقم الهاتف">
         <div id="shipBadge" class="ship-badge" style="display:none;"></div>
     </div>
 </div>
@@ -116,29 +125,28 @@ select:focus, input:focus, textarea:focus{border-color: var(--gold); background:
 </div>
 
 <script>
-const geoData = {
-    "المدية": {price: 200, communes: ["المدية", "البرواقية", "قصر البخاري", "وزرة"]},
-    "الجزائر": {price: 300, communes: ["سيدي امحمد", "الدار البيضاء", "الشراقة", "رويبة"]},
-    "البليدة": {price: 300, communes: ["البليدة", "بوفاريك", "أولاد يعيش"]},
-    "تيبازة": {price: 350, communes: ["تيبازة", "حجوط", "القليعة"]}
-};
-
+const geoData = {"المدية": {price: 200, communes: ["المدية", "البرواقية"]}, "الجزائر": {price: 300, communes: ["سيدي امحمد", "الرويبة"]}, "البليدة": {price: 300, communes: ["بوفاريك"]}, "تيبازة": {price: 350, communes: ["حجوط"]}};
 const wilayaSelect = document.getElementById("wilaya");
-const communeSelect = document.getElementById("commune");
 const totalDisplay = document.getElementById("totalDisplay");
 let shipPrice = 0;
 
-wilayaSelect.innerHTML = '<option value="">-- اختر الولاية --</option>';
 Object.keys(geoData).sort().forEach(w => wilayaSelect.add(new Option(w, w)));
+
+function check(num) {
+    const field = document.getElementById('q' + num);
+    const checkbox = document.getElementById('cb' + num);
+    if (field.value.trim() !== "") checkbox.checked = true;
+}
 
 function updateCommunes() {
     const w = wilayaSelect.value;
-    communeSelect.innerHTML = '<option value="">-- اختر البلدية --</option>';
+    const commSelect = document.getElementById("commune");
+    commSelect.innerHTML = '<option value="">-- اختر البلدية --</option>';
     if (w && geoData[w]) {
-        geoData[w].communes.forEach(c => communeSelect.add(new Option(c, c)));
+        geoData[w].communes.forEach(c => commSelect.add(new Option(c, c)));
         shipPrice = geoData[w].price;
         document.getElementById("shipBadge").style.display = "block";
-        document.getElementById("shipBadge").innerText = `شحن من المدية إلى ${w}: ${shipPrice} دج`;
+        document.getElementById("shipBadge").innerText = `شحن إلى ${w}: ${shipPrice} دج`;
     }
     updateTotal();
 }
@@ -146,30 +154,17 @@ function updateCommunes() {
 function updateTotal() {
     const s = document.getElementById("size");
     const sizePrice = parseInt(s.options[s.selectedIndex].dataset.p);
-    const engText = document.getElementById("engraveName").value.trim() || document.getElementById("engraveSig").value.trim();
-    const engCost = engText ? 500 : 0;
-    
+    const engCost = (document.getElementById("engraveName").value.trim() || document.getElementById("engraveSig").value.trim()) ? 500 : 0;
     document.getElementById("previewName").textContent = document.getElementById("engraveName").value || "الاسم هنا";
     document.getElementById("previewSig").textContent = document.getElementById("engraveSig").value || "Signature";
-    
     totalDisplay.textContent = sizePrice + shipPrice + engCost;
 }
 
 function sendWA() {
-    if (!wilayaSelect.value || !document.getElementById("phone").value) {
-        alert("يرجى إكمال بيانات الشحن"); return;
-    }
-    
-    let msg = `*طلب عطر (مخبري متخصص)* 🏺\n` +
-              `-------------------\n` +
-              `🧪 *التحليل:* \n- الجنس: ${document.getElementById("psy_gender").value}\n- اللون: ${document.getElementById("psy_color").value}\n- الثبات: ${document.getElementById("psy_duration").value}\n` +
-              `-------------------\n` +
-              `✍️ *الحفر (+500 دج):*\n- الاسم: ${document.getElementById("engraveName").value || "بدون"}\n- التوقيع: ${document.getElementById("engraveSig").value || "بدون"}\n` +
-              `-------------------\n` +
-              `📦 *الطلب:* ${document.getElementById("size").options[document.getElementById("size").selectedIndex].text}\n` +
-              `📍 *الشحن:* ${wilayaSelect.value}\n` +
-              `💰 *الإجمالي النهائي:* ${totalDisplay.textContent} دج`;
-
+    if (!wilayaSelect.value || !document.getElementById("phone").value) { alert("أكمل البيانات"); return; }
+    let report = "";
+    for(let i=1; i<=15; i++) report += `- س${i}: ${document.getElementById('q'+i).value}\n`;
+    let msg = `*تقرير مخبري متكامل* 🔬\n-------------------\n${report}- ملاحظات: ${document.getElementById('q16').value}\n-------------------\n💰 *الإجمالي:* ${totalDisplay.textContent} دج`;
     window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
 }
 updateTotal();
