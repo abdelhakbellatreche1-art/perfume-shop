@@ -3,111 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | متجر الزيوت العطرية</title>
+    <title>ESSENCE D'ORIENT | مستشار العطور</title>
     <style>
         :root { --gold: #b89552; --dark: #1a1a1a; --cream: #fcfaf7; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--cream); margin: 0; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--cream); margin: 0; color: #333; }
         
         .header { background: var(--dark); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .header h1 { margin: 0; font-size: 2em; letter-spacing: 2px; }
-        .header p { color: var(--gold); margin-top: 10px; }
-
-        .section-title { margin: 40px 0 20px; font-size: 1.5em; font-weight: bold; color: var(--dark); position: relative; text-align: center; }
+        .section-title { margin: 40px 0 20px; font-size: 1.5em; font-weight: bold; text-align: center; color: var(--dark); }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 10px auto; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        @media (min-width: 600px) { .grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
-
-        .oil-card { background: white; border: 1px solid #e0d5c5; padding: 15px; text-align: center; transition: 0.3s; position: relative; }
-        .oil-card:hover { border-color: var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .oil-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; }
+        /* ستايل الاختبار الذكي */
+        .quiz-container { background: white; max-width: 600px; margin: 20px auto; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
+        .quiz-step { display: none; }
+        .quiz-step.active { display: block; animation: fadeIn 0.5s; }
+        .quiz-option { display: block; width: 100%; padding: 15px; margin: 10px 0; background: var(--cream); border: 1px solid #ddd; border-radius: 8px; cursor: pointer; transition: 0.3s; text-align: right; }
+        .quiz-option:hover { border-color: var(--gold); background: #fdf2d9; }
+        .result-box { display: none; text-align: center; padding: 20px; background: #fff; border-radius: 10px; }
         
-        .oil-tag { font-size: 0.7em; color: var(--gold); font-weight: bold; text-transform: uppercase; }
-        .oil-name { font-size: 1.1em; margin: 10px 0; font-weight: bold; height: 40px; }
-        .size-tags { display: flex; justify-content: center; gap: 5px; margin-bottom: 10px; }
-        .size-tags span { border: 1px solid #ddd; padding: 2px 6px; font-size: 0.7em; color: #888; }
-        
-        .price { font-size: 1.2em; font-weight: bold; color: var(--dark); margin-bottom: 15px; }
-        .order-btn { background: var(--dark); color: var(--gold); text-decoration: none; padding: 10px; display: block; font-weight: bold; border: 1px solid var(--dark); transition: 0.3s; }
-        .order-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
+        /* ستايل بطاقات العطور */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; max-width: 1100px; margin: 0 auto; }
+        .oil-card { background: white; border: 1px solid #e0d5c5; padding: 15px; text-align: center; }
+        .oil-card img { width: 100%; height: 180px; object-fit: contain; }
+        .order-btn { background: var(--dark); color: var(--gold); text-decoration: none; padding: 10px; display: block; margin-top: 10px; font-weight: bold; }
 
-        .bottle-section { background: #f4eee6; padding: 40px 10px; border-top: 1px solid #ddd; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>ESSENCE D'ORIENT</h1>
-        <p>مجموعة الزيوت العطرية التركية الفاخرة</p>
+        <p>اكتشف عطرك المثالي حسب نمط حياتك</p>
     </div>
 
-    <div class="section-title">الأصالة الشرقية</div>
+    <div class="section-title">🔍 مستشار العطور الذكي</div>
+    <div class="quiz-container" id="quiz-box">
+        <div class="quiz-step active" id="step1">
+            <h3>1. كيف تقضي معظم يومك؟</h3>
+            <button class="quiz-option" onclick="nextStep(2, 'work')">في المكتب أو العمل الرسمي</button>
+            <button class="quiz-option" onclick="nextStep(2, 'out')">في حركة دائمة، رياضة أو خارج البيت</button>
+            <button class="quiz-option" onclick="nextStep(2, 'home')">في البيت أو مناسبات عائلية هادئة</button>
+        </div>
+
+        <div class="quiz-step" id="step2">
+            <h3>2. ما هو الوقت المفضل لديك؟</h3>
+            <button class="quiz-option" onclick="showResult('morning')">الصباح الباكر والنشاط</button>
+            <button class="quiz-option" onclick="showResult('night')">المساء والسهرات الفخمة</button>
+        </div>
+
+        <div class="result-box" id="result">
+            <h2 style="color: var(--gold)">العطر المناسب لك هو:</h2>
+            <div id="recommendation-content"></div>
+            <button class="order-btn" style="width:100%" onclick="resetQuiz()">إعادة الاختبار</button>
+        </div>
+    </div>
+
+    <div class="section-title">الأكثر مبيعاً</div>
     <div class="grid">
         <div class="oil-card">
-            <span class="oil-tag">Pure Musk</span>
             <img src="https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?w=400">
-            <div class="oil-name">مسك الطهارة</div>
-            <div class="size-tags"><span>3ml</span><span>6ml</span><span>12ml</span></div>
-            <div class="price">1200 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب مسك الطهارة" class="order-btn">SHOP NOW</a>
+            <h3>مسك الطهارة</h3>
+            <div class="order-btn">1200 د.ج</div>
         </div>
         <div class="oil-card">
-            <span class="oil-tag">Royal Oud</span>
             <img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=400">
-            <div class="oil-name">عود مروكي سوبر</div>
-            <div class="size-tags"><span>6ml</span><span>12ml</span></div>
-            <div class="price">1800 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب عود مروكي" class="order-btn">SHOP NOW</a>
-        </div>
-        <div class="oil-card">
-            <span class="oil-tag">Amber</span>
-            <img src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?w=400">
-            <div class="oil-name">عنبر عثماني</div>
-            <div class="size-tags"><span>6ml</span><span>12ml</span></div>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب عنبر عثماني" class="order-btn">SHOP NOW</a>
+            <h3>عود مروكي</h3>
+            <div class="order-btn">1800 د.ج</div>
         </div>
     </div>
 
-    <div class="section-title">زيوت عالمية مركزة</div>
-    <div class="grid">
-        <div class="oil-card">
-            <span class="oil-tag">Oil Extract</span>
-            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400">
-            <div class="oil-name">سواج (زيت مركز)</div>
-            <div class="size-tags"><span>10ml</span><span>20ml</span></div>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب زيت سواج" class="order-btn">SHOP NOW</a>
-        </div>
-        <div class="oil-card">
-            <span class="oil-tag">Oil Extract</span>
-            <img src="https://images.unsplash.com/photo-1588405748353-0c6349511a3d?w=400">
-            <div class="oil-name">بلو شانيل (زيت مركز)</div>
-            <div class="size-tags"><span>10ml</span><span>20ml</span></div>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب زيت بلو شانيل" class="order-btn">SHOP NOW</a>
-        </div>
-        <div class="oil-card">
-            <span class="oil-tag">Oil Extract</span>
-            <img src="https://images.unsplash.com/photo-1616948055600-a12117d73c0f?w=400">
-            <div class="oil-name">ليبر (زيت نسائي)</div>
-            <div class="size-tags"><span>10ml</span><span>20ml</span></div>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=طلب زيت ليبر" class="order-btn">SHOP NOW</a>
-        </div>
-    </div>
+    <script>
+        let userChoices = {};
 
-    <div class="bottle-section">
-        <div class="section-title">قارورات التعبئة المتاحة</div>
-        <div class="grid">
-            <div class="oil-card"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300"><div class="oil-name">قارورة ميلانو</div></div>
-            <div class="oil-card"><img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=300"><div class="oil-name">كريستال إسطنبول</div></div>
-        </div>
-    </div>
+        function nextStep(step, choice) {
+            userChoices.lifestyle = choice;
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
 
-    <div style="background: var(--dark); color: #888; padding: 40px; text-align: center; font-size: 0.8em;">
+        function showResult(time) {
+            userChoices.time = time;
+            document.getElementById('step2').classList.remove('active');
+            const resultBox = document.getElementById('result');
+            const content = document.getElementById('recommendation-content');
+            resultBox.style.display = 'block';
+
+            let recommendation = "";
+            let description = "";
+
+            if (userChoices.lifestyle === 'work' && time === 'morning') {
+                recommendation = "مسك الختام (نظافة وهدوء)";
+                description = "لأنك شخص منضبط وتحب ريحة النظافة التي لا تزعج الزملاء في العمل.";
+            } else if (userChoices.lifestyle === 'out') {
+                recommendation = "زيت سواج (انتعاش وقوة)";
+                description = "بما أنك كثير الحركة، هذا الزيت سيعطيك فوحاناً قوياً طوال اليوم.";
+            } else if (time === 'night') {
+                recommendation = "عود مروكي سوبر (فخامة)";
+                description = "للسهرات والمناسبات، لا شيء يتفوق على رزانة العود الملكي.";
+            } else {
+                recommendation = "عنبر عثماني دافئ";
+                description = "مثالي للأجواء الهادئة، يعطي شعوراً بالراحة والتميز.";
+            }
+
+            content.innerHTML = `<h3 style="color:#1a1a1a">${recommendation}</h3><p>${description}</p>`;
+        }
+
+        function resetQuiz() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('step1').classList.add('active');
+        }
+    </script>
+
+    <div style="background: var(--dark); color: #888; padding: 40px; text-align: center; margin-top:50px;">
         <p>© 2026 ESSENCE D'ORIENT | ALGERIA</p>
-        <p style="color: var(--gold);">توصيل متوفر لجميع الولايات</p>
     </div>
 
 </body>
