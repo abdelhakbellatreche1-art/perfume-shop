@@ -2,239 +2,157 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>عطرك يشبهك PRO - النسخة الشاملة مع صورة</title>
+<title>Perfume Designer Pro - Médéa</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-    :root { --gold: #d4af37; --dark: #050505; --card: #121212; --input: #000; }
-    body { font-family: 'Cairo', sans-serif; background: var(--dark); color: #eee; padding: 15px; margin: 0; padding-bottom: 120px; }
-    h2 { color: var(--gold); text-align: center; font-size: 22px; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
-    .section-title { color: var(--gold); font-size: 16px; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; border-right: 3px solid var(--gold); padding-right: 10px; font-weight: bold; }
-    .card { background: var(--card); border-radius: 15px; padding: 15px; margin-bottom: 15px; border: 1px solid #222; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-    
-    select, input:not([type="file"]), textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: var(--input); color: #fff; margin: 5px 0; box-sizing: border-box; font-size: 14px; transition: 0.3s; }
-    select:focus, input:not([type="file"]):focus, textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 5px var(--gold); }
-    
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .price-tag { position: fixed; bottom: 0; left: 0; right: 0; background: var(--gold); color: #000; padding: 15px; text-align: center; font-weight: bold; font-size: 1.3rem; z-index: 1000; box-shadow: 0 -5px 15px rgba(0,0,0,0.3); border-radius: 20px 20px 0 0; }
-    .btn-wa { background: #25d366; color: #fff; border: none; padding: 18px; border-radius: 12px; width: 100%; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-    .btn-wa:active { transform: scale(0.95); }
-    
-    label { font-size: 13px; color: #aaa; margin-top: 10px; display: block; margin-bottom: 2px; }
-    .auto-name-box { background: rgba(212, 175, 55, 0.1); border: 1px dashed var(--gold); padding: 15px; text-align: center; color: var(--gold); font-weight: bold; font-size: 20px; border-radius: 10px; margin-top: 5px; }
-
-    /* For file input */
-    .file-input-wrapper { position: relative; overflow: hidden; display: block; background: var(--input); color: #fff; padding: 12px; border-radius: 10px; border: 1px solid #333; cursor: pointer; text-align: center; margin: 5px 0; }
-    .file-input-wrapper input[type="file"] { position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
-    .file-input-wrapper span { display: block; }
-    .file-preview { margin-top: 10px; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid #333; display: none; }
-    .loading-spinner { border: 4px solid rgba(255, 255, 255, 0.3); border-top: 4px solid var(--gold); border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 10px auto; display: none; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    :root { --gold: #d4af37; --bg: #000; --card: #111; --input: #1a1a1a; }
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 160px; direction: rtl; }
+    .header { text-align: center; padding: 25px; border-bottom: 1px solid #222; background: linear-gradient(to bottom, #111, #000); }
+    .header h1 { font-family: 'Amiri', serif; color: var(--gold); font-size: 26px; margin: 0; }
+    .container { padding: 15px; }
+    .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+    .section-title { color: var(--gold); font-size: 16px; font-weight: 700; margin-bottom: 15px; border-right: 3px solid var(--gold); padding-right: 10px; }
+    label { display: block; font-size: 11px; color: #888; margin: 10px 0 5px; }
+    select, input, textarea { width: 100%; background: var(--input); border: 1px solid #333; color: #fff; padding: 12px; border-radius: 12px; font-family: 'Cairo'; box-sizing: border-box; outline: none; transition: 0.3s; }
+    select:focus, input:focus { border-color: var(--gold); }
+    .price-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); padding: 20px; border-top: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+    .total-price { font-size: 22px; font-weight: 700; color: var(--gold); }
+    .btn-order { background: var(--gold); color: #000; border: none; padding: 15px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 16px; }
+    .ship-info { color: var(--gold); font-size: 11px; margin-top: 8px; font-weight: bold; }
 </style>
 </head>
 <body>
 
-<h2>🏷️ صمم بصمتك العطرية PRO</h2>
+<div class="header">
+    <h1>PERFUME LAB PRO</h1>
+    <p style="color:#666; font-size:11px;">صناعة يدوية فاخرة - من المدية إليكم</p>
+</div>
 
-<div class="card">
-    <div class="section-title">🏺 سعة القارورة والتركيز</div>
-    <label>اختر حجم الزجاجة</label>
-    <select id="size" onchange="updateTotal()">
-        <option value="10" data-p="500">10 ML (عينة تجربة) - 500 دج</option>
-        <option value="30" data-p="1200">30 ML - 1200 دج</option>
-        <option value="50" data-p="2000" selected>50 ML - 2000 دج</option>
-        <option value="75" data-p="2800">75 ML - 2800 دج</option>
-        <option value="100" data-p="3500">100 ML - 3500 دج</option>
-    </select>
+<div class="container">
     
-    <div class="row">
-        <div>
-            <label>💧 التركيز</label>
-            <select id="concentration" onchange="updateTotal()">
-                <option value="0">Parfum (عادي)</option>
-                <option value="700">Extrait (مركز) +700دج</option>
-            </select>
-        </div>
-        <div>
-            <label>⏳ الثبات</label>
-            <select id="lasting"><option>يوم كامل</option><option>ثبات يومين</option></select>
-        </div>
-    </div>
-</div>
-
-<div class="card">
-    <div class="section-title">🖼️ إضافة صورة للقارورة (شعار/نقش)</div>
-    <div class="file-input-wrapper">
-        <span>اضغط لرفع صورة</span>
-        <input type="file" id="imageUpload" accept="image/*">
-    </div>
-    <div class="loading-spinner" id="loadingSpinner"></div>
-    <img id="imagePreview" class="file-preview" src="#" alt="معاينة الصورة">
-    <input type="hidden" id="uploadedImageUrl">
-</div>
-
-<div class="card">
-    <div class="section-title">🧠 تحليل الشخصية والستايل</div>
-    <div class="row">
-        <select id="personality" onchange="genName()">
-            <option>كلاسيكي</option><option>غامض</option><option>فاخر</option><option>رياضي</option>
+    <div class="card">
+        <div class="section-title">🧠 استشارة الخبير العطري</div>
+        <label>ما هو نوع العطور التي تفضلها عادة؟</label>
+        <select id="prefType">
+            <option>فرنسية (ناعمة وفواحة)</option>
+            <option>شرقية (ثقيلة ودافئة)</option>
+            <option>ميكس (عصري وفخم)</option>
         </select>
-        <select id="gender"><option>ذكر</option><option>أنثى</option><option>للجنسين</option></select>
-    </div>
-    <div class="row">
-        <select id="life"><option>نشط</option><option>عملي</option><option>اجتماعي</option></select>
-        <select id="age"><option>18-25</option><option>26-40</option><option>40+</option></select>
-    </div>
-    <select id="style"><option>رسمي</option><option>كاجوال</option><option>ستايل رياضي</option></select>
-</div>
+        
+        <label>ما هو الشعور الذي تريد للعطر أن يمنحه؟</label>
+        <select id="vibe">
+            <option>الثقة والقيادة</option>
+            <option>الجاذبية والغموض</option>
+            <option>الانتعاش والنظافة</option>
+            <option>الهدوء والاسترخاء</option>
+        </select>
 
-<div class="card">
-    <div class="section-title">🌿 الهرم العطري</div>
-    <select id="notes" onchange="genName()">
-        <option value="العود">نوتات العود والشرق</option>
-        <option value="المسك">نوتات المسك والنظافة</option>
-        <option value="الأزهار">نوتات الأزهار الفرنسية</option>
-        <option value="الحمضيات">نوتات صيفية باردة</option>
-    </select>
-    
-    <div class="row">
-        <select id="sweetness"><option>بدون حلاوة</option><option>حلاوة متوسطة</option><option>حلاوة سكرية</option></select>
-        <select id="power"><option>خفيف</option><option>قوة متوسطة</option><option>قوي جداً</option></select>
-    </div>
-    
-    <div class="row">
-        <select id="sillage"><option>فوحان هادئ</option><option>فوحان صارخ</option></select>
-        <select id="season" onchange="genName()"><option>شتاء</option><option>صيف</option><option>ربيع</option><option>خريف</option></select>
+        <label>وقت الاستخدام المفضل؟</label>
+        <select id="time"><option>للعمل الصباحي</option><option>للمناسبات الليلية</option><option>لكل الأوقات</option></select>
     </div>
 
-    <label>🚫 نوتات مرفوضة</label>
-    <input id="rejected" placeholder="مكونات لا تحبها...">
-    <label>🎯 عطر مرجع (Reference)</label>
-    <input id="reference" placeholder="عطر عالمي تحبه...">
+    <div class="card">
+        <div class="section-title">🏺 القارورة والتخصيص</div>
+        <label>اختر حجم القارورة</label>
+        <select id="size" onchange="updateTotal()">
+            <option value="1500">30ml - 1500 دج</option>
+            <option value="2500" selected>50ml - 2500 دج</option>
+            <option value="4500">100ml - 4500 دج</option>
+        </select>
+        
+        <label>الكتابة على القارورة بالليزر (+300 دج)</label>
+        <input id="engraving" placeholder="اكتب اسمك أو عبارة قصيرة..." oninput="updateTotal()">
+    </div>
+
+    <div class="card">
+        <div class="section-title">📍 معلومات التوصيل</div>
+        <label>الولاية</label>
+        <select id="wilaya" onchange="updateCommunes()">
+            <option value="">-- اختر ولاية التوصيل --</option>
+        </select>
+
+        <label>البلدية</label>
+        <select id="commune">
+            <option value="">-- اختر الولاية أولاً --</option>
+        </select>
+
+        <label>رقم الهاتف</label>
+        <input id="phone" type="tel" placeholder="05 / 06 / 07 ...">
+        
+        <div id="shipDisplay" class="ship-info"></div>
+    </div>
 </div>
 
-<div class="card">
-    <div class="section-title">✨ الاسم العطري المقترح</div>
-    <div class="auto-name-box" id="autoNameDisplay">---</div>
-    <input type="hidden" id="autoName">
-</div>
-
-<div class="card">
-    <div class="section-title">📍 معلومات التوصيل</div>
-    <select id="wilaya" onchange="updateShip()"></select>
-    <input id="commune" placeholder="البلدية">
-    <input id="phone" type="tel" placeholder="رقم الهاتف">
-    <button class="btn-wa" onclick="sendWA()">📩 إرسال الطلب عبر واتساب</button>
-</div>
-
-<div class="price-tag">
-    📦 الإجمالي: <span id="total">0</span> دج
+<div class="price-bar">
+    <div class="total-info">
+        <div style="color:#888; font-size:11px;">المبلغ الإجمالي</div>
+        <div class="total-price"><span id="totalDisplay">2500</span> دج</div>
+    </div>
+    <button class="btn-order" onclick="sendWA()">تأكيد الطلب 📩</button>
 </div>
 
 <script>
-const wilayas = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان"];
-let ship = 0;
+    // نظام شحن المدية (200-800 دج)
+    const shipping = {
+        "المدية": { price: 200, communes: ["المدية المركز", "وزرة", "البرواقية", "تابلاط", "قصر البخاري", "بني سليمان", "شلالة العذراء"] },
+        "البليدة": { price: 300, communes: ["البليدة المركز", "بوفاريك", "موزاية", "أولاد يعيش"] },
+        "الجزائر": { price: 400, communes: ["الدار البيضاء", "سيدي امحمد", "الحراش", "بئر مراد رايس"] },
+        "عين الدفلى": { price: 400, communes: ["الخميس", "مليانة", "عين الدفلى"] },
+        "تيبازة": { price: 450, communes: ["القليعة", "حجوط", "بوسماعيل"] },
+        "البويرة": { price: 450, communes: ["البويرة", "الأخضرية", "سور الغزلان"] },
+        "الجلفة": { price: 500, communes: ["الجلفة", "عين وسارة", "حاسي بحبح"] },
+        "وهران": { price: 600, communes: ["وهران المركز", "بير الجير", "السانيا"] },
+        "سطيف": { price: 600, communes: ["سطيف المركز", "العلمة"] },
+        "قسنطينة": { price: 600, communes: ["قسنطينة المركز", "الخروب"] },
+        "ورقلة": { price: 700, communes: ["حاسي مسعود", "ورقلة"] },
+        "أدرار": { price: 800, communes: ["أدرار المركز", "تيميمون"] },
+        "تمنراست": { price: 800, communes: ["تمنراست المركز", "عين صالح"] }
+        // ملاحظة: يمكنك إضافة باقي الولايات بنفس السقف (800 دج)
+    };
 
-const wSelect = document.getElementById("wilaya");
-wSelect.add(new Option("-- اختر الولاية --", ""));
-wilayas.forEach((w, i) => {
-    let p = (w === "الجزائر") ? 250 : 600;
-    let opt = new Option(`${i+1}. ${w} (${p} دج)`, w);
-    opt.dataset.p = p;
-    wSelect.add(opt);
-});
+    const wSel = document.getElementById('wilaya');
+    const cSel = document.getElementById('commune');
+    const totalDisp = document.getElementById('totalDisplay');
 
-function updateShip() {
-    ship = parseInt(wSelect.options[wSelect.selectedIndex].dataset.p) || 0;
-    updateTotal();
-}
+    for (let w in shipping) wSel.add(new Option(w, w));
 
-function updateTotal() {
-    const sizePrice = parseInt(document.getElementById("size").options[document.getElementById("size").selectedIndex].dataset.p);
-    const concPrice = parseInt(document.getElementById("concentration").value);
-    document.getElementById("total").innerText = sizePrice + concPrice + ship;
-}
-
-function genName() {
-    const p = document.getElementById("personality").value;
-    const n = document.getElementById("notes").value;
-    const s = document.getElementById("season").value;
-    const titles = {"كلاسيكي": "عظمة", "غامض": "لغز", "فاخر": "ملك", "رياضي": "نفس"};
-    let final = `${titles[p] || "عطر"} ${n} ${s === 'شتاء' ? 'الشتوي' : 'المنعش'}`;
-    document.getElementById("autoNameDisplay").innerText = final;
-    document.getElementById("autoName").value = final;
-}
-
-// Image Upload Logic
-document.getElementById('imageUpload').addEventListener('change', async function() {
-    const file = this.files[0];
-    const imagePreview = document.getElementById('imagePreview');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    const uploadedImageUrlInput = document.getElementById('uploadedImageUrl');
-
-    if (file) {
-        loadingSpinner.style.display = 'block';
-        imagePreview.style.display = 'none';
-        
-        const formData = new FormData();
-        formData.append('image', file);
-        
-        try {
-            // Using imgbb for image upload (free, no API key needed for basic use)
-            const response = await fetch('https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY', { 
-                method: 'POST',
-                body: formData 
-            });
-            const data = await response.json();
-            
-            if (data.success) {
-                imagePreview.src = data.data.url;
-                imagePreview.style.display = 'block';
-                uploadedImageUrlInput.value = data.data.url; // Store URL for WhatsApp
-            } else {
-                alert('فشل رفع الصورة: ' + data.error.message);
-            }
-        } catch (error) {
-            alert('حدث خطأ أثناء رفع الصورة. يرجى المحاولة مرة أخرى.');
-            console.error('Image upload error:', error);
-        } finally {
-            loadingSpinner.style.display = 'none';
+    function updateCommunes() {
+        const w = wSel.value;
+        cSel.innerHTML = '<option value="">-- اختر البلدية --</option>';
+        if (w) {
+            shipping[w].communes.forEach(c => cSel.add(new Option(c, c)));
+            document.getElementById('shipDisplay').innerText = `الشحن من المدية إلى ${w}: ${shipping[w].price} دج`;
         }
-    } else {
-        imagePreview.style.display = 'none';
-        uploadedImageUrlInput.value = '';
+        updateTotal();
     }
-});
 
+    function updateTotal() {
+        const sizePrice = parseInt(document.getElementById('size').value);
+        const engravePrice = document.getElementById('engraving').value.trim() !== "" ? 300 : 0;
+        const shipPrice = (wSel.value) ? shipping[wSel.value].price : 0;
+        totalDisp.innerText = sizePrice + engravePrice + shipPrice;
+    }
 
-function sendWA() {
-    const phoneNum = document.getElementById("phone").value;
-    if(!wSelect.value || !phoneNum) { alert("يرجى ملء الولاية ورقم الهاتف"); return; }
-
-    const uploadedImageUrl = document.getElementById('uploadedImageUrl').value;
-    let imageAttachment = uploadedImageUrl ? `🖼️ *صورة مرفقة:* ${uploadedImageUrl}\n` : '';
-
-    let msg = `*طلب عطر مخصص جديد* 🏺\n` +
-              `--------------------------\n` +
-              `🏷️ *الاسم:* ${document.getElementById("autoName").value}\n` +
-              `🏺 *الحجم:* ${document.getElementById("size").value}ML\n` +
-              `💧 *التركيز:* ${document.getElementById("concentration").options[document.getElementById("concentration").selectedIndex].text}\n` +
-              `--------------------------\n` +
-              imageAttachment + // Add image URL here
-              `👤 *الشخصية:* ${document.getElementById("personality").value}\n` +
-              `🌿 *النوتات:* ${document.getElementById("notes").value}\n` +
-              `💨 *الفوحان:* ${document.getElementById("sillage").value}\n` +
-              `🚫 *المرفوض:* ${document.getElementById("rejected").value || "لا يوجد"}\n` +
-              `🎯 *المرجع:* ${document.getElementById("reference").value || "لا يوجد"}\n` +
-              `--------------------------\n` +
-              `📍 *الولاية:* ${wSelect.value}\n` +
-              `📞 *الهاتف:* ${phoneNum}\n` +
-              `💰 *الإجمالي:* ${document.getElementById("total").innerText} دج`;
-
-    window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
-}
-
-genName(); updateTotal();
+    function sendWA() {
+        const w = wSel.value;
+        const c = cSel.value;
+        const p = document.getElementById('phone').value;
+        const engra = document.getElementById('engraving').value;
+        
+        if(!w || !c || !p) { alert("يرجى ملء بيانات التوصيل"); return; }
+        
+        let msg = `*طلب عطر مخصص (المدية)* 🏺\n` +
+                  `-------------------\n` +
+                  `🧠 الشعور المطلوب: ${document.getElementById('vibe').value}\n` +
+                  `🏺 الحجم: ${document.getElementById('size').options[document.getElementById('size').selectedIndex].text}\n` +
+                  `✍️ الحفر: ${engra || "لا يوجد"}\n` +
+                  `📍 التوصيل: ${w} - ${c}\n` +
+                  `📞 الهاتف: ${p}\n` +
+                  `💰 الإجمالي: ${totalDisp.innerText} دج`;
+                  
+        window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
+    }
 </script>
 </body>
 </html>
