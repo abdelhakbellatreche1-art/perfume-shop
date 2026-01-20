@@ -3,189 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | المستشار الملكي للقارورات</title>
+    <title>ESSENCE D'ORIENT | تجربة العطر المخصص</title>
     <style>
-        :root { --gold: #b89552; --dark: #1a1a1a; --cream: #fcfaf7; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--cream); margin: 0; color: #333; line-height: 1.6; }
+        :root { --gold: #c5a059; --dark: #121212; --bg: #fdfdfd; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; color: #333; }
         
-        /* Header */
-        .header { background: var(--dark); color: white; padding: 30px 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .header h1 { margin: 0; font-size: 1.8em; letter-spacing: 2px; }
+        /* تصميم الهيدر الجديد */
+        .header { background: var(--dark); color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid var(--gold); }
+        .header h1 { margin: 0; font-size: 2.2em; letter-spacing: 4px; font-weight: 300; }
+        .header p { color: var(--gold); font-size: 0.9em; letter-spacing: 2px; margin-top: 10px; }
 
-        /* Quiz Container */
-        .quiz-wrapper { max-width: 700px; margin: 30px auto; padding: 15px; }
-        .quiz-container { background: #fff; padding: 25px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        /* حاوية الأسئلة */
+        .quiz-section { max-width: 650px; margin: -40px auto 40px; background: white; padding: 40px; border-radius: 2px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-top: 5px solid var(--gold); }
+        .progress-bar { width: 100%; height: 3px; background: #eee; margin-bottom: 30px; }
+        .progress-fill { height: 100%; background: var(--gold); width: 8%; transition: 0.5s; }
+
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.6s; }
+        h2 { font-weight: 400; font-size: 1.4em; margin-bottom: 25px; color: var(--dark); }
         
-        .progress-bar { width: 100%; height: 6px; background: #eee; border-radius: 10px; margin-bottom: 25px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--gold); width: 8%; transition: 0.4s; }
+        .opt { display: block; width: 100%; padding: 18px; margin-bottom: 12px; border: 1px solid #eee; background: #fff; cursor: pointer; text-align: right; transition: 0.3s; font-size: 1em; }
+        .opt:hover { background: var(--dark); color: white; border-color: var(--dark); padding-right: 30px; }
 
-        .quiz-step { display: none; }
-        .quiz-step.active { display: block; animation: slideIn 0.4s ease-out; }
+        /* تصميم القارورات الجديد (Grid عصرية) */
+        .bottles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
+        .b-card { position: relative; overflow: hidden; background: white; border: 1px solid #f0f0f0; transition: 0.5s; }
+        .b-card img { width: 100%; height: 300px; object-fit: cover; transition: 0.5s; }
+        .b-card:hover img { transform: scale(1.1); filter: brightness(70%); }
+        .b-info { padding: 20px; text-align: center; }
+        .b-title { font-size: 1.2em; color: var(--dark); font-weight: bold; margin-bottom: 5px; }
+        .b-use { color: var(--gold); font-size: 0.8em; text-transform: uppercase; font-weight: bold; }
 
-        h2 { font-size: 1.2em; margin-bottom: 20px; color: var(--dark); border-right: 4px solid var(--gold); padding-right: 15px; }
-        .option-btn { display: block; width: 100%; background: var(--cream); border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 10px; cursor: pointer; text-align: right; transition: 0.3s; }
-        .option-btn:hover { border-color: var(--gold); background: #fffcf5; }
+        .result-box { display: none; text-align: center; padding: 30px; }
+        .wa-btn { background: #25d366; color: white; text-decoration: none; padding: 15px 40px; display: inline-block; border-radius: 0; font-weight: bold; margin-top: 25px; letter-spacing: 1px; }
 
-        /* Bottles Showcase */
-        .section-title { text-align: center; margin: 50px 0 20px; font-size: 1.5em; font-weight: bold; }
-        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background: var(--gold); margin: 10px auto; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding: 20px; max-width: 1000px; margin: 0 auto; }
-        .card { background: white; padding: 15px; border-radius: 15px; text-align: center; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 140px; object-fit: contain; margin-bottom: 10px; }
-        .card h3 { font-size: 0.9em; margin: 10px 0; }
-        .card .tag { font-size: 0.7em; color: var(--gold); font-weight: bold; }
-
-        .result-box { display: none; text-align: center; padding: 20px; border: 2px solid var(--gold); border-radius: 15px; background: #fff; }
-        .whatsapp-btn { background: #25d366; color: white; text-decoration: none; padding: 15px 30px; display: inline-block; border-radius: 50px; font-weight: bold; margin-top: 20px; }
-
-        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>ESSENCE D'ORIENT</h1>
-        <p>مستشار العطور والقارورات الجزائري</p>
+        <p>ARTISAN PARFUMEUR</p>
     </div>
 
-    <div class="quiz-wrapper">
-        <div class="quiz-container" id="quizBox">
-            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    <div class="quiz-section">
+        <div class="progress-bar"><div class="progress-fill" id="p-fill"></div></div>
 
-            <div class="quiz-step active" id="step1">
-                <h2>1. ما هو جنسك؟</h2>
-                <button class="option-btn" onclick="nextStep(1, 'رجل')">رجل</button>
-                <button class="option-btn" onclick="nextStep(1, 'امرأة')">امرأة</button>
-            </div>
+        <div class="step active" id="s1">
+            <h2>1. ما هي الذكرى التي تود استحضارها عند شم عطرك؟</h2>
+            <button class="opt" onclick="next(1)">ذكريات الطفولة والنظافة</button>
+            <button class="opt" onclick="next(1)">السفر والمغامرة في الغابات</button>
+            <button class="opt" onclick="next(1)">الفخامة والهيبة في المجالس</button>
+        </div>
 
-            <div class="quiz-step" id="step2">
-                <h2>2. كيف تصف طبيعة جلدك؟</h2>
-                <button class="option-btn" onclick="nextStep(2, 'دهني')">دهني (العطر يثبت طويلاً)</button>
-                <button class="option-btn" onclick="nextStep(2, 'جاف')">جاف (تحتاج عطر بتركيز عالي)</button>
-            </div>
+        <div class="step" id="s2">
+            <h2>2. أي لون يمثل شخصيتك أكثر؟</h2>
+            <button class="opt" onclick="next(2)">الأبيض النقي</button>
+            <button class="opt" onclick="next(2)">الأزرق العميق</button>
+            <button class="opt" onclick="next(2)">الأسود الملكي</button>
+        </div>
 
-            <div class="quiz-step" id="step3">
-                <h2>3. متى تريد استخدام العطر؟</h2>
-                <button class="option-btn" onclick="nextStep(3, 'يومي')">استعمال يومي (عمل/دراسة)</button>
-                <button class="option-btn" onclick="nextStep(3, 'مناسبات')">أعراس ومناسبات خاصة</button>
-            </div>
+        <div class="step" id="s3">
+            <h2>3. ما هو الملمس الذي تفضله؟</h2>
+            <button class="opt" onclick="next(3)">الحرير الناعم</button>
+            <button class="opt" onclick="next(3)">الجلد الفاخر</button>
+            <button class="opt" onclick="next(3)">القطن المنعش</button>
+        </div>
 
-            <div class="quiz-step" id="step4">
-                <h2>4. أي انطباع تفضل أن تتركه؟</h2>
-                <button class="option-btn" onclick="nextStep(4, 'هادئ')">شخصية هادئة ونظيفة</button>
-                <button class="option-btn" onclick="nextStep(4, 'قوي')">شخصية قوية وملفتة للأنظار</button>
-            </div>
+        <div class="step" id="s4">
+            <h2>4. كيف تحب أن يشعر الآخرون بوجودك؟</h2>
+            <button class="opt" onclick="next(4)">بشكل غير مرئي (رائحة تكتشف عند الاقتراب)</button>
+            <button class="opt" onclick="next(4)">بشكل صارخ (رائحة تسبق حضورك)</button>
+        </div>
 
-            <div class="quiz-step" id="step5">
-                <h2>5. ما هو نوع الروائح الذي يجذبك؟</h2>
-                <button class="option-btn" onclick="nextStep(5, 'خشبي')">خشب، عود، بخور</button>
-                <button class="option-btn" onclick="nextStep(5, 'زهري')">ورد، لافندر، ياسمين</button>
-                <button class="option-btn" onclick="nextStep(5, 'سكري')">فانيليا، حلوى، كراميل</button>
-            </div>
+        <div class="step" id="s5">
+            <h2>5. أي طعم تفضله في التحلية؟</h2>
+            <button class="opt" onclick="next(5)">الكراميل والفانيليا</button>
+            <button class="opt" onclick="next(5)">التوابل الحارة والقرفة</button>
+            <button class="opt" onclick="next(5)">حموضة الليمون والبرتقال</button>
+        </div>
 
-            <div class="quiz-step" id="step6">
-                <h2>6. في أي فصل نحن الآن؟</h2>
-                <button class="option-btn" onclick="nextStep(6, 'شتاء')">البرد والشتاء</button>
-                <button class="option-btn" onclick="nextStep(6, 'صيف')">الحر والصيف</button>
-            </div>
+        <div class="step" id="s6">
+            <h2>6. ما هو مكانك المفضل للتأمل؟</h2>
+            <button class="opt" onclick="next(6)">أمام البحر تماماً</button>
+            <button class="opt" onclick="next(6)">وسط بستان من الزهور</button>
+            <button class="opt" onclick="next(6)">في غرفة معتمة بها بخور</button>
+        </div>
 
-            <div class="quiz-step" id="step7">
-                <h2>7. هل تعاني من الحساسية من الروائح القوية؟</h2>
-                <button class="option-btn" onclick="nextStep(7, 'نعم')">نعم (أحتاج عطر خفيف جداً)</button>
-                <button class="option-btn" onclick="nextStep(7, 'لا')">لا (أحب الروائح المركزة)</button>
-            </div>
+        <div class="step" id="s7">
+            <h2>7. أي نوع من الموسيقى تفضل؟</h2>
+            <button class="opt" onclick="next(7)">كلاسيكية هادئة</button>
+            <button class="opt" onclick="next(7)">قوية وصاخبة</button>
+        </div>
 
-            <div class="quiz-step" id="step8">
-                <h2>8. كم مرة ترش العطر في اليوم؟</h2>
-                <button class="option-btn" onclick="nextStep(8, 'مرة')">مرة واحدة فقط</button>
-                <button class="option-btn" onclick="nextStep(8, 'كثيرا')">أحب تجديد العطر باستمرار</button>
-            </div>
+        <div class="step" id="s8">
+            <h2>8. ما هو رد الفعل الذي تنتظره من الناس؟</h2>
+            <button class="opt" onclick="next(8)">"يا له من عطر نظيف!"</button>
+            <button class="opt" onclick="next(8)">"من أين لك هذا العطر الفخم؟"</button>
+        </div>
 
-            <div class="quiz-step" id="step9">
-                <h2>9. ما هو عمرك؟</h2>
-                <button class="option-btn" onclick="nextStep(9, 'شباب')">تحت 25 سنة</button>
-                <button class="option-btn" onclick="nextStep(9, 'ناضج')">فوق 25 سنة</button>
-            </div>
+        <div class="step" id="s9">
+            <h2>9. هل تفضل العطر الذي يتغير مع الوقت أم يبقى ثابتاً؟</h2>
+            <button class="opt" onclick="next(9)">يتطور ويخرج روائح مختلفة كل ساعة</button>
+            <button class="opt" onclick="next(9)">يبقى كما هو من البداية للنهاية</button>
+        </div>
 
-            <div class="quiz-step" id="step10">
-                <h2>10. أي بيئة تعمل فيها؟</h2>
-                <button class="option-btn" onclick="nextStep(10, 'مغلقة')">مكتب/مكان مغلق</button>
-                <button class="option-btn" onclick="nextStep(10, 'مفتوحة')">هواء طلق/حركة كثيرة</button>
-            </div>
+        <div class="step" id="s10">
+            <h2>10. ما هو نوع اللباس الذي ترتديه غالباً؟</h2>
+            <button class="opt" onclick="next(10)">كلاسيكي رسمي</button>
+            <button class="opt" onclick="next(10)">كاجوال ورياضي</button>
+        </div>
 
-            <div class="quiz-step" id="step11">
-                <h2>11. ما هو حجم القارورة المفضل لديك؟</h2>
-                <button class="option-btn" onclick="nextStep(11, 'صغير')">صغير للجيب</button>
-                <button class="option-btn" onclick="nextStep(11, 'كبير')">كبير للمنزل</button>
-            </div>
+        <div class="step" id="s11">
+            <h2>11. ما هي قوة الثبات التي تطمح إليها؟</h2>
+            <button class="opt" onclick="next(11)">ثبات متوسط (يوم عمل)</button>
+            <button class="opt" onclick="next(11)">ثبات أبدي (يبقى في الملابس بعد غسلها)</button>
+        </div>
 
-            <div class="quiz-step" id="step12">
-                <h2>12. الميزانية المخصصة؟</h2>
-                <button class="option-btn" onclick="finish()">اقتصادي (1500 دج)</button>
-                <button class="option-btn" onclick="finish()">ممتاز (أكثر من 2500 دج)</button>
-            </div>
+        <div class="step" id="s12">
+            <h2>12. وأخيراً، ما هو شعورك الآن؟</h2>
+            <button class="opt" onclick="finish()">متحمس لاكتشاف عطري</button>
+            <button class="opt" onclick="finish()">أبحث عن شيء يغير مزاجي</button>
+        </div>
 
-            <div class="result-box" id="resultArea">
-                <h3 style="color:var(--gold)">العطر المقترح لك:</h3>
-                <h2 id="finalName">...</h2>
-                <p id="finalDesc"></p>
-                <a href="#" id="waLink" class="whatsapp-btn">اطلب المزيج الآن عبر واتساب</a>
-            </div>
+        <div class="result-box" id="res">
+            <h2 style="color:var(--gold)">تم تصميم عطرك الفريد!</h2>
+            <p id="perfume-res" style="font-size: 1.5em; font-weight: bold;"></p>
+            <p id="desc-res"></p>
+            <a href="#" id="wa-link" class="wa-btn">احجز عطرك الآن</a>
         </div>
     </div>
 
-    <div class="section-title">القارورات المتوفرة للتعبئة</div>
-    <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300">
-            <h3>قارورة ميلانو (Milano)</h3>
-            <span class="tag">زجاج فخم - 50مل / 100مل</span>
+    <h2 style="text-align:center; letter-spacing: 2px;">COLLECTION DE FLACONS</h2>
+    <div class="bottles-grid">
+        <div class="b-card">
+            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500">
+            <div class="b-info">
+                <div class="b-use">للعطور الفواخة والملء</div>
+                <div class="b-title">ميلانو بريميوم (Milano)</div>
+            </div>
         </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=300">
-            <h3>تولة الكريستال</h3>
-            <span class="tag">للزيت المركز - 6مل / 12مل</span>
+        <div class="b-card">
+            <img src="https://images.unsplash.com/photo-1583209814683-c023dd2f3667?w=500">
+            <div class="b-info">
+                <div class="b-use">للزيت الخام والمسك</div>
+                <div class="b-title">تولة الكريستال الملكية</div>
+            </div>
         </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=300">
-            <h3>قارورة بلاستيك</h3>
-            <span class="tag">اقتصادية - للجيب والرياضة</span>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1544161515-4af6b1d8e179?w=300">
-            <h3>قارورة رول (Roll-on)</h3>
-            <span class="tag">للمسك والزيوت الخام</span>
+        <div class="b-card">
+            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500">
+            <div class="b-info">
+                <div class="b-use">للاستخدام اليومي والجيب</div>
+                <div class="b-title">قارورة التعبئة العصرية</div>
+            </div>
         </div>
     </div>
 
     <script>
-        let step = 1;
-        function nextStep(current, choice) {
-            document.getElementById('step' + current).classList.remove('active');
-            step++;
-            if(document.getElementById('step' + step)) {
-                document.getElementById('step' + step).classList.add('active');
-                document.getElementById('progress').style.width = (step / 12 * 100) + '%';
+        let currentStep = 1;
+        function next(s) {
+            document.getElementById('s' + s).classList.remove('active');
+            currentStep++;
+            if(document.getElementById('s' + currentStep)) {
+                document.getElementById('s' + currentStep).classList.add('active');
+                document.getElementById('p-fill').style.width = (currentStep / 12 * 100) + '%';
             }
         }
 
         function finish() {
-            document.getElementById('step12').classList.remove('active');
-            document.getElementById('resultArea').style.display = 'block';
-            document.getElementById('progress').style.width = '100%';
+            document.getElementById('s12').classList.remove('active');
+            document.getElementById('res').style.display = 'block';
+            document.getElementById('p-fill').style.width = '100%';
             
-            const name = "مزيج العود الملكي مع المسك الأبيض";
-            const desc = "بناءً على إجاباتك، هذا المزيج يوفر لك الفخامة التي تبحث عنها مع ثبات عالي يناسب نوع جلدك.";
+            const name = "مزيج العود الملكي المقطر بالمسك الجبلي";
+            const desc = "هذا العطر صمم خصيصاً ليحاكي تطلعاتك للفخامة والهيبة مع لمسة من الانتعاش الخفي.";
             
-            document.getElementById('finalName').innerText = name;
-            document.getElementById('finalDesc').innerText = desc;
-            document.getElementById('waLink').href = `https://wa.me/213783147002?text=أريد طلب العطر الناتج عن الاختبار: ${name}`;
+            document.getElementById('perfume-res').innerText = name;
+            document.getElementById('desc-res').innerText = desc;
+            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=أريد طلب العطر المخصص: ${name}`;
         }
     </script>
 
-    <div style="text-align:center; padding:40px; color:#999; font-size:0.8em;">
-        © 2026 ESSENCE D'ORIENT | ALGERIA
+    <div style="background:var(--dark); color:#555; padding:50px; text-align:center; font-size:0.7em; letter-spacing: 2px;">
+        ALGERIA | ESSENCE D'ORIENT 2026
     </div>
 
 </body>
