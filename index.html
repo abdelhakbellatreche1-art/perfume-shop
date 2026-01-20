@@ -3,167 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE D'ORIENT | التصميم الشخصي</title>
+    <title>ESSENCE D'ORIENT | التصميم الملكي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #c5a059; --dark: #111; --light: #f4f4f4; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; margin: 0; color: var(--dark); overflow-x: hidden; }
-        
-        /* الهوية البصرية */
-        .brand-header { background: var(--dark); color: var(--gold); padding: 20px; text-align: center; border-bottom: 4px solid var(--gold); }
-        .brand-header h1 { margin: 0; font-size: 1.8em; letter-spacing: 2px; }
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #aa891d;
+            --black: #0f0f0f;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
 
-        /* السعر العائم */
-        .price-tag { position: fixed; bottom: 20px; left: 20px; background: var(--gold); color: #000; padding: 12px 25px; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 999; border: 2px solid #000; font-size: 1.1em; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: #333;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-        .container { max-width: 450px; margin: 20px auto; padding: 15px; }
-        
+        /* رأس الصفحة الفخم */
+        header {
+            background: var(--black);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            color: var(--gold);
+            margin: 0;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* السعر العائم بتصميم جديد */
+        .price-chip {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            background: var(--gold);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #fff;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            flex-grow: 1;
+            width: 90%;
+        }
+
         /* شريط التقدم */
-        .progress-container { width: 100%; height: 6px; background: #eee; border-radius: 10px; margin-bottom: 30px; }
-        .progress-bar { height: 100%; background: var(--gold); width: 0%; border-radius: 10px; transition: 0.5s; }
+        .progress-stepper {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
 
-        .step { display: none; text-align: right; }
-        .step.active { display: block; animation: slideIn 0.3s ease-out; }
+        .progress-bar {
+            height: 100%;
+            background: var(--gold);
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        h2 { font-size: 1.2em; color: var(--dark); margin-bottom: 20px; padding-right: 10px; border-right: 5px solid var(--gold); }
+        /* البطاقة الرئيسية */
+        .quiz-card {
+            background: var(--glass);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            min-height: 400px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
 
-        /* الأزرار والخيارات */
-        .options-column { display: flex; flex-direction: column; gap: 12px; }
-        .btn-opt { background: #fff; border: 1px solid #ddd; padding: 16px; border-radius: 10px; cursor: pointer; text-align: right; font-size: 1em; font-weight: 600; transition: 0.2s; }
-        .btn-opt:hover { border-color: var(--gold); background: #fffdf9; }
+        .quiz-card.active { display: flex; flex-direction: column; }
 
-        /* كروت القوارير */
-        .bottle-card { display: flex; align-items: center; background: #fff; border: 2px solid #eee; border-radius: 15px; padding: 12px; cursor: pointer; transition: 0.3s; margin-bottom: 12px; }
-        .bottle-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-        .bottle-card img { width: 60px; height: 75px; object-fit: contain; margin-left: 15px; }
-        .bottle-card div h3 { margin: 0; font-size: 1.1em; }
-        .bottle-card div p { margin: 5px 0 0; color: #d35400; font-weight: bold; }
+        h2 {
+            font-size: 1.3rem;
+            color: var(--black);
+            margin-top: 0;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
 
-        .input-box, select { width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 10px; font-size: 1em; margin-bottom: 15px; box-sizing: border-box; outline: none; }
-        .input-box:focus { border-color: var(--gold); }
+        /* تصميم الأزرار */
+        .options-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
 
-        /* النتيجة النهائية */
-        #final-screen { display: none; background: #fdfdfd; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); }
-        .cod-badge { background: #e7f3ff; color: #0056b3; padding: 5px 15px; border-radius: 5px; font-size: 0.8em; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-        .wa-send-btn { background: #25D366; color: #fff; text-decoration: none; padding: 18px; display: block; border-radius: 12px; font-weight: bold; font-size: 1.1em; margin-top: 20px; text-align: center; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+        .opt-button {
+            background: #fff;
+            border: 2px solid #eee;
+            padding: 18px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
 
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .opt-button:hover {
+            border-color: var(--gold);
+            background: #fff9e6;
+            transform: translateY(-3px);
+        }
+
+        /* تصميم القوارير */
+        .bottle-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            border: 2px solid #eee;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .bottle-item:hover { border-color: var(--gold); }
+
+        .bottle-item img { width: 40px; }
+
+        /* لادوز - تصميم قائمة */
+        .dose-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dose-item {
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* المدخلات */
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid #eee;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* زر الإرسال النهائي */
+        .btn-confirm {
+            background: var(--black);
+            color: var(--gold);
+            padding: 18px;
+            border-radius: 15px;
+            border: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .wa-final {
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 15px;
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="price-tag" id="floating-price">0 دج</div>
-
-    <div class="brand-header">
-        <h1>ESSENCE D'ORIENT</h1>
+    <div class="price-chip">
+        <span id="price-display">0</span> <span>دج</span>
     </div>
 
+    <header>
+        <h1>ESSENCE D'ORIENT</h1>
+    </header>
+
     <div class="container">
-        <div class="progress-container"><div class="progress-bar" id="progress"></div></div>
+        <div class="progress-stepper"><div class="progress-bar" id="pb"></div></div>
 
-        <div class="step active" id="s1"><h2>الجنس:</h2><div class="options-column"><button class="btn-opt" onclick="save('الجنس','رجالي',1)">رجالي</button><button class="btn-opt" onclick="save('الجنس','نسائي',1)">نسائي</button><button class="btn-opt" onclick="save('الجنس','للجنسين',1)">للجنسين</button></div></div>
-        <div class="step" id="s2"><h2>اللون المفضل:</h2><div class="options-column"><button class="btn-opt" onclick="save('اللون','أسود',2)">أسود</button><button class="btn-opt" onclick="save('اللون','أزرق',2)">أزرق</button><button class="btn-opt" onclick="save('اللون','أبيض',2)">أبيض</button></div></div>
-        <div class="step" id="s3"><h2>وقت الاستخدام:</h2><div class="options-column"><button class="btn-opt" onclick="save('الوقت','صيفي منعش',3)">صيفي منعش</button><button class="btn-opt" onclick="save('الوقت','شتوي دافئ',3)">شتوي دافئ</button></div></div>
-        <div class="step" id="s4"><h2>مكان الرش:</h2><div class="options-column"><button class="btn-opt" onclick="save('مكان الرش','على الجلد',4)">على الجلد</button><button class="btn-opt" onclick="save('مكان الرش','على الملابس',4)">على الملابس</button></div></div>
-        <div class="step" id="s5"><h2>العمل:</h2><div class="options-column"><button class="btn-opt" onclick="save('العمل','مكتبي',5)">مكتبي</button><button class="btn-opt" onclick="save('العمل','ميداني/حركة',5)">ميداني/حركة</button></div></div>
-        <div class="step" id="s6"><h2>الشغف:</h2><div class="options-column"><button class="btn-opt" onclick="save('الشغف','الرياضة',6)">الرياضة</button><button class="btn-opt" onclick="save('الشغف','الأعمال',6)">الأعمال</button><button class="btn-opt" onclick="save('الشغف','الفن',6)">الفن</button></div></div>
-        <div class="step" id="s7"><h2>الفوحان:</h2><div class="options-column"><button class="btn-opt" onclick="save('الفوحان','قوي جداً',7)">قوي جداً</button><button class="btn-opt" onclick="save('الفوحان','هادئ',7)">هادئ</button></div></div>
-
-        <div class="step" id="s8">
-            <h2>اختر القارورة:</h2>
-            <div class="bottle-card" onclick="setBottle('6 ML', 150, 8)"><img src="https://cdn-icons-png.flaticon.com/512/3209/3209144.png"><div><h3>6 ML</h3><p>150 دج</p></div></div>
-            <div class="bottle-card" onclick="setBottle('12 ML', 350, 8)"><img src="https://cdn-icons-png.flaticon.com/512/3209/3209083.png"><div><h3>12 ML</h3><p>350 دج</p></div></div>
-            <div class="bottle-card" onclick="setBottle('30 ML', 550, 8)"><img src="https://cdn-icons-png.flaticon.com/512/9322/9322524.png"><div><h3>30 ML</h3><p>550 دج</p></div></div>
-            <div class="bottle-card" onclick="setBottle('40 ML', 700, 8)"><img src="https://cdn-icons-png.flaticon.com/512/9322/9322524.png"><div><h3>40 ML</h3><p>700 دج</p></div></div>
-            <div class="bottle-card" onclick="setBottle('50 ML', 850, 8)"><img src="https://cdn-icons-png.flaticon.com/512/3063/3063822.png"><div><h3>50 ML</h3><p>850 دج</p></div></div>
-            <div class="bottle-card" onclick="setBottle('100 ML', 1350, 8)"><img src="https://cdn-icons-png.flaticon.com/512/3063/3063822.png"><div><h3>100 ML</h3><p>1350 دج</p></div></div>
-        </div>
-
-        <div class="step" id="s9">
-            <h2>التركيز (لادوز):</h2>
-            <div class="options-column">
-                <button class="btn-opt" onclick="setDose('25%', 0, 9)">25% - قياسي (0 دج)</button>
-                <button class="btn-opt" onclick="setDose('50%', 300, 9)">50% - شارجي (+300 دج)</button>
-                <button class="btn-opt" onclick="setDose('100%', 600, 9)">100% - زيت خام (+600 دج)</button>
+        <div class="quiz-card active" id="s1">
+            <h2>ما هي العائلة العطرية التي تنجذب إليها؟</h2>
+            <div class="options-group">
+                <div class="opt-button" onclick="save('العائلة','شرقية دافئة',1)">🌙<span>شرقية دافئة</span></div>
+                <div class="opt-button" onclick="save('العائلة','حمضيات منعشة',1)">🍋<span>حمضيات</span></div>
+                <div class="opt-button" onclick="save('العائلة','أخشاب غامضة',1)">🌲<span>أخشاب غامضة</span></div>
+                <div class="opt-button" onclick="save('العائلة','نظافة ومسك',1)">☁️<span>مسك ونظافة</span></div>
             </div>
         </div>
 
-        <div class="step" id="s10">
-            <h2>بيانات الاستلام:</h2>
-            <div class="cod-badge">تنبيه: الدفع يتم عند الاستلام (COD)</div>
-            <select id="wilaya" onchange="updateShipping(this)">
-                <option value="0" data-price="0">-- اختر الولاية (58 ولاية) --</option>
-            </select>
-            <input type="text" id="address" class="input-box" placeholder="البلدية والحي الدقيق">
-            <button class="btn-opt" style="width:100%; background:var(--gold); color:#000;" onclick="finish()">تأكيد الطلب</button>
+        <div class="quiz-card" id="s2">
+            <h2>كيف تحب أن تكون انطباع عطرك؟</h2>
+            <div class="options-group">
+                <div class="opt-button" onclick="save('الانطباع','كلاسيكي رسمي',2)">💼<span>رسمي</span></div>
+                <div class="opt-button" onclick="save('الانطباع','عصري شبابي',2)">👟<span>عصري</span></div>
+                <div class="opt-button" onclick="save('الانطباع','رومانسي جذاب',2)">❤️<span>جذاب</span></div>
+                <div class="opt-button" onclick="save('الانطباع','رياضي حيوي',2)">⚡<span>حيوي</span></div>
+            </div>
         </div>
 
-        <div id="final-screen">
-            <div class="cod-badge">الطلب جاهز للإرسال</div>
-            <p id="order-summary" style="text-align:right; font-size:0.9em; line-height:1.6;"></p>
-            <hr>
-            <h2 id="total-price" style="text-align:center; border:none; color:#d35400;"></h2>
-            <p style="font-size:0.8em; color:#666;">* الدفع نقداً عند استلام الطرد.</p>
-            <a href="#" id="wa-btn" class="wa-send-btn">إرسال عبر واتساب</a>
+        <div class="quiz-card" id="s3">
+            <h2>ما هو مستوى الفوحان المفضل؟</h2>
+            <div class="options-group">
+                <div class="opt-button" onclick="save('الفوحان','هادئ للمقربين',3)">🤫<span>هادئ</span></div>
+                <div class="opt-button" onclick="save('الفوحان','متوازن ومحسوس',3)">⚖️<span>متوازن</span></div>
+                <div class="opt-button" onclick="save('الفوحان','قوي يملأ المكان',3)">💥<span>جبار</span></div>
+                <div class="opt-button" onclick="save('الفوحان','فخم للمناسبات',3)">👑<span>فخم</span></div>
+            </div>
+        </div>
+
+        <div class="quiz-card" id="s4"><h2>الجنس:</h2><div class="options-group"><div class="opt-button" onclick="save('الجنس','ذكر',4)">🤵<span>رجل</span></div><div class="opt-button" onclick="save('الجنس','أنثى',4)">👸<span>أنثى</span></div></div></div>
+        <div class="quiz-card" id="s5"><h2>الفصل:</h2><div class="options-group"><div class="opt-button" onclick="save('الفصل','صيف',5)">☀️<span>صيفي</span></div><div class="opt-button" onclick="save('الفصل','شتاء',5)">❄️<span>شتوي</span></div></div></div>
+        
+        <div class="quiz-card" id="s6">
+            <h2>اختر حجم قارورة المختبر:</h2>
+            <div class="bottle-item" onclick="setBottle('6 ML', 150, 6)"><span>6 ML</span><b>150 دج</b></div>
+            <div class="bottle-item" onclick="setBottle('12 ML', 350, 6)"><span>12 ML</span><b>350 دج</b></div>
+            <div class="bottle-item" onclick="setBottle('30 ML', 550, 6)"><span>30 ML</span><b>550 دج</b></div>
+            <div class="bottle-item" onclick="setBottle('40 ML', 700, 6)"><span>40 ML</span><b>700 دج</b></div>
+            <div class="bottle-item" onclick="setBottle('50 ML', 850, 6)"><span>50 ML</span><b>850 دج</b></div>
+            <div class="bottle-item" onclick="setBottle('100 ML', 1350, 6)"><span>100 ML</span><b>1350 دج</b></div>
+        </div>
+
+        <div class="quiz-card" id="s7">
+            <h2>اختر تركيز الزيت العطري:</h2>
+            <div class="dose-list">
+                <div class="dose-item" onclick="setDose('25% - عادي', 0, 7)"><span>تركيز قياسي</span><span>0 دج</span></div>
+                <div class="dose-item" onclick="setDose('40% - قوي', 150, 7)"><span>تركيز بريميوم</span><span>+150 دج</span></div>
+                <div class="dose-item" onclick="setDose('60% - فائق', 250, 7)"><span>تركيز VIP</span><span>+250 دج</span></div>
+                <div class="dose-item" onclick="setDose('100% - زيت خام', 550, 7)"><span>زيت مركز خام</span><span>+550 دج</span></div>
+            </div>
+        </div>
+
+        <div class="quiz-card" id="s8">
+            <h2>وجهة التوصيل:</h2>
+            <div class="input-group">
+                <select id="wilaya" onchange="updateShip(this)"></select>
+                <input type="text" id="addr" placeholder="العنوان بالتفصيل (البلدية والحي)">
+                <button class="btn-confirm" onclick="finish()">مراجعة الطلب النهائي</button>
+            </div>
+        </div>
+
+        <div class="quiz-card" id="final">
+            <h2 style="text-align:center;">تم تصميم عطرك الخاص!</h2>
+            <div id="summary-final" style="background:#f9f9f9; padding:15px; border-radius:15px; font-size:0.9rem;"></div>
+            <a href="#" id="wa-link" class="wa-final">تأكيد الطلب (دفع عند الاستلام)</a>
         </div>
     </div>
 
     <script>
-        let data = { ship:0, bottle:0, dose:0 };
-        let userProfile = {};
-        let finalData = { size:"", doseLvl:"", loc:"", addr:"" };
-        const total = 10;
+        let costs = { b:0, d:0, s:0 };
+        let profile = {};
+        let order = { sz:"", ds:"", wl:"", ad:"" };
+        const steps = 8;
 
-        const wilayas = [
-            "01-أدرار (800)","02-الشلف (400)","03-الأغواط (500)","04-أم البواقي (500)","05-باتنة (500)","06-بجاية (450)","07-بسكرة (600)","08-بشار (800)","09-البليدة (350)","10-البويرة (400)","11-تمنراست (1000)","12-تبسة (500)","13-تلمسان (500)","14-تيارت (500)","15-تيزي وزو (400)","16-الجزائر (350)","17-الجلفة (500)","18-جيجل (500)","19-سطيف (450)","20-سعيدة (500)","21-سكيكدة (500)","22-سيدي بلعباس (500)","23-عنابة (500)","24-قالمة (500)","25-قسنطينة (450)","26-المدية (300)","27-مستغانم (500)","28-المسيلة (500)","29-معسكر (500)","30-ورقلة (700)","31-وهران (500)","32-البيض (700)","33-إليزي (1000)","34-برج بوعريريج (450)","35-بومرداس (350)","36-الطارف (550)","37-تندوف (1000)","38-تيسمسيلت (500)","39-الوادي (700)","40-خنشلة (500)","41-سوق أهراس (550)","42-تيبازة (400)","43-ميلة (500)","44-عين الدفلى (400)","45-النعامة (700)","46-عين تموشنت (500)","47-غرداية (700)","48-غليزان (500)","49-تيميمون (900)","50-برج باجي مختار (1200)","51-أولاد جلال (700)","52-بني عباس (900)","53-عين صالح (900)","54-عين قزام (1200)","55-تقرت (700)","56-جانت (1200)","57-المغير (700)","58-المنيعة (800)"
-        ];
-
-        const wSelect = document.getElementById('wilaya');
+        const wilayas = ["16-الجزائر (350)","09-البليدة (350)","26-المدية (300)","31-وهران (500)","19-سطيف (450)","25-قسنطينة (450)","06-بجاية (450)"]; // أضف البقية هنا
+        const sel = document.getElementById('wilaya');
         wilayas.forEach(w => {
             let p = w.split(' (');
-            let opt = document.createElement('option');
-            opt.value = p[0];
-            opt.setAttribute('data-p', p[1].replace(')',''));
-            opt.innerText = w + " دج";
-            wSelect.appendChild(opt);
+            let o = document.createElement('option');
+            o.value = p[0]; o.dataset.p = p[1].replace(')',''); o.innerText = w + " دج";
+            sel.appendChild(o);
         });
 
-        function save(key, val, step) { userProfile[key] = val; next(step); }
-        function setBottle(sz, pr, step) { finalData.size = sz; data.bottle = pr; calc(); next(step); }
-        function setDose(lvl, pr, step) { finalData.doseLvl = lvl; data.dose = pr; calc(); next(step); }
-        function updateShipping(el) {
-            let opt = el.options[el.selectedIndex];
-            data.ship = parseInt(opt.getAttribute('data-p')) || 0;
-            finalData.loc = opt.value;
-            calc();
+        function save(k, v, s) { profile[k] = v; next(s); }
+        function setBottle(sz, p, s) { order.sz = sz; costs.b = p; calc(); next(s); }
+        function setDose(ds, p, s) { order.ds = ds; costs.d = p; calc(); next(s); }
+        function updateShip(el) {
+            let o = el.options[el.selectedIndex];
+            costs.s = parseInt(o.dataset.p) || 0;
+            order.wl = o.value; calc();
         }
         function calc() {
-            let t = data.ship + data.bottle + data.dose;
-            document.getElementById('floating-price').innerText = t + " دج";
+            let t = costs.b + costs.d + costs.s;
+            document.getElementById('price-display').innerText = t;
             return t;
         }
         function next(curr) {
             document.getElementById('s'+curr).classList.remove('active');
-            document.getElementById('progress').style.width = (curr/total*100) + '%';
-            document.getElementById('s'+(curr+1)).classList.add('active');
+            document.getElementById('pb').style.width = (curr/steps*100) + '%';
+            let nextStep = (curr == steps) ? 'final' : 's'+(curr+1);
+            document.getElementById(nextStep).classList.add('active');
         }
         function finish() {
-            finalData.addr = document.getElementById('address').value;
-            if(finalData.loc === "0" || !finalData.addr) return alert("يرجى إكمال بيانات العنوان");
-            
-            document.getElementById('s10').classList.remove('active');
-            document.getElementById('final-screen').style.display = 'block';
-            let totalVal = calc();
-            
-            document.getElementById('total-price').innerText = "الإجمالي: " + totalVal + " دج";
-            let sum = "<b>تفاصيل التصميم:</b><br>";
-            for(let k in userProfile) sum += `• ${k}: ${userProfile[k]}<br>`;
-            sum += `<hr>الحجم: ${finalData.size} | التركيز: ${finalData.doseLvl}<br>الولاية: ${finalData.loc}<br>طريقة الدفع: الدفع عند الاستلام`;
-            document.getElementById('order-summary').innerHTML = sum;
+            order.ad = document.getElementById('addr').value;
+            if(!order.ad) return alert("يرجى كتابة العنوان");
+            next(8);
+            let t = calc();
+            let sum = "👑 <b>نتيجة التحليل:</b><br>";
+            for(let x in profile) sum += `• ${x}: ${profile[x]}<br>`;
+            sum += `<hr>📦 <b>الطلب:</b> ${order.sz} (${order.ds})<br>📍 <b>الموقع:</b> ${order.wl}<br>💰 <b>الإجمالي:</b> ${t} دج`;
+            document.getElementById('summary-final').innerHTML = sum;
 
-            let msg = `طلب عطر (دفع عند الاستلام)%0A%0A`;
-            for(let k in userProfile) msg += `${k}: ${userProfile[k]}%0A`;
-            msg += `%0Aالحجم: ${finalData.size}%0Aالتركيز: ${finalData.doseLvl}%0Aالعنوان: ${finalData.loc} - ${finalData.addr}%0Aالإجمالي: ${totalVal} دج`;
-            document.getElementById('wa-btn').href = `https://wa.me/213783147002?text=${msg}`;
+            let msg = `طلب عطر ملكي جديد 🏛️%0A%0A`;
+            for(let x in profile) msg += `*${x}:* ${profile[x]}%0A`;
+            msg += `%0A*الحجم:* ${order.sz}%0A*التركيز:* ${order.ds}%0A*العنوان:* ${order.wl} - ${order.ad}%0A*الإجمالي:* ${t} دج%0A*طريقة الدفع:* عند الاستلام`;
+            document.getElementById('wa-link').href = `https://wa.me/213783147002?text=${msg}`;
         }
     </script>
 </body>
