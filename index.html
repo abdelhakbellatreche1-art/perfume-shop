@@ -2,195 +2,169 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<title>عطرك يشبهك VIP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عطرك يشبهك | تصميم عطرك الخاص</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-
 <style>
-:root{--gold:#d4af37;--gold-dark:#aa8a2e;--black:#050505;--dark-grey:#1a1a1a;--glass:rgba(255,255,255,.03)}
-body{font-family:'Cairo',sans-serif;background:var(--black);color:#e0e0e0;margin:0;line-height:1.6;overflow-x:hidden}
-header{background:rgba(0,0,0,.9);padding:25px;text-align:center;border-bottom:1px solid var(--gold);position:sticky;top:0;z-index:1000}
-.logo{font-family:'Amiri',serif;font-size:2.2rem;color:var(--gold);letter-spacing:3px;margin:0}
-.container{max-width:650px;margin:0 auto;padding:20px;padding-bottom:120px}
-.price-chip{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;padding:15px 40px;border-radius:50px;font-weight:900;z-index:2000;width:80%;max-width:400px;text-align:center}
-.progress-bar{height:4px;background:#222;margin-bottom:40px;border-radius:10px}
-.progress-fill{height:100%;background:linear-gradient(to left,var(--gold),#fff);width:0%;transition:.8s}
-.step-card{background:var(--dark-grey);border-radius:30px;padding:30px;border:1px solid rgba(212,175,55,.1);display:none;animation:fadeIn .6s ease;flex-direction:column}
-.step-card.active{display:flex}
-h2{color:var(--gold);font-size:1.4rem;margin-top:0;text-align:center;font-weight:900}
-p.subtitle{text-align:center;color:#888;font-size:.9rem;margin-top:-15px;margin-bottom:25px}
-.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.choice-btn{background:var(--glass);border:1px solid rgba(255,255,255,.05);padding:20px 15px;border-radius:20px;color:#fff;cursor:pointer;transition:.3s;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative}
-.choice-btn:hover{border-color:var(--gold)}
-.choice-btn.selected{border-color:var(--gold);background:rgba(212,175,55,.15)}
-.choice-btn.selected:after{content:'✓';position:absolute;top:10px;left:10px;color:var(--gold);font-weight:bold}
-.choice-btn img{width:70px;margin-bottom:8px}
-.preview-box{background:#000;border:1px dashed var(--gold);padding:30px;border-radius:20px;text-align:center;font-size:2rem;margin:20px 0;min-height:60px;display:flex;align-items:center;justify-content:center;color:var(--gold)}
-input,select,textarea{width:100%;padding:18px;border-radius:15px;border:1px solid #333;background:#0c0c0c;color:#fff;margin-bottom:15px;font-size:1rem}
-.action-btn{background:linear-gradient(45deg,var(--gold-dark),var(--gold));color:#000;border:none;padding:20px;border-radius:20px;font-weight:900;font-size:1.2rem;cursor:pointer}
-.info-tag{font-size:.8rem;background:rgba(212,175,55,.1);color:var(--gold);padding:5px 12px;border-radius:5px;margin-bottom:10px;display:inline-block}
-.summary-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222;font-size:.95rem}
-.wa-btn{display:block;text-align:center;background:#25D366;color:#000;padding:18px;border-radius:18px;font-weight:900;margin-bottom:10px;text-decoration:none}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+body{font-family:Cairo,Arial;background:#050505;color:#eee;padding:20px}
+.card{background:#111;border-radius:20px;padding:20px;margin-bottom:15px}
+h2,h3{color:#d4af37}
+select,input,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#000;color:#fff;margin:6px 0}
+button{background:#d4af37;border:none;padding:15px;border-radius:15px;font-weight:bold;width:100%;cursor:pointer}
+.price{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);background:#d4af37;color:#000;padding:10px 30px;border-radius:30px;font-weight:bold}
+.small{color:#999;font-size:13px}
 </style>
 </head>
-
 <body>
 
-<header><h1 class="logo">عطرك يشبهك</h1></header>
+<h2>🏷️ عطرك يشبهك - VIP</h2>
 
-<div class="container">
-<div class="progress-bar"><div class="progress-fill" id="pb"></div></div>
+<div class="card">
 
-<!-- STEP 1 -->
-<div class="step-card active" id="s1">
-<span class="info-tag">المرحلة 1</span>
-<h2>من أنت اليوم؟</h2>
-<div class="options-grid">
-<button class="choice-btn" onclick="toggleMulti(this,'psych','قيادي وشجاع')">🦁<span>قيادي وشجاع</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'psych','غامض وساحر')">🔮<span>غامض وساحر</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'psych','هادئ ومتأمل')">🧘<span>هادئ ومتأمل</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'psych','عصري ومنطلق')">⚡<span>عصري ومنطلق</span></button>
-</div>
-<button class="action-btn" onclick="next(1)">متابعة</button>
+<h3>🧠 الشخصية</h3>
+<select id="personality">
+<option>كلاسيك</option><option>غامض</option><option>فاخر</option>
+<option>رياضي</option><option>رومانسي</option><option>مغامر</option>
+</select>
+
+<h3>🎯 نمط الحياة</h3>
+<select id="life">
+<option>هادئ</option><option>نشِط</option><option>اجتماعي</option>
+<option>عملي</option><option>ليلي</option>
+</select>
+
+<h3>👥 الجنس</h3>
+<select id="gender">
+<option>ذكر</option><option>أنثى</option><option>للجنسين</option>
+</select>
+
+<h3>🎂 العمر</h3>
+<select id="age">
+<option>18-25</option><option>26-35</option>
+<option>36-50</option><option>50+</option>
+</select>
+
+<h3>🌿 النوتات المفضلة</h3>
+<select id="notes">
+<option>خشبية</option><option>شرقية</option><option>زهري</option>
+<option>حمضية</option><option>فانيليا</option><option>مسكية</option>
+</select>
+
+<h3>🔥 قوة العطر</h3>
+<select id="power">
+<option>خفيف</option><option>متوسط</option><option>قوي</option>
+</select>
+
+<h3>👔 المناسبة</h3>
+<select id="occasion">
+<option>يومي</option><option>سهرات</option>
+<option>رسمي</option><option>مواعيد</option>
+</select>
+
+<h3>🌦 الموسم</h3>
+<select id="season">
+<option>صيف</option><option>شتاء</option>
+<option>ربيع</option><option>خريف</option>
+</select>
+
+<h3>⏳ الثبات المطلوب</h3>
+<select id="lasting">
+<option>متوسط</option><option>قوي</option><option>قوي جداً</option>
+</select>
+
+<h3>🏷️ الاسم العطري التلقائي</h3>
+<input id="autoName" readonly>
+
+<hr class="small">
+
+<h3>📍 الولاية</h3>
+<select id="wilaya" onchange="updateShip()">
+<option value="" data-p="0">-- اختر الولاية --</option>
+<option data-p="300">الجزائر</option>
+<option data-p="400">البليدة</option>
+<option data-p="500">تيبازة</option>
+<option data-p="600">وهران</option>
+<option data-p="700">قسنطينة</option>
+<option data-p="800">سطيف</option>
+<option data-p="900">بسكرة</option>
+<option data-p="1000">ورقلة</option>
+<option data-p="1100">أدرار</option>
+<option data-p="1200">تمنراست</option>
+</select>
+
+<h3>🏘️ البلدية</h3>
+<input id="commune" placeholder="اكتب البلدية">
+
+<h3>📞 الهاتف</h3>
+<input id="phone" placeholder="05xxxxxxxx">
+
+<h3>📝 ملاحظات</h3>
+<textarea id="notesText"></textarea>
+
+<button onclick="sendWA()">📩 إرسال الطلب عبر واتساب</button>
+
 </div>
 
-<!-- STEP 2 -->
-<div class="step-card" id="s2">
-<span class="info-tag">المرحلة 2</span>
-<h2>نمط حياتك</h2>
-<div class="options-grid">
-<button class="choice-btn" onclick="toggleMulti(this,'hobbies','الخيل والفروسية')">🐎<span>الخيل</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'hobbies','الرياضة والجيم')">🏋️<span>الرياضة</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'hobbies','اجتماعات العمل')">💼<span>أعمال</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'hobbies','السفر والاستكشاف')">🌍<span>سفر</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'hobbies','الخرجات الليلية')">🌙<span>سهرات</span></button>
-<button class="choice-btn" onclick="toggleMulti(this,'hobbies','المطالعة والهدوء')">📖<span>هدوء</span></button>
+<div class="price">
+الإجمالي: <span id="total">1500</span> دج
 </div>
-<button class="action-btn" onclick="next(2)">التالي</button>
-</div>
-
-<!-- STEP 3 -->
-<div class="step-card" id="s3">
-<h2>اختر القارورة</h2>
-<div class="choice-btn" onclick="setBottle('50ml',950,3)">
-<img src="bottle50.png">
-<b>50 ML</b> – 950 دج
-</div>
-<div class="choice-btn" onclick="setBottle('100ml',1500,3)">
-<img src="bottle100.png">
-<b>100 ML</b> – 1500 دج
-</div>
-</div>
-
-<!-- STEP 4 -->
-<div class="step-card" id="s4">
-<h2>الحفر بالليزر (+300 دج)</h2>
-<input type="text" id="engrave-text" placeholder="اكتب الاسم" oninput="updateEngraving()">
-<div class="preview-box" id="preview-box">PREVIEW</div>
-<div class="options-grid">
-<button class="choice-btn selected" onclick="setColor('ذهبي','#d4af37',this)">ذهبي</button>
-<button class="choice-btn" onclick="setColor('فضي','#c0c0c0',this)">فضي</button>
-</div>
-<button class="action-btn" onclick="next(4)">التالي</button>
-</div>
-
-<!-- STEP 5 -->
-<div class="step-card" id="s5">
-<h2>التوصيل</h2>
-<select id="wilaya" onchange="updateShip()"><option value="">اختر الولاية</option></select>
-<input type="text" id="commune" placeholder="البلدية">
-<input type="tel" id="phone" placeholder="رقم الهاتف">
-<textarea id="notes" placeholder="ملاحظات"></textarea>
-<div style="background:#111;padding:12px;border-radius:12px;margin:10px 0;">💵 الدفع عند الاستلام</div>
-<button class="action-btn" onclick="finish()">تأكيد الطلب</button>
-</div>
-
-<!-- FINAL -->
-<div id="final" class="step-card">
-<h2>ملخص الطلب</h2>
-<div id="summary-content"></div>
-<a href="#" id="wa-link" class="wa-btn">إرسال عبر واتساب</a>
-<button class="action-btn" onclick="location.reload()">إعادة</button>
-</div>
-
-</div>
-
-<div class="price-chip">الإجمالي: <span id="total-price">0</span> دج</div>
 
 <script>
-const wilayas=["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية"];
-let costs={b:0,s:0,e:0};
-let data={psych:[],hobbies:[]};
-let order={color:'ذهبي'};
+let basePrice = 1500;
+let ship = 0;
 
-const wSelect=document.getElementById('wilaya');
-wilayas.forEach(w=>{let o=document.createElement('option');o.value=w;o.innerText=w;o.dataset.p=500;wSelect.appendChild(o)});
-
-function toggleMulti(btn,cat,val){
-btn.classList.toggle('selected');
-if(!data[cat])data[cat]=[];
-if(data[cat].includes(val))data[cat]=data[cat].filter(x=>x!==val);
-else data[cat].push(val)
+function updateShip(){
+ const sel = document.getElementById("wilaya");
+ ship = parseInt(sel.options[sel.selectedIndex].dataset.p) || 0;
+ updateTotal();
 }
 
-function setBottle(sz,p,s){order.sz=sz;costs.b=p;updateTotal();next(s)}
-
-function updateEngraving(){
-const txt=document.getElementById('engrave-text').value;
-costs.e=txt.trim()?300:0;
-document.getElementById('preview-box').innerText=txt||"PREVIEW";
-updateTotal()
+function updateTotal(){
+ document.getElementById("total").innerText = basePrice + ship;
 }
 
-function setColor(n,h,b){
-order.color=n;
-document.getElementById('preview-box').style.color=h;
-b.parentElement.querySelectorAll('.choice-btn').forEach(x=>x.classList.remove('selected'));
-b.classList.add('selected')
+const fields = ["personality","life","gender","age","notes","power","occasion","season","lasting"];
+fields.forEach(id=>{
+ document.getElementById(id).addEventListener("change", genName);
+});
+
+function genName(){
+ let p = personality.value;
+ let n = notes.value;
+ let s = season.value;
+ let name = p+" "+n+" "+s;
+ document.getElementById("autoName").value = name;
 }
 
-function updateShip(){costs.s=parseInt(wSelect.options[wSelect.selectedIndex].dataset.p)||0;updateTotal()}
+genName();
 
-function updateTotal(){document.getElementById('total-price').innerText=(costs.b+costs.s+costs.e)}
+function sendWA(){
+ let total = basePrice + ship;
+ let msg = 
+`طلب عطر VIP 🏷️
+-------------------
+🧠 الشخصية: ${personality.value}
+🎯 نمط الحياة: ${life.value}
+👥 الجنس: ${gender.value}
+🎂 العمر: ${age.value}
+🌿 النوتات: ${notes.value}
+🔥 القوة: ${power.value}
+👔 المناسبة: ${occasion.value}
+🌦 الموسم: ${season.value}
+⏳ الثبات: ${lasting.value}
+🏷️ الاسم العطري: ${autoName.value}
 
-function next(curr){
-document.getElementById('s'+curr).classList.remove('active');
-document.getElementById('pb').style.width=((curr)/4*100)+'%';
-document.getElementById('s'+(curr+1)).classList.add('active');
-window.scrollTo(0,0)
-}
+📍 الولاية: ${wilaya.value}
+🏘️ البلدية: ${commune.value}
+📞 الهاتف: ${phone.value}
 
-function finish(){
-if(!order.sz)return alert("اختر الحجم");
-if(!wSelect.value)return alert("اختر الولاية");
-if(!document.getElementById('phone').value)return alert("أدخل الهاتف");
+💰 السعر: ${basePrice} دج
+🚚 الشحن: ${ship} دج
+📦 الإجمالي: ${total} دج
 
-const txt=document.getElementById('engrave-text').value||"لا يوجد";
-const total=costs.b+costs.s+costs.e;
+📝 ملاحظات: ${notesText.value || "لا يوجد"}`;
 
-document.getElementById('summary-content').innerHTML=`
-<div class="summary-item"><span>الحجم</span><b>${order.sz}</b></div>
-<div class="summary-item"><span>الشخصية</span><b>${data.psych.join(" - ")}</b></div>
-<div class="summary-item"><span>الهوايات</span><b>${data.hobbies.join(" - ")}</b></div>
-<div class="summary-item"><span>الحفر</span><b>${txt} (${order.color})</b></div>
-<div class="summary-item"><span>الولاية</span><b>${wSelect.value}</b></div>
-<div class="summary-item"><span>الإجمالي</span><b>${total} دج</b></div>
-`;
-
-let msg=`طلب عطر VIP%0Aالحجم: ${order.sz}%0Aالشخصية: ${data.psych}%0Aالهوايات: ${data.hobbies}%0Aالحفر: ${txt} (${order.color})%0Aالولاية: ${wSelect.value}%0Aالهاتف: ${document.getElementById('phone').value}%0Aالإجمالي: ${total} دج`;
-
-document.getElementById('wa-link').href=`https://wa.me/213YOURNUMBER?text=${encodeURIComponent(msg)}`;
-
-fetch("PASTE_GOOGLE_SCRIPT_URL_HERE",{method:"POST",body:JSON.stringify({
-size:order.sz,psych:data.psych.join(","),hobbies:data.hobbies.join(","),engraving:txt,color:order.color,
-wilaya:wSelect.value,commune:document.getElementById('commune').value,phone:document.getElementById('phone').value,total:total
-})});
-
-document.getElementById('s5').classList.remove('active');
-document.getElementById('final').classList.add('active');
-updateTotal()
+ window.location.href =
+  "https://wa.me/2130783147002?text=" + encodeURIComponent(msg);
 }
 </script>
 
