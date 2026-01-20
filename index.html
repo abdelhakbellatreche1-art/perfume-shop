@@ -2,155 +2,169 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Perfume Designer Pro - Médéa</title>
+<title>Perfume Lab Pro - Médéa Edition</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
     :root { --gold: #d4af37; --bg: #000; --card: #111; --input: #1a1a1a; }
     body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 160px; direction: rtl; }
-    .header { text-align: center; padding: 25px; border-bottom: 1px solid #222; background: linear-gradient(to bottom, #111, #000); }
-    .header h1 { font-family: 'Amiri', serif; color: var(--gold); font-size: 26px; margin: 0; }
+    .header { text-align: center; padding: 30px 20px; border-bottom: 1px solid #222; }
+    .header h1 { font-family: 'Amiri', serif; color: var(--gold); margin: 0; font-size: 28px; }
     .container { padding: 15px; }
-    .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+    .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; }
     .section-title { color: var(--gold); font-size: 16px; font-weight: 700; margin-bottom: 15px; border-right: 3px solid var(--gold); padding-right: 10px; }
-    label { display: block; font-size: 11px; color: #888; margin: 10px 0 5px; }
-    select, input, textarea { width: 100%; background: var(--input); border: 1px solid #333; color: #fff; padding: 12px; border-radius: 12px; font-family: 'Cairo'; box-sizing: border-box; outline: none; transition: 0.3s; }
-    select:focus, input:focus { border-color: var(--gold); }
+    label { display: block; font-size: 12px; color: #888; margin: 10px 0 5px; }
+    select, input { width: 100%; background: var(--input); border: 1px solid #333; color: #fff; padding: 12px; border-radius: 12px; font-family: 'Cairo'; box-sizing: border-box; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .size-option { background: var(--input); border: 1px solid #333; padding: 10px; text-align: center; border-radius: 10px; cursor: pointer; font-size: 13px; }
+    .size-option.active { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); color: var(--gold); }
+    .engrave-preview { font-family: 'Amiri', serif; color: var(--gold); font-size: 24px; text-align: center; margin-top: 10px; border: 1px dashed #333; padding: 10px; border-radius: 10px; min-height: 40px; }
     .price-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); padding: 20px; border-top: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-    .total-price { font-size: 22px; font-weight: 700; color: var(--gold); }
-    .btn-order { background: var(--gold); color: #000; border: none; padding: 15px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 16px; }
-    .ship-info { color: var(--gold); font-size: 11px; margin-top: 8px; font-weight: bold; }
+    .total-price { font-size: 20px; font-weight: 700; color: var(--gold); }
+    .btn-order { background: var(--gold); color: #000; border: none; padding: 15px 25px; border-radius: 12px; font-weight: 700; cursor: pointer; }
+    .ship-notice { font-size: 11px; color: var(--gold); margin-top: 8px; text-align: center; display: none; }
 </style>
 </head>
 <body>
 
 <div class="header">
     <h1>PERFUME LAB PRO</h1>
-    <p style="color:#666; font-size:11px;">صناعة يدوية فاخرة - من المدية إليكم</p>
+    <p style="color:#666; font-size:12px;">من المدية إلى جميع ولايات الوطن</p>
 </div>
 
 <div class="container">
     
     <div class="card">
-        <div class="section-title">🧠 استشارة الخبير العطري</div>
-        <label>ما هو نوع العطور التي تفضلها عادة؟</label>
-        <select id="prefType">
-            <option>فرنسية (ناعمة وفواحة)</option>
-            <option>شرقية (ثقيلة ودافئة)</option>
-            <option>ميكس (عصري وفخم)</option>
-        </select>
-        
-        <label>ما هو الشعور الذي تريد للعطر أن يمنحه؟</label>
-        <select id="vibe">
-            <option>الثقة والقيادة</option>
-            <option>الجاذبية والغموض</option>
-            <option>الانتعاش والنظافة</option>
-            <option>الهدوء والاسترخاء</option>
-        </select>
-
-        <label>وقت الاستخدام المفضل؟</label>
-        <select id="time"><option>للعمل الصباحي</option><option>للمناسبات الليلية</option><option>لكل الأوقات</option></select>
+        <div class="section-title">👤 أولاً: معلومات الزبون</div>
+        <div class="row">
+            <div><label>الجنس</label><select id="gender"><option>ذكر</option><option>أنثى</option></select></div>
+            <div><label>العمر</label><select id="age"><option>18-25</option><option>26-40</option><option>40+</option></select></div>
+        </div>
+        <label>نمط الشخصية</label>
+        <select id="personality"><option>كلاسيكي</option><option>غامض</option><option>فاخر</option><option>رياضي</option></select>
     </div>
 
     <div class="card">
-        <div class="section-title">🏺 القارورة والتخصيص</div>
-        <label>اختر حجم القارورة</label>
-        <select id="size" onchange="updateTotal()">
-            <option value="1500">30ml - 1500 دج</option>
-            <option value="2500" selected>50ml - 2500 دج</option>
-            <option value="4500">100ml - 4500 دج</option>
+        <div class="section-title">🌿 ثانياً: تفضيلات الرائحة</div>
+        <label>النوتة العطرية المفضلة</label>
+        <select id="notes">
+            <option>العود والشرق</option>
+            <option>المسك والنظافة</option>
+            <option>الأزهار والورود</option>
+            <option>الحمضيات والانتعاش</option>
         </select>
-        
-        <label>الكتابة على القارورة بالليزر (+300 دج)</label>
-        <input id="engraving" placeholder="اكتب اسمك أو عبارة قصيرة..." oninput="updateTotal()">
+        <label>اسم عطر تحبه (اختياري)</label>
+        <input id="reference" placeholder="مثلاً: Sauvage, Black Opium...">
     </div>
 
     <div class="card">
-        <div class="section-title">📍 معلومات التوصيل</div>
+        <div class="section-title">🧪 ثالثاً: التخصيص والحفر</div>
+        <label>اختر سعة القارورة</label>
+        <div class="size-grid">
+            <div class="size-option" onclick="selectSize(30, 1500, this)">30ml</div>
+            <div class="size-option active" onclick="selectSize(50, 2500, this)">50ml</div>
+            <div class="size-option" onclick="selectSize(100, 4500, this)">100ml</div>
+        </div>
+        
+        <label>الكتابة على الزجاجة بالليزر (+300 دج)</label>
+        <input id="engraving" placeholder="اكتب اسمك أو عبارة هنا..." oninput="updateEngrave()">
+        <div class="engrave-preview" id="previewText">معاينة الخط</div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">📍 رابعاً: بيانات التوصيل</div>
         <label>الولاية</label>
-        <select id="wilaya" onchange="updateCommunes()">
-            <option value="">-- اختر ولاية التوصيل --</option>
-        </select>
-
+        <select id="wilaya" onchange="updateCommunes()"></select>
+        
         <label>البلدية</label>
-        <select id="commune">
-            <option value="">-- اختر الولاية أولاً --</option>
-        </select>
-
+        <select id="commune"><option value="">-- اختر الولاية أولاً --</option></select>
+        
         <label>رقم الهاتف</label>
         <input id="phone" type="tel" placeholder="05 / 06 / 07 ...">
         
-        <div id="shipDisplay" class="ship-info"></div>
+        <div id="shipNotice" class="ship-notice"></div>
     </div>
 </div>
 
 <div class="price-bar">
     <div class="total-info">
-        <div style="color:#888; font-size:11px;">المبلغ الإجمالي</div>
+        <div style="color:#888; font-size:12px;">الإجمالي مع الشحن</div>
         <div class="total-price"><span id="totalDisplay">2500</span> دج</div>
     </div>
-    <button class="btn-order" onclick="sendWA()">تأكيد الطلب 📩</button>
+    <button class="btn-order" onclick="sendWA()">إرسال الطلب 📩</button>
 </div>
 
 <script>
-    // نظام شحن المدية (200-800 دج)
-    const shipping = {
-        "المدية": { price: 200, communes: ["المدية المركز", "وزرة", "البرواقية", "تابلاط", "قصر البخاري", "بني سليمان", "شلالة العذراء"] },
-        "البليدة": { price: 300, communes: ["البليدة المركز", "بوفاريك", "موزاية", "أولاد يعيش"] },
-        "الجزائر": { price: 400, communes: ["الدار البيضاء", "سيدي امحمد", "الحراش", "بئر مراد رايس"] },
-        "عين الدفلى": { price: 400, communes: ["الخميس", "مليانة", "عين الدفلى"] },
-        "تيبازة": { price: 450, communes: ["القليعة", "حجوط", "بوسماعيل"] },
-        "البويرة": { price: 450, communes: ["البويرة", "الأخضرية", "سور الغزلان"] },
-        "الجلفة": { price: 500, communes: ["الجلفة", "عين وسارة", "حاسي بحبح"] },
-        "وهران": { price: 600, communes: ["وهران المركز", "بير الجير", "السانيا"] },
-        "سطيف": { price: 600, communes: ["سطيف المركز", "العلمة"] },
-        "قسنطينة": { price: 600, communes: ["قسنطينة المركز", "الخروب"] },
-        "ورقلة": { price: 700, communes: ["حاسي مسعود", "ورقلة"] },
-        "أدرار": { price: 800, communes: ["أدرار المركز", "تيميمون"] },
+    // قاعدة بيانات الولايات والبلديات والأسعار (انطلاقاً من المدية)
+    const geoData = {
+        "المدية": { price: 200, communes: ["المدية المركز", "وزرة", "البرواقية", "قصر البخاري", "بني سليمان", "تابلاط", "وامري", "شلالة العذراء"] },
+        "البليدة": { price: 300, communes: ["البليدة", "بوفاريك", "العفرون", "موزاية", "أولاد يعيش"] },
+        "الجزائر": { price: 400, communes: ["سيدي امحمد", "الدار البيضاء", "دالي براهيم", "الحراش", "زرالدة", "باب الواد"] },
+        "عين الدفلى": { price: 400, communes: ["خميس مليانة", "مليانة", "عين الدفلى المركز", "العطاف"] },
+        "تيبازة": { price: 450, communes: ["تيبازة", "حجوط", "القليعة", "بوسماعيل"] },
+        "الجلفة": { price: 500, communes: ["الجلفة المركز", "عين وسارة", "حاسي بحبح", "مسعد"] },
+        "وهران": { price: 600, communes: ["وهران المركز", "بير الجير", "السانيا", "أرزيو"] },
+        "سطيف": { price: 600, communes: ["سطيف المركز", "العلمة", "عين أرنات"] },
+        "ورقلة": { price: 750, communes: ["ورقلة", "حاسي مسعود"] },
+        "أدرار": { price: 800, communes: ["أدرار المركز", "تيميمون", "رغان"] },
         "تمنراست": { price: 800, communes: ["تمنراست المركز", "عين صالح"] }
-        // ملاحظة: يمكنك إضافة باقي الولايات بنفس السقف (800 دج)
     };
 
+    let sizePrice = 2500; let shipPrice = 0; let engravePrice = 0;
+
+    // تهيئة الولايات
     const wSel = document.getElementById('wilaya');
     const cSel = document.getElementById('commune');
-    const totalDisp = document.getElementById('totalDisplay');
-
-    for (let w in shipping) wSel.add(new Option(w, w));
+    wSel.add(new Option("-- اختر الولاية --", ""));
+    for (let w in geoData) wSel.add(new Option(w, w));
 
     function updateCommunes() {
         const w = wSel.value;
         cSel.innerHTML = '<option value="">-- اختر البلدية --</option>';
-        if (w) {
-            shipping[w].communes.forEach(c => cSel.add(new Option(c, c)));
-            document.getElementById('shipDisplay').innerText = `الشحن من المدية إلى ${w}: ${shipping[w].price} دج`;
+        const notice = document.getElementById('shipNotice');
+        
+        if (w && geoData[w]) {
+            geoData[w].communes.forEach(c => cSel.add(new Option(c, c)));
+            shipPrice = geoData[w].price;
+            notice.style.display = "block";
+            notice.innerText = `سعر التوصيل من المدية إلى ${w}: ${shipPrice} دج`;
+        } else {
+            shipPrice = 0;
+            notice.style.display = "none";
         }
         updateTotal();
     }
 
+    function selectSize(size, price, el) {
+        sizePrice = price;
+        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
+        el.classList.add('active');
+        updateTotal();
+    }
+
+    function updateEngrave() {
+        const text = document.getElementById('engraving').value;
+        engravePrice = text.trim() !== "" ? 300 : 0;
+        document.getElementById('previewText').innerText = text || "معاينة الخط";
+        updateTotal();
+    }
+
     function updateTotal() {
-        const sizePrice = parseInt(document.getElementById('size').value);
-        const engravePrice = document.getElementById('engraving').value.trim() !== "" ? 300 : 0;
-        const shipPrice = (wSel.value) ? shipping[wSel.value].price : 0;
-        totalDisp.innerText = sizePrice + engravePrice + shipPrice;
+        document.getElementById('totalDisplay').innerText = sizePrice + shipPrice + engravePrice;
     }
 
     function sendWA() {
-        const w = wSel.value;
-        const c = cSel.value;
         const p = document.getElementById('phone').value;
-        const engra = document.getElementById('engraving').value;
+        if(!wSel.value || !cSel.value || !p) { alert("يرجى إكمال بيانات الشحن"); return; }
         
-        if(!w || !c || !p) { alert("يرجى ملء بيانات التوصيل"); return; }
-        
-        let msg = `*طلب عطر مخصص (المدية)* 🏺\n` +
+        let msg = `*طلب عطر Lab Pro* 🏺\n` +
                   `-------------------\n` +
-                  `🧠 الشعور المطلوب: ${document.getElementById('vibe').value}\n` +
-                  `🏺 الحجم: ${document.getElementById('size').options[document.getElementById('size').selectedIndex].text}\n` +
-                  `✍️ الحفر: ${engra || "لا يوجد"}\n` +
-                  `📍 التوصيل: ${w} - ${c}\n` +
-                  `📞 الهاتف: ${p}\n` +
-                  `💰 الإجمالي: ${totalDisp.innerText} دج`;
-                  
+                  `🌿 النوتة: ${document.getElementById('notes').value}\n` +
+                  `✍️ الحفر: ${document.getElementById('engraving').value || "لا يوجد"}\n` +
+                  `📍 التوصيل: ${wSel.value} - ${cSel.value}\n` +
+                  `💰 الإجمالي: ${document.getElementById('totalDisplay').innerText} دج`;
+        
         window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
     }
 </script>
