@@ -3,52 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر عطور الفخامة - الزيوت والروائح</title>
+    <title>عطور الفخامة - التشكيلة الكبرى</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; text-align: center; padding: 20px; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-        .card { background: white; border-radius: 15px; padding: 15px; width: 260px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-top: 5px solid #810B98; }
-        .card img { width: 100%; border-radius: 10px; height: 200px; object-fit: cover; }
-        .tag { background: #810B98; color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8em; margin-bottom: 10px; display: inline-block; }
-        h3 { color: #333; margin: 10px 0; }
-        p { font-size: 0.9em; color: #666; height: 50px; }
-        .price { font-weight: bold; font-size: 1.3em; margin: 15px 0; color: #1a1a1a; }
-        .buy-btn { display: inline-block; padding: 10px 20px; background-color: #25d366; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f8f9fa; text-align: center; padding: 10px; color: #333; }
+        .header { background: linear-gradient(135deg, #4e342e, #810B98); color: white; padding: 30px; border-radius: 0 0 30px 30px; margin-bottom: 25px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .card { background: white; border-radius: 20px; padding: 12px; width: 160px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 4px solid #810B98; position: relative; }
+        @media (min-width: 600px) { .card { width: 240px; } }
+        .card img { width: 100%; border-radius: 15px; height: 160px; object-fit: cover; }
+        .bottle-size { background: #810B98; color: white; position: absolute; top: 10px; left: 10px; padding: 4px 8px; border-radius: 8px; font-size: 0.7em; font-weight: bold; }
+        h3 { font-size: 0.95em; margin: 10px 0 5px; color: #1a1a1a; }
+        .desc { font-size: 0.8em; color: #666; height: 45px; overflow: hidden; margin-bottom: 10px; line-height: 1.4; }
+        .price { font-weight: bold; font-size: 1.1em; color: #e67e22; margin-bottom: 12px; }
+        .buy-btn { display: block; padding: 10px; background-color: #25d366; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 0.85em; }
     </style>
 </head>
 <body>
-    <h1>✨ متجر عطور الفخامة والزيوت ✨</h1>
-    <p>زيوت عطر
-            <a href="https://wa.me/213783147002?text=أريد طلب زيت مسك الطهارة" class="buy-btn">اطلب عبر واتساب</a>
-        </div>
 
-        <div class="card">
-            <span class="tag">زيت عطري</span>
-            <img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=400" alt="زيت العود">
-            <h3>زيت العود الملكي</h3>
-            <p>خلاصة العود الصافي، ريحة قوية وثقيلة تاع همة للمناسبات.</p>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=أريد طلب زيت العود الملكي" class="buy-btn">اطلب عبر واتساب</a>
-        </div>
-
-        <div class="card">
-            <span class="tag">زيت عطري</span>
-            <img src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?w=400" alt="زيت العنبر">
-            <h3>زيت العنبر الفاخر</h3>
-            <p>ريحة دافئة وجذابة، زيت مركز يخلي حضورك مميز في كل مكان.</p>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=أريد طلب زيت العنبر" class="buy-btn">اطلب عبر واتساب</a>
-        </div>
-
-        <div class="card">
-            <span class="tag">عطر بخاخ</span>
-            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400" alt="سواج">
-            <h3>سواج (Sauvage)</h3>
-            <p>العطر الرجالي الأكثر طلباً في الجزائر، انتعاش وقوة.</p>
-            <div class="price">1500 د.ج</div>
-            <a href="https://wa.me/213783147002?text=أريد طلب عطر سواج" class="buy-btn">اطلب عبر واتساب</a>
-        </div>
+    <div class="header">
+        <h1>✨ عطور الفخامة والجمال ✨</h1>
+        <p>أكثر من 25 نوع من أرقى العطور والزيوت في الجزائر</p>
     </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="bottle-size">زيت 6 مل</div>
+            <img src="https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?w=300" alt="مسك">
+            <h3>مسك الطهارة</h3>
+            <p class="desc">ريحة النظافة لي تدوم أيام، زيت أصلي ومركز.</p>
+            <div class="price">800 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب مسك الطهارة 6 مل" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">زيت 10 مل</div>
+            <img src="https://images.unsplash.com/photo-1595424266378-3f0e5d9961cc?w=300" alt="عود">
+            <h3>عود مروكي</h3>
+            <p class="desc">ريحة العود الفاخرة تاع المناسبات والهمة.</p>
+            <div class="price">1500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب عود مروكي 10 مل" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">زيت 12 مل</div>
+            <img src="https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?w=300" alt="عنبر">
+            <h3>عنبر كشمير</h3>
+            <p class="desc">زيت دافئ وجذاب، يخلي حضورك ديما مميز.</p>
+            <div class="price">1800 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب عنبر كشمير 12 مل" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">بخاخ 50 مل</div>
+            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300" alt="سواج">
+            <h3>Sauvage (سواج)</h3>
+            <p class="desc">العطر الرجالي رقم 1 في العالم، قوة وانتعاش.</p>
+            <div class="price">2500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب عطر سواج 50 مل" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">بخاخ 50 مل</div>
+            <img src="https://images.unsplash.com/photo-1588405748353-0c6349511a3d?w=300" alt="شانيل">
+            <h3>Bleu de Chanel</h3>
+            <p class="desc">عطر كلاسيكي فخم يلبق للخرجات والخدمة.</p>
+            <div class="price">2500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب بلو دي شانيل" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">بخاخ 50 مل</div>
+            <img src="https://images.unsplash.com/photo-1557170334-a7c3c437c9f4?w=300" alt="انفيكتوس">
+            <h3>Invictus</h3>
+            <p class="desc">ريحة سبورت ومنعشة، تاع الشبيبة والنشاط.</p>
+            <div class="price">2200 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب انفيكتوس" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">بخاخ 50 مل</div>
+            <img src="https://images.unsplash.com/photo-1616948055600-a12117d73c0f?w=300" alt="ليبر">
+            <h3>Libre (ليبر)</h3>
+            <p class="desc">عطر الأنوثة والحرية، ريحة الورد واللافندر.</p>
+            <div class="price">2500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب عطر ليبر" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">بخاخ 50 مل</div>
+            <img src="https://images.unsplash.com/photo-1590156221120-75d32699e74d?w=300" alt="سكاندال">
+            <h3>Scandal</h3>
+            <p class="desc">عطر العسل والورد، حلو وجذاب بزاف.</p>
+            <div class="price">2500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب عطر سكاندال" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        <div class="card">
+            <div class="bottle-size">بخاخ 50 مل</div>
+            <img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?w=300" alt="بلاك اوبيوم">
+            <h3>Black Opium</h3>
+            <p class="desc">ريحة القهوة والورد، عطر السهرات بامتياز.</p>
+            <div class="price">2500 د.ج</div>
+            <a href="https://wa.me/213783147002?text=طلب بلاك اوبيوم" class="buy-btn">اطلب واتساب</a>
+        </div>
+
+        </div>
+
 </body>
 </html>
-
