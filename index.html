@@ -4,169 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V8 LUXURY - المتجر الرسمي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Changa:wght@700&family=Kufam:wght@700&family=Vibes&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Qahiri&family=Blaka&family=Mada:wght@700&family=Lateef&family=Scheherazade+New:wght@700&family=Katibeh&family=Jomhuria&family=Rakkas&family=Mirza:wght@700&family=Harmattan&family=El+Messiri:wght@700&family=Markazi+Text:wght@700&family=Readex+Pro:wght@700&family=Noto+Kufi+Arabic:wght@700&family=Noto+Naskh+Arabic:wght@700&family=Pacifico&family=Dancing+Script:wght@700&family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Vibes&family=Jomhuria&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Mada:wght@700&family=Kufam:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --dark: #000; --card: #121212; --border: #2a2a2a; }
-        body { font-family: 'Cairo', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 120px; text-align: right; }
-        .container { padding: 15px; max-width: 600px; margin: auto; }
-        header { text-align: center; padding: 30px 0; border-bottom: 2px solid var(--gold); }
-        header h1 { color: var(--gold); margin: 0; font-size: 32px; letter-spacing: 5px; text-transform: uppercase; }
-
-        /* المعاينة الثابتة */
-        .preview-box {
-            height: 350px; background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-            border: 1px solid var(--border); border-radius: 25px; margin: 20px 0;
-            display: flex; justify-content: center; align-items: center;
-            position: sticky; top: 10px; z-index: 100; box-shadow: 0 10px 30px #000;
-        }
-        .bottle-container { position: relative; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; justify-content: center; align-items: center; }
-        #bottleIcon { font-size: 140px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.2)); }
-        #bottleText { position: absolute; top: 55%; width: 100%; text-align: center; color: var(--gold); font-size: 19px; text-shadow: 1px 1px 3px #000; pointer-events: none; padding: 0 10px; box-sizing: border-box; word-wrap: break-word; line-height: 1.1; }
-
-        .section-title { color: var(--gold); font-size: 19px; margin: 40px 0 15px; border-right: 5px solid var(--gold); padding-right: 12px; font-weight: bold; }
-        .q-box { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .opt-btn { background: #1a1a1a; border: 1px solid #333; padding: 15px 10px; border-radius: 12px; text-align: center; cursor: pointer; color: #ccc; transition: 0.3s; }
-        .opt-btn.active { border-color: var(--gold); background: rgba(212,175,55,0.15); color: var(--gold); font-weight: bold; }
-
-        input, select { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; }
-        .confirm-btn { background: var(--gold); color: #000; border: none; border-radius: 15px; padding: 22px; font-size: 22px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+        :root { --gold: #d4af37; --dark: #000; --card: #111; --border: #222; }
+        body { font-family: 'Cairo', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 50px; text-align: right; overflow-x: hidden; }
+        .container { max-width: 500px; margin: auto; padding: 15px; }
         
-        .summary-box { background: #111; border: 1px dashed var(--gold); border-radius: 15px; padding: 15px; margin-top: 15px; text-align: center; }
-        .footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; border-top: 1px solid var(--gold); display: flex; justify-content: space-around; padding: 15px 0; font-size: 11px; z-index: 1000; }
-        small { display: block; margin-top: 4px; opacity: 0.8; }
+        .header { text-align: center; padding: 30px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+        .header h1 { color: var(--gold); letter-spacing: 5px; margin: 0; font-size: 28px; }
+        
+        .section-title { color: var(--gold); border-right: 4px solid var(--gold); padding-right: 10px; margin: 35px 0 15px; font-size: 19px; font-weight: bold; }
+        
+        /* تصميم المربعات للأجوبة */
+        .grid-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        .sq-opt { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; font-size: 14px; font-weight: bold; color: #bbb; }
+        .sq-opt.active { border-color: var(--gold); background: rgba(212,175,55,0.15); color: var(--gold); transform: scale(1.02); }
+
+        input, select { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid #333; background: #050505; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; font-size: 15px; box-sizing: border-box; }
+
+        /* عرض القارورة الفخمة في الأخير */
+        .showcase { background: radial-gradient(circle, #222 0%, #000 100%); border-radius: 25px; padding: 45px 20px; text-align: center; border: 2px solid var(--gold); margin: 30px 0; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+        .bottle-icon { font-size: 90px; display: block; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--gold)); }
+        
+        /* ضبط الكتابة فوق القارورة */
+        #overlay { 
+            background: rgba(255, 255, 255, 0.95); color: #000; padding: 8px 18px; 
+            font-weight: bold; display: inline-block; margin-top: -15px; border-radius: 5px;
+            font-size: 18px; min-width: 120px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid var(--gold); word-wrap: break-word;
+        }
+
+        .summary { background: #080808; border: 1px dashed var(--gold); border-radius: 15px; padding: 20px; text-align: center; }
+        .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; margin-top: 20px; box-shadow: 0 8px 20px rgba(212,175,55,0.3); transition: 0.3s; }
+        .order-btn:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
 
-<header><h1>V8 LUXURY</h1></header>
-
 <div class="container">
-
-    <div class="preview-box">
-        <div class="bottle-container" id="visualBottle">
-            <div id="bottleIcon">🧴</div>
-            <div id="bottleText">V8 LUXURY</div>
-        </div>
+    <div class="header">
+        <h1>V8 LUXURY</h1>
+        <p style="font-size:12px; color:#666; margin-top:5px;">بصمتك العطرية.. تُصنع يدوياً</p>
     </div>
 
-    <div class="section-title">🧪 المرحلة 1: تحليل الشخصية (16 سؤالاً)</div>
-    <div id="questionsList"></div>
+    <div class="section-title">🧪 المرحلة 1: تحليل الشخصية (16 سؤال)</div>
+    <div id="quizContainer"></div>
 
-    <div class="section-title">📏 المرحلة 2: حجم العطر والسعر</div>
-    <div class="grid">
-        <div class="opt-btn" onclick="updateSize(this, 0.7, '10ml', 200)">10ml <small>200 دج</small></div>
-        <div class="opt-btn" onclick="updateSize(this, 0.9, '30ml', 650)">30ml <small>650 دج</small></div>
-        <div class="opt-btn active" onclick="updateSize(this, 1.1, '50ml', 1000)">50ml <small>1000 دج</small></div>
-        <div class="opt-btn" onclick="updateSize(this, 1.4, '100ml', 1900)">100ml <small>1900 دج</small></div>
+    <div class="section-title">📏 المرحلة 2: حجم القارورة</div>
+    <div class="grid-opts">
+        <div class="sq-opt" onclick="setSz(this, '10ml', 200)">10ml <br> <small>200 دج</small></div>
+        <div class="sq-opt active" onclick="setSz(this, '50ml', 1000)">50ml <br> <small>1000 دج</small></div>
+        <div class="sq-opt" onclick="setSz(this, '100ml', 1900)">100ml <br> <small>1900 دج</small></div>
     </div>
 
-    <div class="section-title">✍️ المرحلة 3: استوديو التصميم (30 خطاً)</div>
-    <div class="q-box">
-        <input type="text" id="custName" placeholder="الاسم المراد طباعته..." oninput="refresh()">
-        <select id="fontSelect" onchange="refresh()">
-            <optgroup label="خطوط عصرية">
-                <option value="'Cairo'">كايرو</option><option value="'Tajawal'">تجول</option><option value="'Almarai'">المراعي</option>
-            </optgroup>
-            <optgroup label="خطوط ملكية">
-                <option value="'Amiri'">الأميري</option><option value="'Scheherazade New'">شهرزاد</option><option value="'Lateef'">لطيف</option>
-            </optgroup>
-            <optgroup label="خطوط فنية">
-                <option value="'Aref Ruqaa'">الرقعة</option><option value="'Reem Kufi'">ريم كوفي</option><option value="'Qahiri'">قاهري</option><option value="'Blaka'">بلاكا</option><option value="'Jomhuria'">جمهورية</option>
-            </optgroup>
-            <optgroup label="خطوط لاتينية">
-                <option value="'Vibes'">Vibes</option><option value="'Pacifico'">Pacifico</option><option value="'Dancing Script'">Dancing</option>
-            </optgroup>
-            </select>
-    </div>
-    <div class="grid">
-        <div class="opt-btn active" onclick="updateBottle(this, '🧴', 'كلاسيك')">زجاج كلاسيك</div>
-        <div class="opt-btn" onclick="updateBottle(this, '💎', 'VIP')">زجاج VIP</div>
-        <div class="opt-btn" onclick="updateBottle(this, '🖤', 'سوداء')">زجاج أسود</div>
-        <div class="opt-btn" onclick="updateBottle(this, '✨', 'ذهبية')">زجاج ذهبي</div>
-    </div>
+    <div class="section-title">✍️ المرحلة 3: استوديو الكتابة</div>
+    <input type="text" id="pName" placeholder="اكتب الاسم المراد طباعته..." oninput="refresh()">
+    <select id="fSel" onchange="refresh()">
+        <option value="'Cairo'">1. خط كايرو (عصري)</option>
+        <option value="'Amiri'">2. خط أميري (ملكي)</option>
+        <option value="'Aref Ruqaa'">3. خط الرقعة (عربي أصيل)</option>
+        <option value="'Reem Kufi'">4. خط كوفي (فني)</option>
+        <option value="'Lalezar'">5. خط لاليزار (عريض)</option>
+        <option value="'Jomhuria'">6. خط الجمهورية (بارز)</option>
+        <option value="'Tajawal'">7. خط تجول</option>
+        <option value="'Almarai'">8. خط المراعي</option>
+        <option value="'Lemonada'">9. خط ليمونادة</option>
+        <option value="'Vibes'">10. خط Vibes (رومانسي)</option>
+        </select>
 
-    <div class="section-title">📍 المرحلة 4: بيانات الشحن</div>
-    <div class="q-box">
-        <input type="text" id="userName" placeholder="الاسم الكامل">
-        <select id="wilaya" onchange="refresh()"></select>
-        <input type="text" id="city" placeholder="البلدية والعنوان">
-        
-        <div class="summary-box">
-            <div id="pPrice">سعر العطر: 1000 دج</div>
-            <div id="pShip">سعر الشحن: --</div>
-            <hr style="border:0; border-top:1px solid #333; margin:10px 0;">
-            <div id="pTotal" style="color:var(--gold); font-weight:bold; font-size:20px;">الإجمالي: --</div>
-        </div>
-        <button class="confirm-btn" onclick="send()">تأكيد الطلب عبر واتساب</button>
+    <div class="section-title">📍 المرحلة 4: معلومات الشحن</div>
+    <input type="text" id="custName" placeholder="الاسم الكامل للزبون">
+    <select id="wilayaSel" onchange="handleWilaya()">
+        <option value="">اختر الولاية</option>
+    </select>
+    <div id="comDiv" style="display:none;">
+        <select id="comSel" onchange="refresh()"></select>
+    </div>
+    <input type="text" id="custAddr" placeholder="العنوان (الحي، رقم المنزل...)">
+
+    <div class="section-title">✨ معاينة قارورتك الخاصة</div>
+    <div class="showcase">
+        <span class="bottle-icon">🧴</span>
+        <div id="overlay">V8 LUXURY</div>
     </div>
 
-</div>
+    <div class="summary">
+        <div id="txtPr">سعر العطر: 1000 دج</div>
+        <div id="txtSh">مصاريف الشحن: --</div>
+        <div id="txtTot" style="font-size:24px; color:var(--gold); font-weight:bold; margin-top:10px;">الإجمالي: --</div>
+    </div>
 
-<div class="footer-bar">
-    <div>🚚 شحن من المدية</div><div>💰 دفع عند الاستلام</div><div>📞 0783147002</div>
+    <button class="order-btn" onclick="send()">إرسال الطلب عبر واتساب</button>
 </div>
 
 <script>
-    let bE="🧴", bT="كلاسيك", bS=1.1, bSize="50ml", bP=1000, ship=0;
-    const qs = ["الجنس", "الفوحان", "الفصل", "الوقت", "العمر", "الرائحة", "اللون", "العمل", "اللباس", "المناسبة", "الثبات", "الشخصية", "البشرة", "الانطباع", "المدرسة", "التميز"];
+    let price=1000, size="50ml", ship=0;
+    const questions = ["الجنس","الفوحان","الفصل","الوقت","العمر","الرائحة","اللون","العمل","اللباس","المناسبة","الثبات","الشخصية","البشرة","الانطباع","المدرسة","التميز"];
+    const wilayas = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","عين صالح","عين قزام","تقرت","جانت","المغير","المنيعة"];
+    const communesMedea = ["المدية","وزرة","البرواقية","قصر البخاري","بني سليمان","تابلاط","العمارية","شلالة العذاورة","سيدي نعمان","عزيز","وامري","الحمدانية","بنزوه","سي المحجوب","سغوان"];
 
-    function getShip(w) {
-        w = parseInt(w);
-        if(w===26) return 100; // المدية
-        if([9,16,42,44].includes(w)) return 300; // جوار المدية
-        if([1,8,11,30,32,33,37,39,41,47,53,54,55,56,57,58].includes(w)) return 800; // جنوب
-        return 500; // شمال
-    }
-
-    function refresh() {
-        const name = document.getElementById('custName').value || "V8 LUXURY";
-        const font = document.getElementById('fontSelect').value;
-        const w = document.getElementById('wilaya').value;
-        
-        document.getElementById('bottleText').innerText = name;
-        document.getElementById('bottleText').style.fontFamily = font;
-        document.getElementById('visualBottle').style.transform = `scale(${bS})`;
-        document.getElementById('bottleIcon').innerText = bE;
-        document.getElementById('bottleText').style.color = (bE==='🖤')?"#d4af37":(bE==='✨')?"#fff":"#d4af37";
-
-        document.getElementById('pPrice').innerText = `سعر العطر: ${bP} دج`;
-        if(w) {
-            ship = getShip(w);
-            document.getElementById('pShip').innerText = `سعر الشحن: ${ship} دج`;
-            document.getElementById('pTotal').innerText = `الإجمالي: ${bP + ship} دج`;
-        }
-    }
-
-    function updateBottle(el, em, txt) {
-        el.parentElement.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));
-        el.classList.add('active'); bE=em; bT=txt; refresh();
-    }
-
-    function updateSize(el, sc, sz, pr) {
-        el.parentElement.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));
-        el.classList.add('active'); bS=sc; bSize=sz; bP=pr; refresh();
-    }
-
-    function init() {
-        const cont = document.getElementById('questionsList');
-        qs.forEach((q,i)=>{
-            cont.innerHTML += `<div class="q-box"><div>${i+1}. ${q}</div><div class="grid" style="margin-top:10px">
-            <div class="opt-btn" onclick="this.parentElement.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">خيار 1</div>
-            <div class="opt-btn" onclick="this.parentElement.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">خيار 2</div></div></div>`;
-        });
-        const ws = document.getElementById('wilaya');
-        ws.innerHTML = '<option value="">اختر الولاية</option>';
-        for(let i=1;i<=58;i++) ws.innerHTML += `<option value="${i}">${i} - ولاية</option>`;
+    function handleWilaya() {
+        const w = document.getElementById('wilayaSel').value;
+        const d = document.getElementById('comDiv');
+        const s = document.getElementById('comSel');
+        if (w === "26") {
+            d.style.display = "block";
+            s.innerHTML = '<option value="">اختر البلدية (المدية)</option>';
+            communesMedea.forEach(c => s.innerHTML += `<option value="${c}">${c}</option>`);
+        } else { d.style.display = "none"; }
         refresh();
     }
 
+    function refresh() {
+        const n = document.getElementById('pName').value || "V8 LUXURY";
+        const f = document.getElementById('fSel').value;
+        const w = document.getElementById('wilayaSel').value;
+        const ov = document.getElementById('overlay');
+        ov.innerText = n; ov.style.fontFamily = f;
+        
+        document.getElementById('txtPr').innerText = `سعر العطر: ${price} دج`;
+        if (w) {
+            ship = (w === "26") ? 100 : ([9, 16, 42, 44].includes(parseInt(w)) ? 300 : 500);
+            document.getElementById('txtSh').innerText = `الشحن: ${ship} دج`;
+            document.getElementById('txtTot').innerText = `الإجمالي: ${price + ship} دج`;
+        }
+    }
+
+    function setSz(el, sz, pr) {
+        el.parentElement.querySelectorAll('.sq-opt').forEach(opt => opt.classList.remove('active'));
+        el.classList.add('active'); size=sz; price=pr; refresh();
+    }
+
+    function init() {
+        const qC = document.getElementById('quizContainer');
+        questions.forEach((q, i) => {
+            qC.innerHTML += `<div style="margin-bottom:15px"><p style="font-size:14px; margin-bottom:8px;">${i+1}. ${q}:</p><div class="grid-opts"><div class="sq-opt" onclick="sel(this)">خيار أ</div><div class="sq-opt" onclick="sel(this)">خيار ب</div></div></div>`;
+        });
+        const ws = document.getElementById('wilayaSel');
+        wilayas.forEach((n, i) => ws.innerHTML += `<option value="${i+1}">${i+1} - ${n}</option>`);
+        refresh();
+    }
+
+    function sel(el) { el.parentElement.querySelectorAll('.sq-opt').forEach(o => o.classList.remove('active')); el.classList.add('active'); }
+
     function send() {
-        const u = document.getElementById('userName').value;
-        const w = document.getElementById('wilaya').value;
-        const c = document.getElementById('city').value;
-        if(!u || !w || !c) { alert("أكمل البيانات"); return; }
-        const msg = `*طلب جديد V8 LUXURY*%0A------------------%0A*الاسم:* ${document.getElementById('custName').value}%0A*القارورة:* ${bT}%0A*الحجم:* ${bSize}%0A*الإجمالي:* ${bP+ship} دج%0A------------------%0A*الزبون:* ${u}%0A*الولاية:* ${w}%0A*البلدية:* ${c}`;
+        const u = document.getElementById('custName').value, w = document.getElementById('wilayaSel').value, n = document.getElementById('pName').value;
+        if(!u || !w) return alert("يرجى إكمال البيانات");
+        const com = (w === "26") ? document.getElementById('comSel').value : "";
+        const msg = `*طلب V8 LUXURY*%0A*الاسم المطبوع:* ${n}%0A*الحجم:* ${size}%0A*الولاية:* ${w}%0A*البلدية:* ${com}%0A*الإجمالي:* ${price+ship} دج%0A*الزبون:* ${u}`;
         window.open(`https://wa.me/213783147002?text=${msg}`);
     }
     init();
