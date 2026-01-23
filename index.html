@@ -10,41 +10,25 @@
         :root { --gold: #d4af37; --bg: #000; --card: #111; --border: #222; --success: #28a745; }
         body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 120px; text-align: right; user-select: none; }
         .container { max-width: 600px; margin: auto; padding: 15px; }
-        
-        /* شريط التقدم */
         .progress-container { position: sticky; top: 0; z-index: 2000; background: #000; padding: 10px 0; border-bottom: 1px solid #111; }
         .progress-bar { height: 4px; background: #222; border-radius: 2px; overflow: hidden; }
         #progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.4s; box-shadow: 0 0 10px var(--gold); }
-
         .logo-v8 { font-family: 'Jomhuria'; font-size: 85px; color: var(--gold); text-align: center; line-height: 0.6; margin: 20px 0; }
-        
         .section-title { color: var(--gold); border-right: 3px solid var(--gold); padding-right: 10px; margin: 35px 0 15px; font-size: 14px; font-weight: bold; }
-        
-        /* شبكة الخيارات */
         .quiz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
         .opt-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 5px; text-align: center; cursor: pointer; font-size: 11px; color: #777; transition: 0.2s; min-height: 48px; display: flex; align-items: center; justify-content: center; }
         .opt-box.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; transform: scale(0.96); }
-
-        /* منطقة المعاينة والقارورة */
         .preview-box { text-align: center; margin: 25px 0; padding: 45px 20px; background: radial-gradient(circle, #0a0a0a 0%, #000 100%); border-radius: 30px; border: 1px solid #1a1a1a; position: relative; }
         .bottle { width: 125px; height: 185px; border: 3px solid var(--gold); border-radius: 10px 10px 55px 55px; margin: 0 auto; display: flex; align-items: center; justify-content: center; position: relative; background: #000; transition: 0.4s; }
         .cap { width: 55px; height: 38px; background: var(--gold); position: absolute; top: -40px; left: 50%; transform: translateX(-50%); border-radius: 4px; }
         #bottleText { background: #fff; color: #000; padding: 6px 12px; font-size: 15px; min-width: 70px; max-width: 90%; word-wrap: break-word; box-shadow: 0 5px 15px rgba(0,0,0,0.6); }
-
-        /* سكرول الخطوط */
         .font-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 250px; overflow-y: auto; background: #080808; padding: 12px; border-radius: 15px; border: 1px solid #1a1a1a; margin-top: 10px; }
         .font-option { background: #111; padding: 14px; border-radius: 8px; cursor: pointer; text-align: center; font-size: 14px; color: #555; border: 1px solid #222; transition: 0.2s; }
         .font-option.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; }
-
         input, select, textarea { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: #080808; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; box-sizing: border-box; font-size: 14px; }
-        input:focus { border-color: var(--gold); outline: none; }
-
         .add-btn { background: var(--success); color: #fff; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .cart-box { background: #0a0a0a; border: 2px solid var(--gold); border-radius: 20px; padding: 20px; margin-top: 30px; display: none; }
         .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; margin-top: 25px; box-shadow: 0 10px 30px rgba(212,175,55,0.3); }
-
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -77,8 +61,7 @@
     </div>
 
     <div class="section-title">🖋️ تخصيص الهوية (الاسم والخط)</div>
-    <input type="text" id="pName" placeholder="اكتب الاسم المطلوب حفره هنا..." oninput="up()">
-    
+    <input type="text" id="pName" placeholder="اكتب الاسم المطلوب حفره على الزجاجة..." oninput="up()">
     <div class="font-selector" id="fontList"></div>
 
     <div class="preview-box">
@@ -90,7 +73,6 @@
     </div>
 
     <textarea id="specialNotes" placeholder="أي إضافات أو ملاحظات خاصة بك..."></textarea>
-
     <button class="add-btn" onclick="addToCart()">➕ حفظ التصميم وإضافته للسلة</button>
 
     <div class="cart-box" id="cartSection">
@@ -101,8 +83,9 @@
     </div>
 
     <div class="section-title">📍 معلومات الاستلام والشحن</div>
-    <input type="text" id="custName" placeholder="الاسم الكامل">
+    <input type="text" id="custName" placeholder="الاسم واللقب الكامل">
     <select id="wil" onchange="handleW()"></select>
+    <input type="text" id="commune" placeholder="البلدية">
     <input type="tel" id="phone" placeholder="رقم الهاتف">
 
     <button class="order-btn" onclick="sendOrder()">إرسال الطلب عبر واتساب 🚀</button>
@@ -116,7 +99,7 @@
     const quizData = [
         {q: "الجنس", a: ["ذكر", "أنثى", "للجنسين", "طفل", "هدية لرجل", "هدية لامرأة"]},
         {q: "عائلة النوتات", a: ["أخشاب وعود", "زهور فرنسية", "بخور شرقي", "حمضيات منعشة", "تبغ وجلود", "فانيليا وسكر", "مسك بودري", "نوتات بحرية"]},
-        {q: "الفوحان", a: ["نووي", "فائق", "ملحوظ", "متوازن", "هادئ", "شخصي خفيف"]},
+        {q: "الفوحان", a: ["نووي", "فائق", "ملحوظ", "متوازن", "هادئ", "خجول"]},
         {q: "الثبات", a: ["+48 ساعة", "24 ساعة", "12 ساعة", "8 ساعات", "6 ساعات"]},
         {q: "الشخصية", a: ["قيادي", "رومنسي", "غامض", "اجتماعي", "رياضي", "كلاسيكي", "متمرد", "هادئ"]},
         {q: "البيئة", a: ["مكتب", "أفراح", "يومي", "نادي رياضي", "لقاء خاص", "منزل", "سفر"]},
@@ -186,9 +169,9 @@
     function up() { document.getElementById('bottleText').innerText = document.getElementById('pName').value || "V8 LUXURY"; }
 
     function addToCart() {
-        if(Object.keys(currentSels).length < 28) return alert("يرجى الإجابة على جميع الأسئلة الـ 28 لتصميم عطرك.");
+        if(Object.keys(currentSels).length < 28) return alert("يرجى الإجابة على جميع الأسئلة لتصميم عطرك.");
         cart.push({ size, price, font: selectedFont, label: document.getElementById('pName').value || "V8 LUXURY", notes: document.getElementById('specialNotes').value, details: {...currentSels} });
-        updateCart(); alert("تم حفظ التصميم بنجاح ✅");
+        updateCart(); alert("تم حفظ التصميم في السلة ✅");
     }
 
     function updateCart() {
@@ -209,12 +192,16 @@
     }
 
     function sendOrder() {
-        const n = document.getElementById('custName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text, ph = document.getElementById('phone').value;
-        if(!cart.length || !n || !ph || !w) return alert("يرجى ملء معلومات الشحن وحفظ تصميم واحد على الأقل.");
-        let msg = `*طلب جديد: V8 LUXURY*%0A*المستلم:* ${n}%0A*الولاية:* ${w}%0A*الهاتف:* ${ph}%0A%0A`;
+        const n = document.getElementById('custName').value, 
+              w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text, 
+              com = document.getElementById('commune').value,
+              ph = document.getElementById('phone').value;
+        
+        if(!cart.length || !n || !ph || !w || !com) return alert("يرجى ملء كافة معلومات الشحن وحفظ التصميم.");
+        
+        let msg = `*طلب جديد: V8 LUXURY*%0A*الاسم واللقب:* ${n}%0A*الولاية:* ${w}%0A*البلدية:* ${com}%0A*الهاتف:* ${ph}%0A%0A`;
         cart.forEach((it, i) => {
             msg += `*--- العطر ${i+1} ---*%0A*الحجم:* ${it.size}%0A*اسم الحفر:* ${it.label}%0A*الخط:* ${it.font}%0A`;
-            if(it.notes) msg += `📝 ملاحظة: ${it.notes}%0A`;
             for (const [q, v] of Object.entries(it.details)) msg += `▪️ ${q}: ${v}%0A`;
             msg += `%0A`;
         });
