@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V8 LUXURY | الإصدار النهائي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Jomhuria&family=Vibes&display=swap" rel="stylesheet">
+    <title>V8 LUXURY | THE MASTERPIECE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Vibes&family=Jomhuria&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Mada:wght@700&family=Kufam:wght@700&family=Changa:wght@700&family=Rakkas&family=Scheherazade+New:wght@700&family=El+Messiri:wght@700&family=Harmattan&family=Lateef&family=Mirza:wght@700&family=Katibeh:wght@700&family=Tulpen+One&family=Lobster&family=Pacifico&family=Dancing+Script:wght@700&family=Great+Vibes&family=Playball&family=Satisfy&family=Kaushan+Script&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --bg: #000; --card: #111; --red: #c0392b; }
+        :root { --gold: #d4af37; --bg: #000; --card: #111; }
         body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 100px; text-align: right; }
         .container { max-width: 550px; margin: auto; padding: 15px; }
         .mystery-bar { background: linear-gradient(45deg, #1a1a1a, #d4af37, #1a1a1a); color: #000; text-align: center; padding: 12px; font-weight: bold; font-size: 13px; position: sticky; top: 0; z-index: 1000; }
         .logo-area { text-align: center; padding: 20px 0; }
         .logo-v8 { font-family: 'Jomhuria'; font-size: 70px; color: var(--gold); line-height: 0.8; }
         .section-title { color: var(--gold); border-right: 4px solid var(--gold); padding-right: 12px; margin: 30px 0 15px; font-size: 18px; }
-
-        .grid-style { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 8px; }
+        .grid-style { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 8px; margin-bottom: 15px; }
         .opt-box { background: var(--card); border: 1px solid #222; border-radius: 8px; padding: 12px 2px; text-align: center; cursor: pointer; font-size: 10px; color: #888; transition: 0.3s; }
         .opt-box.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; transform: scale(1.05); }
         .mystery-opt { grid-column: span 2; background: linear-gradient(45deg, #000, #222) !important; color: var(--gold) !important; border: 2px solid var(--gold) !important; }
-
-        .preview-container { height: 350px; display: flex; align-items: center; justify-content: center; margin: 30px 0; }
+        .preview-container { height: 350px; display: flex; align-items: center; justify-content: center; margin: 20px 0; }
         .bottle-preview { background: radial-gradient(circle, #333, #000); border: 2px solid var(--gold); border-radius: 20px 20px 80px 80px; padding: 50px 20px; text-align: center; transition: 0.6s; position: relative; }
         .mystery-mode { border-radius: 20px !important; background: linear-gradient(135deg, #111, #d4af37, #111) !important; }
         #overlay { background: #fff; color: #000; padding: 5px 15px; font-weight: bold; display: inline-block; border: 1px solid var(--gold); }
-
         input, select { width: 100%; padding: 16px; border-radius: 10px; border: 1px solid #333; background: #080808; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; }
         .cart-section { background: #0a0a0a; border: 2px solid var(--gold); border-radius: 20px; padding: 20px; margin-top: 30px; display: none; }
-        .cart-item { border-bottom: 1px solid #222; padding: 10px 0; display: flex; justify-content: space-between; font-size: 12px; }
+        .cart-item { border-bottom: 1px solid #333; padding: 12px 0; font-size: 12px; }
         .add-to-cart-btn { background: #1b5e20; color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; }
         .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 24px; font-weight: bold; cursor: pointer; margin-top: 25px; }
     </style>
 </head>
 <body>
 
-<div class="mystery-bar">🎭 عرض الأسرار: صندوق VIP بـ 3500 دج وشحن مجاني!</div>
+<div class="mystery-bar">🎭 عرض الأسرار: صندوق VIP بـ 3500 دج + شحن مجاني!</div>
 
 <div class="container">
     <div class="logo-area"><div class="logo-v8">V8 LUXURY</div></div>
@@ -41,115 +38,111 @@
     <div class="section-title">🧪 1. اختبار تحليل الشخصية والعطر (16 سؤال)</div>
     <div id="quizContainer"></div>
 
-    <div class="section-title">📏 2. اختر الحجم المناسب أو العرض الملكي</div>
+    <div class="section-title">📏 2. اختر الحجم المناسب</div>
     <div class="grid-style">
-        <div class="opt-box mystery-opt" onclick="setP(this, 'الصندوق الملكي الغامض', 3500, 1.2, true)">🎁 THE MYSTERY BOX<br>4 قطع (3500دج)</div>
-        <div class="opt-box" onclick="setP(this, '5ml', 200, 0.45)">5ml<br>200دج</div>
-        <div class="opt-box" onclick="setP(this, '10ml', 250, 0.55)">10ml<br>250دج</div>
-        <div class="opt-box" onclick="setP(this, '20ml', 350, 0.65)">20ml<br>350دج</div>
-        <div class="opt-box" onclick="setP(this, '30ml', 500, 0.75)">30ml<br>500دج</div>
-        <div class="opt-box active" onclick="setP(this, '50ml', 700, 1.0)">50ml<br>700دج</div>
-        <div class="opt-box" onclick="setP(this, '75ml', 850, 1.15)">75ml<br>850دج</div>
-        <div class="opt-box" onclick="setP(this, '100ml', 1000, 1.3)">100ml<br>1000دج</div>
-        <div class="opt-box" onclick="setP(this, '150ml', 1100, 1.45)">150ml<br>1100دج</div>
-        <div class="opt-box" onclick="setP(this, '200ml', 1200, 1.6)">200ml<br>1200دج</div>
+        <div class="opt-box mystery-opt" onclick="setP(this, 'الصندوق الملكي الغامض (4 قطع)', 3500, 1.2, true)">🎁 THE MYSTERY BOX (3500 دج)</div>
+        <div class="opt-box" onclick="setP(this, '5ml', 200, 0.45)">5ml</div>
+        <div class="opt-box" onclick="setP(this, '10ml', 250, 0.55)">10ml</div>
+        <div class="opt-box" onclick="setP(this, '20ml', 350, 0.65)">20ml</div>
+        <div class="opt-box" onclick="setP(this, '30ml', 500, 0.75)">30ml</div>
+        <div class="opt-box active" onclick="setP(this, '50ml', 700, 1.0)">50ml</div>
+        <div class="opt-box" onclick="setP(this, '75ml', 850, 1.15)">75ml</div>
+        <div class="opt-box" onclick="setP(this, '100ml', 1000, 1.3)">100ml</div>
+        <div class="opt-box" onclick="setP(this, '150ml', 1100, 1.45)">150ml</div>
+        <div class="opt-box" onclick="setP(this, '200ml', 1200, 1.6)">200ml</div>
     </div>
 
-    <div class="section-title">✍️ 3. التخصيص والمعاينة البصرية</div>
-    <input type="text" id="pName" placeholder="الاسم المراد طباعته على القارورة..." oninput="up()">
+    <div class="section-title">✍️ 3. التخصيص والمعاينة (30 خطاً)</div>
+    <input type="text" id="pName" placeholder="الاسم للطباعة..." oninput="up()">
     <select id="fSel" onchange="up()">
-        <option value="'Cairo'">خط عصري Modern</option>
-        <option value="'Vibes'">خط توقيع Signature</option>
-        <option value="'Amiri'">خط ملكي Royal</option>
+        <optgroup label="خطوط عربية ملكية">
+            <option value="'Cairo'">1. كايرو</option><option value="'Amiri'">2. أميري</option>
+            <option value="'Aref Ruqaa'">3. رقعة</option><option value="'Reem Kufi'">4. كوفي</option>
+            <option value="'Jomhuria'">5. الجمهورية</option><option value="'Tajawal'">6. تجول</option>
+            <option value="'Almarai'">7. مراعي</option><option value="'Lemonada'">8. ليمونادة</option>
+            <option value="'Rakkas'">9. رقاص</option><option value="'Changa'">10. شانغا</option>
+            <option value="'Lateef'">11. لطيف</option><option value="'Harmattan'">12. هرمتان</option>
+            <option value="'Katibeh'">13. كاتبة</option><option value="'Mirza'">14. ميرزا</option>
+            <option value="'Scheherazade New'">15. شهرزاد</option>
+        </optgroup>
+        <optgroup label="VIP Latin & Signature">
+            <option value="'Vibes'">16. Signature</option><option value="'Lobster'">17. Lobster</option>
+            <option value="'Pacifico'">18. Pacifico</option><option value="'Dancing Script'">19. Dancing</option>
+            <option value="'Satisfy'">20. Satisfy</option><option value="'Kaushan Script'">21. Kaushan</option>
+            <option value="'Great Vibes'">22. Great Vibes</option><option value="'Playball'">23. Playball</option>
+            <option value="'Satisfy'">24. Luxury Script</option><option value="'Shadows Into Light'">25. Shadows</option>
+            <option value="'Tulpen One'">26. Slim VIP</option><option value="'Mada'">27. Mada</option>
+            <option value="'Kufam'">28. Kufam</option><option value="'El Messiri'">29. Messiri</option>
+            <option value="'Cairo'">30. Classic V8</option>
+        </optgroup>
     </select>
 
     <div class="preview-container">
         <div class="bottle-preview" id="bottle">
-            <div id="cap" style="width:30px; height:15px; background:var(--gold); margin:-75px auto 15px; border-radius:2px;"></div>
             <span id="icon" style="font-size: 50px;">💎</span><br>
             <div id="overlay">V8 LUXURY</div>
-            <div id="scent-label" style="margin-top:10px; color:var(--gold); font-size:12px;">جاري تحليل ذوقك...</div>
         </div>
     </div>
 
-    <button class="add-to-cart-btn" onclick="addToCart()">🛒 إضافة هذه التشكيلة للسلة</button>
+    <button class="add-to-cart-btn" onclick="addToCart()">➕ إضافة القارورة للسلة</button>
 
     <div class="cart-section" id="cartSection">
-        <h3 style="color:var(--gold)">🛒 طلبياتك المحفوظة:</h3>
+        <h3 style="color:var(--gold)">🛒 طلبياتك في السلة:</h3>
         <div id="cartItems"></div>
-        <div style="text-align:center; font-size:22px; color:var(--gold); margin-top:15px;" id="totalDisplay">المجموع: 0 دج</div>
+        <div style="text-align:center; font-size:20px; color:var(--gold); margin-top:15px;" id="totalDisplay"></div>
     </div>
 
-    <div class="section-title">📍 4. معلومات التوصيل (58 ولاية)</div>
+    <div class="section-title">📍 4. معلومات التوصيل</div>
     <input type="text" id="custName" placeholder="الاسم الكامل">
     <select id="wil" onchange="handleW()"></select>
-    <input type="text" id="addr" placeholder="العنوان بالتفصيل (البلدية والحي)">
-    <div id="shipD" style="text-align:center; color:#888; margin-top:10px;">الشحن: 500 دج</div>
-
-    <button class="order-btn" onclick="sendOrder()">تأكيد الطلب عبر واتساب 🚀</button>
+    <input type="text" id="addr" placeholder="العنوان (البلدية والحي)">
+    
+    <button class="order-btn" onclick="sendOrder()">تأكيد الطلب الكلي (واتساب) 🚀</button>
 </div>
 
 <script>
-    let price=700, size="50ml", scent="مخصص", ship=500, cart=[], isM=false;
-    const wilayas = ["أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار", "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو", "الجزائر العاصمة", "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر", "ورقلة", "وهران", "البيض", "إليزي", "برج بوعريريج", "بومرداس", "الطارف", "تندوف", "تيسمسيلت", "الوادي", "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "عين تموشنت", "غرداية", "غليزان", "تيميمون", "برج باجي مختار", "أولاد جلال", "بني عباس", "إن صالح", "إن قزام", "تقرت", "جانت", "المغير", "المنيعة"];
+    let price=700, size="50ml", ship=500, cart=[], isM=false, currentSels={};
+    const wilayas = ["أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار", "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وجو", "الجزائر", "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر", "ورقلة", "وهران", "البيض", "إليزي", "ب.ب.مختار", "بومرداس", "الطارف", "تندوف", "تيسمسيلت", "الوادي", "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "ع.تموشنت", "غرداية", "غليزان", "تيميمون", "ب.ب.عريج", "أولاد جلال", "بني عباس", "إن صالح", "إن قزام", "تقرت", "جانت", "المغير", "المنيعة"];
     
-    const questions = [
-        {q: "الجنس (لمن العطر؟)", a: ["ذكر", "أنثى", "للجنسين", "طفل", "هدية"]},
-        {q: "قوة الشخصية؟", a: ["هادئ", "اجتماعي", "قيادي", "غامض", "حالم"]},
-        {q: "الانطباع المطلوب؟", a: ["نظافة", "فخامة", "قوة", "دفء", "انتعاش"]},
-        {q: "الوقت المفضل؟", a: ["صباح", "ظهيرة", "مساء", "سهرة", "كل وقت"]},
-        {q: "المكان؟", a: ["عمل", "خروجات", "مناسبات", "رياضة", "يومي"]},
-        {q: "الروائح المفضلة؟", a: ["أخشاب", "ورد", "بحر", "بخور", "فواكه"]},
-        {q: "نوع الثبات؟", a: ["6 ساعات", "12 ساعة", "يوم كامل", "ثبات فائق", "متوسط"]},
-        {q: "الفصل الحالي؟", a: ["شتاء", "صيف", "خريف", "ربيع", "كل الفصول"]},
-        {q: "ستايل اللباس؟", a: ["كلاسيك", "كاجوال", "رياضي", "عصري", "تقليدي"]},
-        {q: "العمر؟", a: ["تحت 20", "20-30", "30-45", "45+", "VIP"]},
-        {q: "طبيعة البشرة؟", a: ["دهنية", "جافة", "عادية", "حساسة", "مختلطة"]},
-        {q: "التجربة السابقة؟", a: ["أول مرة", "خبير عطور", "هاوي", "أبحث عن تميز", "عادي"]},
-        {q: "الميزانية المخصصة؟", a: ["اقتصادية", "متوسطة", "فاخرة", "مفتوحة", "أفضل سعر"]},
-        {q: "الغرض من الشراء؟", a: ["شخصي", "هدية صديق", "هدية شريك", "هدية رسمية", "تغليف VIP"]},
-        {q: "تركيز العطر؟", a: ["خفيف", "متوسط", "قوي جداً", "زيتي", "بارفان"]},
-        {q: "اللمسة النهائية؟", a: ["تغليف بسيط", "تغليف ملكي", "صندوق خشبي", "بطاقة إهداء", "بدون تغليف"]}
-    ];
+    const qs = ["الجنس", "الشخصية", "الانطباع", "الوقت", "المكان", "الروائح", "الثبات", "الفصل", "اللباس", "العمر", "البشرة", "الخبرة", "الميزانية", "الغرض", "التركيز", "التغليف"];
 
     function init() {
         const qC = document.getElementById('quizContainer');
-        questions.forEach((it, i) => {
+        qs.forEach((q, i) => {
             let opts = `<div class="grid-style">`;
-            it.a.forEach(opt => opts += `<div class="opt-box" onclick="sel(this)">${opt}</div>`);
-            qC.innerHTML += `<p style="font-size:11px; color:#666; margin:15px 0 5px;">${i+1}. ${it.q}</p>${opts}</div>`;
+            ["خيار A", "خيار B", "خيار C"].forEach(v => {
+                opts += `<div class="opt-box" onclick="rec(this, '${q}', '${v}')">${v}</div>`;
+            });
+            qC.innerHTML += `<p style="font-size:11px; margin:10px 0 5px; color:#666;">${i+1}. ${q}</p>${opts}</div>`;
         });
         const ws = document.getElementById('wil');
         ws.innerHTML = '<option value="">اختر الولاية</option>';
         wilayas.forEach((w, i) => ws.innerHTML += `<option value="${i+1}">${i+1} - ${w}</option>`);
-        up();
     }
 
-    function sel(el) {
+    function rec(el, q, v) {
         el.parentElement.querySelectorAll('.opt-box').forEach(o=>o.classList.remove('active'));
         el.classList.add('active');
-        const scs = ["شرقي ملكي", "منعش بحري", "خشب وجلود", "مسك نقي"];
-        scent = scs[Math.floor(Math.random()*scs.length)];
-        document.getElementById('scent-label').innerText = "التحليل: " + scent;
+        currentSels[q] = v;
     }
 
     function setP(el, sz, np, sc, mystery=false) {
         el.parentElement.querySelectorAll('.opt-box').forEach(o=>o.classList.remove('active'));
         el.classList.add('active'); price=np; size=sz; isM=mystery;
-        const b = document.getElementById('bottle');
-        if(mystery) {
-            b.classList.add('mystery-mode'); document.getElementById('icon').innerText="🎁";
-            document.getElementById('cap').style.opacity="0"; ship=0;
-        } else {
-            b.classList.remove('mystery-mode'); document.getElementById('icon').innerText="💎";
-            document.getElementById('cap').style.opacity="1"; handleW();
-        }
-        b.style.transform = `scale(${sc})`; up();
+        document.getElementById('bottle').classList.toggle('mystery-mode', mystery);
+        document.getElementById('bottle').style.transform = `scale(${sc})`;
+        handleW();
     }
 
     function addToCart() {
-        cart.push({ size: size, price: price, scent: scent, name: document.getElementById('pName').value || "V8 User" });
-        updateCart(); alert("تم الحفظ في السلة 🛒");
+        if(Object.keys(currentSels).length < 1) return alert("يرجى اختيار بعض مواصفات العطر");
+        cart.push({
+            size: size, price: price, 
+            name: document.getElementById('pName').value || "V8",
+            details: {...currentSels}
+        });
+        updateCart(); alert("تمت إضافة القارورة للسلة 🛒");
+        currentSels = {}; document.querySelectorAll('#quizContainer .opt-box').forEach(o=>o.classList.remove('active'));
     }
 
     function updateCart() {
@@ -158,16 +151,15 @@
         container.innerHTML = ""; let total = 0;
         cart.forEach((item, i) => {
             total += item.price;
-            container.innerHTML += `<div class="cart-item"><span>#${i+1} ${item.size} (${item.name})</span><span>${item.price} دج</span></div>`;
+            container.innerHTML += `<div class="cart-item"><b>${i+1}. ${item.size} (${item.name})</b></div>`;
         });
-        document.getElementById('totalDisplay').innerText = `المجموع الكلي: ${total + ship} دج`;
+        document.getElementById('totalDisplay').innerText = `المجموع: ${total + ship} دج`;
     }
 
     function handleW() {
         const w = document.getElementById('wil').value;
         const hasM = cart.some(i => i.size.includes("الصندوق")) || isM;
         ship = (w === "26" || hasM) ? 0 : 500;
-        document.getElementById('shipD').innerText = ship === 0 ? "الشحن: مجاني ✅" : "الشحن: 500 دج";
         updateCart();
     }
 
@@ -178,13 +170,15 @@
 
     function sendOrder() {
         const c = document.getElementById('custName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text;
-        if(!cart.length || !c || !w) return alert("يرجى ملء السلة ومعلومات التوصيل");
-        let txt = ""; let total = 0;
+        if(!cart.length || !c) return alert("أكمل الطلب أولاً");
+        
+        let msg = `*طلب عطور V8 LUXURY الجديد*%0A*العميل:* ${c}%0A*الولاية:* ${w}%0A%0A`;
         cart.forEach((item, i) => {
-            txt += `📦 ${i+1}: ${item.size} | الاسم: ${item.name} | النوع: ${item.scent}%0A`;
-            total += item.price;
+            msg += `*--- القارورة ${i+1} (${item.size}) ---*%0A- الاسم: ${item.name}%0A*الاختيارات:*%0A`;
+            for (const [q, v] of Object.entries(item.details)) msg += `🔹 ${q}: ${v}%0A`;
+            msg += `%0A`;
         });
-        const msg = `*طلب V8 LUXURY*%0A*العميل:* ${c}%0A*الولاية:* ${w}%0A%0A${txt}*المجموع النهائي:* ${total+ship} دج`;
+        
         window.open(`https://wa.me/213783147002?text=${msg}`);
     }
     init();
