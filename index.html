@@ -2,233 +2,140 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Perfume Lab Pro - Médéa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+    <title>V8 LUXURY - المتجر الرسمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Tajawal:wght@700&family=Reem+Kufi&family=Aref+Ruqaa:wght@700&family=Lemonada:wght@600&family=Changa:wght@500&family=Lalezar&family=Kufam:wght@600&family=Qahiri&display=swap" rel="stylesheet">
     <style>
-        :root{--gold:#d4af37;--bg:#000;--card:#111;--input:#1a1a1a;--green:#27ae60;}
-        body{font-family:'Cairo',sans-serif;background:var(--bg);color:#fff;margin:0;padding-bottom:170px;direction:rtl;}
-        .header{text-align:center;padding:25px;border-bottom:1px solid #222;}
-        .header h1{font-family:'Amiri',serif;color:var(--gold);font-size:28px;margin:0;}
+        :root { --gold: #d4af37; --dark: #000; --card: #111; }
+        body { font-family: 'Cairo', sans-serif; background: var(--dark); color: #fff; margin: 0; padding: 0 0 140px; }
         
-        /* شريط التقدم */
-        .progress-container { position: sticky; top: 0; z-index: 1001; background: rgba(0,0,0,0.95); padding: 10px 15px; border-bottom: 1px solid #222; }
-        .progress-bg { background: #222; height: 6px; border-radius: 10px; }
-        .progress-fill { background: var(--gold); height: 100%; width: 0%; transition: 0.4s; box-shadow: 0 0 10px var(--gold); }
-        .progress-text { font-size: 11px; color: var(--gold); margin-top: 5px; text-align: center; }
+        header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--gold); background: linear-gradient(to bottom, #151515, #000); }
+        header h1 { color: var(--gold); margin: 0; font-size: 35px; letter-spacing: 4px; }
+        
+        .container { padding: 0 15px; max-width: 600px; margin: auto; }
+        .section-title { color: var(--gold); margin: 35px 0 15px; font-size: 20px; font-weight: bold; border-right: 5px solid var(--gold); padding-right: 15px; }
+        
+        .box { background: var(--card); border-radius: 25px; padding: 25px; border: 1px solid #222; margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        label { display: block; margin-bottom: 10px; font-size: 14px; color: #aaa; }
+        
+        select, input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; font-family: 'Cairo'; margin-bottom: 20px; font-size: 16px; outline: none; transition: 0.3s; }
+        select:focus, input:focus { border-color: var(--gold); }
 
-        .container{padding:15px;max-width:600px;margin:auto;}
-        .card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:20px;border:1px solid #222;}
-        .section-title{color:var(--gold);font-size:16px;font-weight:700;margin-bottom:15px;border-right:4px solid var(--gold);padding-right:12px;}
-        .question-label {display: block; font-size: 14px; color: #fff; margin-bottom: 12px; font-weight: bold;}
-        .options-grid {display: flex; flex-wrap: wrap; gap: 8px;}
-        .option-box {flex: 1; min-width: 100px; background: var(--input); border: 1px solid #333; padding: 12px 8px; border-radius: 10px; text-align: center; font-size: 11px; cursor: pointer; transition: 0.3s; color: #bbb;}
-        .option-box.selected {background: rgba(212, 175, 55, 0.15); border-color: var(--gold); color: var(--gold); font-weight: bold;}
-        .option-box.promo { border-color: var(--green); color: var(--green); }
+        /* استوديو المعاينة */
+        .preview-area { background: radial-gradient(circle, #222 0%, #000 100%); border: 2px solid var(--gold); border-radius: 20px; padding: 50px 10px; text-align: center; margin: 20px 0; }
+        #textPreview { font-size: 35px; color: var(--gold); display: block; min-height: 55px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
 
-        /* حقل الكتابة فوق القارورة مباشرة */
-        .custom-name-input {
-            background: #1a1a1a;
-            border: 2px solid var(--gold);
-            color: #fff;
-            padding: 15px;
-            border-radius: 12px;
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            font-size: 16px;
-            margin-bottom: 20px;
-            font-family: 'Cairo';
-        }
+        /* أنماط الخطوط */
+        .f1 { font-family: 'Cairo'; } .f2 { font-family: 'Amiri'; } .f3 { font-family: 'Aref Ruqaa'; }
+        .f4 { font-family: 'Reem Kufi'; } .f5 { font-family: 'Qahiri'; } .f6 { font-family: 'Lemonada'; }
+        .f7 { font-family: 'Lalezar'; } .f8 { font-family: 'Changa'; }
 
-        /* معاينة القارورة */
-        .bottle-preview {
-            background: radial-gradient(circle, #222 0%, #000 100%);
-            height: 280px; border-radius: 20px; position: relative; margin: 10px 0;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #333;
-        }
-        .bottle-shape {
-            width: 110px; height: 160px; border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 10px;
-            position: relative; background: rgba(255,255,255,0.03); display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        .bottle-cap { width: 38px; height: 32px; background: var(--gold); position: absolute; top: -34px; border-radius: 4px; }
-        .label-perfume { font-family: 'Amiri', serif; color: var(--gold); font-size: 11px; text-align: center; font-weight: bold; margin-bottom: 10px; }
-        .label-owner { font-family: 'Monsieur La Doulaise', cursive; color: #fff; font-size: 22px; text-align: center; width: 100%; word-break: break-all; }
+        /* زر الإرسال */
+        .confirm-btn { background: linear-gradient(135deg, var(--gold), #b8962e); color: #000; border: none; border-radius: 18px; padding: 22px; font-size: 22px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.4s; }
+        .confirm-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(212,175,55,0.4); }
 
-        select, input[type="text"], input[type="tel"] {width:100%; background:var(--input); border:1px solid #333; color:#fff; padding:14px; border-radius:12px; font-family:'Cairo'; box-sizing:border-box; outline:none; margin-bottom:12px;}
-
-        .price-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(15px);padding:20px;border-top:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:1000;}
-        .total-price{font-size:24px;font-weight:700;color:var(--gold);}
-        .ship-info { font-size: 10px; color: #888; }
-        .btn-order{background:var(--gold);color:#000;border:none;padding:15px 40px;border-radius:12px;font-weight:700;cursor:pointer;}
+        .trust-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; border-top: 2px solid var(--gold); display: flex; justify-content: space-around; padding: 20px 0; z-index: 1000; font-size: 13px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>PERFUME LAB PRO</h1>
-    <p style="color:#666;font-size:11px;">هندسة الروائح الشخصية - Médéa</p>
-</div>
-
-<div class="progress-container">
-    <div class="progress-bg"><div class="progress-fill" id="p-bar"></div></div>
-    <div class="progress-text" id="p-text">تحليل الشخصية: 0/16</div>
-</div>
+<header>
+    <h1>V8 LUXURY</h1>
+    <p style="color:#888;">عطور مخصصة لشخصيتك الفريدة</p>
+</header>
 
 <div class="container">
-    <div class="card">
-        <div class="section-title">🔬 ميثاق التحليل (16 سؤالاً)</div>
-        <div id="questions-container"></div>
-    </div>
+    
+    <div class="section-title">🧪 تخصيص الرائحة (16 سؤالاً)</div>
+    <div class="box" id="questionsBox"></div>
 
-    <div class="card">
-        <div class="section-title">📦 اختيار العرض والحجم</div>
-        <div class="options-grid" id="size-options">
-            <div class="option-box selected" onclick="selectSize(this, 500)">30ml (500 DA)</div>
-            <div class="option-box" onclick="selectSize(this, 700)">50ml (700 DA)</div>
-            <div class="option-box" onclick="selectSize(this, 1000)">100ml (1000 DA)</div>
-            <div class="option-box promo" onclick="selectSize(this, 2500)">💥 Pack x3 (2500 DA)</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="section-title">✨ تخصيص القارورة النهائي</div>
+    <div class="section-title">✍️ تصميم اسمك والخط</div>
+    <div class="box">
+        <label>الاسم المراد طباعته على الزجاجة:</label>
+        <input type="text" id="custText" placeholder="اكتب هنا (مثلاً: الملكي)" oninput="updateLive()">
         
-        <label class="question-label">اكتب الاسم الذي سيظهر على الزجاجة:</label>
-        <input type="text" class="custom-name-input" id="ownerName" placeholder="أدخل اسمك هنا..." oninput="updateBottleName(this.value)">
-
-        <div class="bottle-preview">
-            <div class="bottle-shape">
-                <div class="bottle-cap"></div>
-                <div class="label-perfume" id="view-perfume">العطر المختار</div>
-                <div class="label-owner" id="view-name">Signature</div>
-            </div>
-            <p style="font-size: 9px; color: #555; margin-top: 10px;">معاينة التصميم الحي</p>
+        <label>اختر نوع الخط المفضل:</label>
+        <select id="fontSelect" onchange="updateLive()">
+            <option value="f1">خط عصري (Cairo)</option>
+            <option value="f2">خط ملكي كلاسيكي (Amiri)</option>
+            <option value="f3">خط الرقعة التراثي (Ruqaa)</option>
+            <option value="f4">خط كوفي ناعم (Kufi)</option>
+            <option value="f5">خط هندسي فني (Qahiri)</option>
+            <option value="f6">خط انسيابي (Lemonada)</option>
+            <option value="f7">خط عريض بارز (Lalezar)</option>
+            <option value="f8">خط رقمي حديث (Changa)</option>
+        </select>
+        
+        <div class="preview-area">
+            <span id="textPreview">V8 LUXURY</span>
         </div>
     </div>
 
-    <div class="card">
-        <div class="section-title">📍 معلومات الشحن والتوصيل</div>
-        <select id="wilaya" onchange="updateShipping()">
-            <option value="">-- اختر الولاية --</option>
-        </select>
-        <input type="text" id="commune" placeholder="البلدية">
-        <input type="tel" id="phone" placeholder="رقم الهاتف">
+    <div class="section-title">🎁 عرض 4 قارورات (3500 دج)</div>
+    <div class="box" style="border: 2px solid var(--gold);">
+        <p style="text-align:center; font-size:13px; margin-bottom:15px; color:var(--gold);">اختر 4 عطور عالمية من القائمة:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;" id="perfumeSelections"></div>
     </div>
+
+    <div class="section-title">📍 معلومات الشحن</div>
+    <div class="box">
+        <input type="text" id="custName" placeholder="الاسم الكامل">
+        <select id="wilayaSelect"></select>
+        <input type="text" id="cityInput" placeholder="البلدية">
+        <button type="button" class="confirm-btn" onclick="sendOrder()">🚀 تأكيد الطلب عبر واتساب</button>
+    </div>
+
 </div>
 
-<div class="price-bar">
-    <div>
-        <span class="ship-info">التوصيل: <span id="shipDisplay">0</span> DA</span>
-        <div class="total-price"><span id="totalDisplay">500</span> DA</div>
-    </div>
-    <button class="btn-order" onclick="sendWA()">تأكيد الطلب 📩</button>
+<div class="trust-bar">
+    <div>🚚 توصيل 58 ولاية</div>
+    <div>💰 الدفع عند الاستلام</div>
+    <div>📞 0783147002</div>
 </div>
 
 <script>
-const wilayas = [
-    {n: "01- Adrar", p: 1000}, {n: "02- Chlef", p: 700}, {n: "03- Laghouat", p: 700}, {n: "04- Oum El Bouaghi", p: 700}, 
-    {n: "05- Batna", p: 700}, {n: "06- Bejaia", p: 700}, {n: "07- Biskra", p: 800}, {n: "08- Bechar", p: 1000}, 
-    {n: "09- Blida", p: 500}, {n: "10- Bouira", p: 500}, {n: "11- Tamanghasset", p: 1000}, {n: "12- Tebessa", p: 700}, 
-    {n: "13- Tlemcen", p: 700}, {n: "14- Tiaret", p: 700}, {n: "15- Tizi Ouzou", p: 500}, {n: "16- Alger", p: 500}, 
-    {n: "17- Djelfa", p: 500}, {n: "18- Jijel", p: 700}, {n: "19- Setif", p: 700}, {n: "20- Saida", p: 700}, 
-    {n: "21- Skikda", p: 700}, {n: "22- Sidi Bel Abbes", p: 700}, {n: "23- Annaba", p: 700}, {n: "24- Guelma", p: 700}, 
-    {n: "25- Constantine", p: 700}, {n: "26- Medea", p: 200}, {n: "27- Mostaganem", p: 700}, {n: "28- M'Sila", p: 500}, 
-    {n: "29- Mascara", p: 700}, {n: "30- Ouargla", p: 800}, {n: "31- Oran", p: 700}, {n: "32- El Bayadh", p: 800}, 
-    {n: "33- Illizi", p: 1000}, {n: "34- B.B.Arreridj", p: 700}, {n: "35- Boumerdes", p: 500}, {n: "36- El Tarf", p: 700}, 
-    {n: "37- Tindouf", p: 1000}, {n: "38- Tissemsilt", p: 700}, {n: "39- El Oued", p: 800}, {n: "40- Khenchela", p: 700}, 
-    {n: "41- Souk Ahras", p: 700}, {n: "42- Tipaza", p: 500}, {n: "43- Mila", p: 700}, {n: "44- Ain Defla", p: 500}, 
-    {n: "45- Naama", p: 800}, {n: "46- Ain Temouchent", p: 700}, {n: "47- Ghardaia", p: 800}, {n: "48- Relizane", p: 700},
-    {n: "49- Timimoun", p: 1000}, {n: "50- B.B.Mokhtar", p: 1000}, {n: "51- Ouled Djellal", p: 800}, {n: "52- Beni Abbes", p: 1000},
-    {n: "53- In Salah", p: 1000}, {n: "54- In Guezzam", p: 1000}, {n: "55- Touggourt", p: 800}, {n: "56- Djanet", p: 1000},
-    {n: "57- El M'Ghair", p: 800}, {n: "58- El Meniaa", p: 1000}
-];
+// الإعدادات الأساسية
+const perfumes = ["Sauvage Dior (رجالي)", "Blue de Chanel (رجالي)", "Creed Aventus (رجالي)", "Eros Versace (رجالي)", "Stronger With You (رجالي)", "Invictus Paco Rabanne (رجالي)", "212 VIP Black (رجالي)", "Terre d'Hermès (رجالي)", "La Vie Est Belle (نسائي)", "Si Giorgio Armani (نسائي)", "Libre YSL (نسائي)", "Black Opium (نسائي)", "Good Girl CH (نسائي)", "Scandal (نسائي)", "J'adore Dior (نسائي)", "Coco Mademoiselle (نسائي)", "Baccarat Rouge 540 (للجنسين)", "Ombre Nomade (للجنسين)", "Black Orchid (للجنسين)", "Tobacco Vanille (للجنسين)"];
+const wilayas = ["01-أدرار","02-الشلف","03-الأغواط","04-أم البواقي","05-باتنة","06-بجاية","07-بسكرة","08-بشار","09-البليدة","10-البويرة","11-تمنراست","12-تبسة","13-تلمسان","14-تيارت","15-تيزي وزو","16-الجزائر العاصمة","17-الجلفة","18-جيجل","19-سطيف","20-سعيدة","21-سكيكدة","22-سيدي بلعباس","23-عنابة","24-قالمة","25-قسنطينة","26-المدية","27-مستغانم","28-المسيلة","29-معسكر","30-ورقلة","31-وهران","32-البيض","33-إليزي","34-برج بوعريريج","35-بومرداس","36-الطارف","37-تندوف","38-تيسمسيلت","39-الوادي","40-خنشلة","41-سوق أهراس","42-تيبازة","43-ميلة","44-عين الدفلى","45-النعامة","46-عين تيموشنت","47-غرداية","48-غليزان","49-تيميمون","50-برج باجي مختار","51-أولاد جلال","52-بني عباس","53-عين صالح","54-عين قزام","55-تقرت","56-جانت","57-المغير","58-المنيعة"];
+const questions = ["الجنس", "نوع الشخصية", "الفصل المفضل", "درجة الفوحان", "وقت الاستخدام", "المناسبة", "اللون المفضل", "المدرسة العطرية", "النشاط اليومي", "الانطباع المطلوب", "الحالة المزاجية", "نوع البشرة", "الاهتمام بالتفاصيل", "ستايل اللباس", "العمر", "نوع الرائحة"];
 
-const questionsData = [
-    {id: 1, q: "لمن العطر؟", ops: ["رجل", "سيدة", "للجنسين"]},
-    {id: 2, q: "الهوية الشخصية", ops: ["كلاسيكي", "عصري", "غامض", "رياضي"]},
-    {id: 3, q: "وقت الاستخدام", ops: ["صباحي", "مسائي", "يومي"]},
-    {id: 4, q: "المدرسة العطرية", ops: ["فرنسية", "نيش فخم", "سكري", "شرقي"]},
-    {id: 5, q: "الحضور", ops: ["فواح جداً", "هادئ", "متزن"]},
-    {id: 6, q: "التوليفة", ops: ["أخشاب", "زهور", "فواكه", "توابل"]},
-    {id: 7, q: "الفصل", ops: ["شتاء", "صيف", "خريف", "ربيع"]},
-    {id: 8, q: "المكان", ops: ["العمل", "لقاء", "حفلة"]},
-    {id: 9, q: "نوتة القاعدة", ops: ["مسك", "عنبر", "عود", "فانيليا"]},
-    {id: 10, q: "اللون المفضل", ops: ["أسود", "أبيض", "أزرق", "أحمر"]},
-    {id: 11, q: "نوع البشرة", ops: ["جافة", "دهنية", "مختلطة"]},
-    {id: 12, q: "رائحة نظافة؟", ops: ["نعم", "لا"]},
-    {id: 13, q: "العمر", ops: ["شبابي", "ناضج"]},
-    {id: 14, q: "حمضيات؟", ops: ["نعم", "لا"]},
-    {id: 15, q: "الأولوية", ops: ["الفوحان", "الثبات"]},
-    {id: 16, q: "مستوحى؟", ops: ["نعم", "لا"]}
-];
-
-const logic = { "رجل-فرنسية": "Sauvage Dior", "رجل-نيش فخم": "Creed Aventus", "سيدة-فرنسية": "Miss Dior", "Default": "Lab Special" };
-let selectedAnswers = {};
-let currentPrice = 500;
-let ship = 0;
-
-const selectWilaya = document.getElementById('wilaya');
-wilayas.forEach((w, index) => { let opt = document.createElement('option'); opt.value = index; opt.innerHTML = w.n; selectWilaya.appendChild(opt); });
-
-const qContainer = document.getElementById('questions-container');
-questionsData.forEach(item => {
-    let html = `<div class="question-block"><span class="question-label">${item.id}- ${item.q}</span><div class="options-grid">`;
-    item.ops.forEach(opt => { html += `<div class="option-box" onclick="selectOption(${item.id}, '${opt}', this)">${opt}</div>`; });
-    qContainer.innerHTML += html + `</div></div>`;
+// توليد المحتوى
+const qBox = document.getElementById('questionsBox');
+questions.forEach((q, i) => {
+    qBox.innerHTML += `<div style='margin-bottom:15px;'><label>${i+1}. ${q}:</label><select id='q${i+1}'><option>خيار أ</option><option>خيار ب</option><option>خيار ج</option></select></div>`;
 });
 
-function updateBottleName(val) { document.getElementById('view-name').innerText = val || "Signature"; }
-
-function selectOption(id, val, el) {
-    el.parentElement.querySelectorAll('.option-box').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedAnswers[id] = val;
-    let count = Object.keys(selectedAnswers).length;
-    document.getElementById('p-bar').style.width = (count/16*100) + "%";
-    document.getElementById('p-text').innerText = `تحليل الشخصية: ${count}/16`;
-
-    if(selectedAnswers[1] && selectedAnswers[4]) {
-        const key = `${selectedAnswers[1]}-${selectedAnswers[4]}`;
-        document.getElementById('view-perfume').innerText = logic[key] || logic["Default"];
-    }
+const perfContainer = document.getElementById('perfumeSelections');
+for(let i=1; i<=4; i++){
+    let h = `<select id="v${i}"><option disabled selected>العطر ${i}</option>`;
+    perfumes.forEach(p => h += `<option value="${p}">${p}</option>`);
+    h += `</select>`;
+    perfContainer.innerHTML += h;
 }
 
-function selectSize(el, pr) {
-    document.querySelectorAll('#size-options .option-box').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    currentPrice = pr;
-    updateTotal();
+const wSelect = document.getElementById('wilayaSelect');
+wSelect.innerHTML = '<option value="">اختر الولاية (58 ولاية)</option>';
+wilayas.forEach(w => wSelect.innerHTML += `<option value="${w}">${w}</option>`);
+
+function updateLive() {
+    const preview = document.getElementById('textPreview');
+    preview.innerText = document.getElementById('custText').value || "V8 LUXURY";
+    preview.className = document.getElementById('fontSelect').value;
 }
 
-function updateShipping() {
-    const idx = document.getElementById('wilaya').value;
-    if(idx !== "") {
-        ship = wilayas[idx].p;
-        document.getElementById('shipDisplay').innerText = ship;
-    }
-    updateTotal();
+function sendOrder() {
+    const name = document.getElementById('custName').value;
+    const wilaya = document.getElementById('wilayaSelect').value;
+    const city = document.getElementById('cityInput').value;
+    if(!name || !wilaya || !city) { alert("أكمل جميع الخانات من فضلك"); return; }
+
+    const message = `*طلب متكامل V8 Luxury*%0A👤 *الزبون:* ${name}%0A📍 *العنوان:* ${wilaya} - ${city}%0A%0A` +
+                    `🧪 *العطور المختارة:*%0A1- ${document.getElementById('v1').value}%0A2- ${document.getElementById('v2').value}%0A3- ${document.getElementById('v3').value}%0A4- ${document.getElementById('v4').value}%0A%0A` +
+                    `✍️ *النص:* ${document.getElementById('custText').value}%0A✒️ *الخط:* ${document.getElementById('fontSelect').options[document.getElementById('fontSelect').selectedIndex].text}%0A%0A💰 *الإجمالي:* 3500 دج`;
+    
+    window.open(`https://wa.me/213783147002?text=${message}`, '_blank');
 }
-
-function updateTotal() { document.getElementById('totalDisplay').innerText = currentPrice + ship; }
-
-function sendWA() {
-    const pName = document.getElementById('view-perfume').innerText;
-    const oName = document.getElementById('ownerName').value;
-    const wIdx = document.getElementById('wilaya').value;
-    const ph = document.getElementById('phone').value;
-    if(!wIdx || !ph || !oName || pName === "العطر المختار") { alert("يرجى إكمال كافة البيانات"); return; }
-
-    let msg = `*🔬 طلب تصميم عطر مخصص*\n` +
-              `✨ *العطر الناتج:* ${pName}\n` +
-              `👤 *الاسم المطبوع:* ${oName}\n` +
-              `📦 *الحجم:* ${document.querySelector('#size-options .selected').innerText}\n` +
-              `📍 *العنوان:* ${wilayas[wIdx].n} - ${document.getElementById('commune').value}\n` +
-              `📞 *الهاتف:* ${ph}\n` +
-              `💰 *الإجمالي:* ${document.getElementById('totalDisplay').innerText} DA`;
-
-    window.location.href = `https://wa.me/213783147002?text=${encodeURIComponent(msg)}`;
-}
+updateLive();
 </script>
 </body>
 </html>
