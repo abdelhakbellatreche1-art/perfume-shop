@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V8 LUXURY | THE MASTERPIECE</title>
+    <title>V8 LUXURY | الإصدار الشامل</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Vibes&family=Jomhuria&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Mada:wght@700&family=Kufam:wght@700&family=Changa:wght@700&family=Rakkas&family=Scheherazade+New:wght@700&family=El+Messiri:wght@700&family=Harmattan&family=Lateef&family=Mirza:wght@700&family=Katibeh:wght@700&family=Tulpen+One&family=Lobster&family=Pacifico&family=Dancing+Script:wght@700&family=Great+Vibes&family=Playball&family=Satisfy&family=Kaushan+Script&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --bg: #000; --card: #111; --border: #222; }
@@ -90,7 +90,10 @@
     </div>
 
     <div class="section-title">📍 4. معلومات التوصيل</div>
-    <input type="text" id="custName" placeholder="الاسم الكامل">
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="custName" placeholder="الاسم الشخصي">
+        <input type="text" id="custLastName" placeholder="اللقب">
+    </div>
     <select id="wil" onchange="handleW()"></select>
     <input type="text" id="addr" placeholder="العنوان (البلدية والحي)">
     <input type="tel" id="phone" placeholder="رقم الهاتف">
@@ -163,7 +166,6 @@
     function handleW() {
         const w = document.getElementById('wil').value;
         const hasMystery = cart.some(i => i.size.includes("عرض")) || size.includes("عرض");
-        // مجاني للمدية (26) والعاصمة (16) أو العرض الغامض
         ship = (w === "26" || w === "16" || hasMystery) ? 0 : 500;
         updateCart();
     }
@@ -175,9 +177,9 @@
     }
 
     function sendOrder() {
-        const c = document.getElementById('custName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text, ph = document.getElementById('phone').value;
-        if(!cart.length || !c || !ph || !w) return alert("يرجى ملء كافة البيانات");
-        let msg = `*طلب V8 LUXURY الجديد*%0A*العميل:* ${c}%0A*الهاتف:* ${ph}%0A*الولاية:* ${w}%0A%0A`;
+        const n = document.getElementById('custName').value, l = document.getElementById('custLastName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text, ph = document.getElementById('phone').value;
+        if(!cart.length || !n || !l || !ph || !w) return alert("يرجى ملء كافة البيانات");
+        let msg = `*طلب V8 LUXURY الجديد*%0A*العميل:* ${n} ${l}%0A*الهاتف:* ${ph}%0A*الولاية:* ${w}%0A%0A`;
         cart.forEach((item, i) => {
             msg += `*--- القارورة ${i+1} (${item.size}) ---*%0A- الاسم: ${item.name}%0A*التحليل:*%0A`;
             for (const [q, v] of Object.entries(item.details)) msg += `🔹 ${q}: ${v}%0A`;
