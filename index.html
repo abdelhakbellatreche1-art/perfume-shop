@@ -3,142 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V8 LUXURY | الإصدار الشامل</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Vibes&family=Jomhuria&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Mada:wght@700&family=Kufam:wght@700&family=Changa:wght@700&family=Rakkas&family=Scheherazade+New:wght@700&family=El+Messiri:wght@700&family=Harmattan&family=Lateef&family=Mirza:wght@700&family=Katibeh:wght@700&family=Tulpen+One&family=Lobster&family=Pacifico&family=Dancing+Script:wght@700&family=Great+Vibes&family=Playball&family=Satisfy&family=Kaushan+Script&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <title>V8 LUXURY | المصمم العالمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;700;900&family=Changa:wght@800&family=Tajawal:wght@900&family=Reem+Kufi:wght@700&family=Lalezar&family=Kufam:wght@800&family=Lemonada:wght@700&family=Vibes&family=Pacifico&family=Dancing+Script:wght@700&family=Cinzel:wght@700&family=Great+Vibes&family=Playfair+Display:ital,wght@1,900&family=Montserrat:wght@900&family=Lobster&family=Righteous&family=Abril+Fatface&family=Satisfy&family=Kaushan+Script&family=Jomhuria&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --gold: #d4af37; --bg: #000; --card: #111; --border: #222; }
-        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 120px; text-align: right; }
+        :root { --gold: #d4af37; --bg: #000; --card: #111; --border: #222; --success: #28a745; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 120px; text-align: right; user-select: none; }
         .container { max-width: 600px; margin: auto; padding: 15px; }
-        .mystery-bar { background: linear-gradient(45deg, #111, var(--gold), #111); color: #000; text-align: center; padding: 15px; font-weight: bold; font-size: 14px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .logo-area { text-align: center; padding: 30px 0; }
-        .logo-v8 { font-family: 'Jomhuria'; font-size: 100px; color: var(--gold); line-height: 0.6; text-shadow: 0 0 20px rgba(212,175,55,0.4); }
-        .section-title { color: var(--gold); border-right: 5px solid var(--gold); padding-right: 15px; margin: 40px 0 20px; font-size: 20px; }
-        .grid-style { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .opt-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 15px 5px; text-align: center; cursor: pointer; font-size: 12px; color: #888; transition: 0.3s; }
-        .opt-box.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
-        .mystery-opt { grid-column: span 2; background: linear-gradient(135deg, #000, #222) !important; color: var(--gold) !important; border: 2px solid var(--gold) !important; font-weight: bold; }
-        .preview-container { height: 350px; display: flex; align-items: center; justify-content: center; margin: 30px 0; background: radial-gradient(circle, #1a1a1a, #000); border-radius: 30px; }
-        .bottle-preview { border: 3px solid var(--gold); border-radius: 20px 20px 90px 90px; padding: 60px 30px; text-align: center; position: relative; transition: 0.5s; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
-        #overlay { background: #fff; color: #000; padding: 6px 20px; font-weight: bold; display: inline-block; border: 1px solid var(--gold); min-width: 100px; font-size: 18px; }
-        input, select { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid var(--border); background: #080808; color: #fff; margin-bottom: 15px; font-family: 'Cairo'; font-size: 16px; outline: none; }
-        input:focus { border-color: var(--gold); }
-        .cart-section { background: #0a0a0a; border: 2px solid var(--gold); border-radius: 25px; padding: 25px; margin-top: 40px; display: none; }
-        .cart-item { border-bottom: 1px solid #222; padding: 15px 0; display: flex; justify-content: space-between; }
-        .add-to-cart-btn { background: #1b5e20; color: white; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 20px; }
-        .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 25px; border-radius: 18px; font-size: 26px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+        
+        /* شريط التقدم */
+        .progress-container { position: sticky; top: 0; z-index: 2000; background: #000; padding: 10px 0; border-bottom: 1px solid #111; }
+        .progress-bar { height: 4px; background: #222; border-radius: 2px; overflow: hidden; }
+        #progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.4s; box-shadow: 0 0 10px var(--gold); }
+
+        .logo-v8 { font-family: 'Jomhuria'; font-size: 85px; color: var(--gold); text-align: center; line-height: 0.6; margin: 20px 0; }
+        
+        .section-title { color: var(--gold); border-right: 3px solid var(--gold); padding-right: 10px; margin: 35px 0 15px; font-size: 14px; font-weight: bold; }
+        
+        /* شبكة الخيارات */
+        .quiz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+        .opt-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 5px; text-align: center; cursor: pointer; font-size: 11px; color: #777; transition: 0.2s; min-height: 48px; display: flex; align-items: center; justify-content: center; }
+        .opt-box.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; transform: scale(0.96); }
+
+        /* منطقة المعاينة والقارورة */
+        .preview-box { text-align: center; margin: 25px 0; padding: 45px 20px; background: radial-gradient(circle, #0a0a0a 0%, #000 100%); border-radius: 30px; border: 1px solid #1a1a1a; position: relative; }
+        .bottle { width: 125px; height: 185px; border: 3px solid var(--gold); border-radius: 10px 10px 55px 55px; margin: 0 auto; display: flex; align-items: center; justify-content: center; position: relative; background: #000; transition: 0.4s; }
+        .cap { width: 55px; height: 38px; background: var(--gold); position: absolute; top: -40px; left: 50%; transform: translateX(-50%); border-radius: 4px; }
+        #bottleText { background: #fff; color: #000; padding: 6px 12px; font-size: 15px; min-width: 70px; max-width: 90%; word-wrap: break-word; box-shadow: 0 5px 15px rgba(0,0,0,0.6); }
+
+        /* سكرول الخطوط */
+        .font-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 250px; overflow-y: auto; background: #080808; padding: 12px; border-radius: 15px; border: 1px solid #1a1a1a; margin-top: 10px; }
+        .font-option { background: #111; padding: 14px; border-radius: 8px; cursor: pointer; text-align: center; font-size: 14px; color: #555; border: 1px solid #222; transition: 0.2s; }
+        .font-option.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; }
+
+        input, select, textarea { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: #080808; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; box-sizing: border-box; font-size: 14px; }
+        input:focus { border-color: var(--gold); outline: none; }
+
+        .add-btn { background: var(--success); color: #fff; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .cart-box { background: #0a0a0a; border: 2px solid var(--gold); border-radius: 20px; padding: 20px; margin-top: 30px; display: none; }
+        .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; margin-top: 25px; box-shadow: 0 10px 30px rgba(212,175,55,0.3); }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-<div class="mystery-bar">🎭 عرض الأسرار: 4 عطور VIP بـ 3500 دج + شحن مجاني (توصيل سريع من المدية)</div>
+<div class="progress-container">
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--gold); margin-bottom:5px;">
+            <span>جاري تصميم عطرك الفريد...</span>
+            <span id="progText">0%</span>
+        </div>
+        <div class="progress-bar"><div id="progress-fill"></div></div>
+    </div>
+</div>
 
 <div class="container">
-    <div class="logo-area"><div class="logo-v8">V8 LUXURY</div></div>
+    <div class="logo-v8">V8 LUXURY</div>
 
-    <div class="section-title">🧪 1. اختبار تحليل الشخصية الشامل</div>
     <div id="quizContainer"></div>
 
-    <div class="section-title">📏 2. اختر الحجم (10 خيارات)</div>
-    <div class="grid-style">
-        <div class="opt-box mystery-opt" onclick="setP(this, 'عرض الأسرار (4 عطور)', 3500, 1.2)">🎁 THE MYSTERY BOX <br> (3500 دج)</div>
-        <div class="opt-box" onclick="setP(this, '5ml', 200, 0.5)">5ml</div>
-        <div class="opt-box" onclick="setP(this, '10ml', 250, 0.6)">10ml</div>
-        <div class="opt-box" onclick="setP(this, '20ml', 350, 0.7)">20ml</div>
-        <div class="opt-box" onclick="setP(this, '30ml', 500, 0.8)">30ml</div>
-        <div class="opt-box active" onclick="setP(this, '50ml', 700, 1.0)">50ml</div>
-        <div class="opt-box" onclick="setP(this, '75ml', 850, 1.1)">75ml</div>
-        <div class="opt-box" onclick="setP(this, '100ml', 1000, 1.2)">100ml</div>
-        <div class="opt-box" onclick="setP(this, '150ml', 1100, 1.3)">150ml</div>
-        <div class="opt-box" onclick="setP(this, '200ml', 1200, 1.4)">200ml</div>
+    <div class="section-title">⚖️ اختر سعة وشكل القارورة</div>
+    <div class="quiz-grid">
+        <div class="opt-box" onclick="setP(this, '5ml', 200, 0.7)">🧪 5ml (تجربة)</div>
+        <div class="opt-box" onclick="setP(this, '30ml', 450, 0.85)">🧴 30ml (جيب)</div>
+        <div class="opt-box active" onclick="setP(this, '50ml', 700, 1.0)">💎 50ml (رسمي)</div>
+        <div class="opt-box" onclick="setP(this, '100ml', 1000, 1.2)">🏛️ 100ml (ملكي)</div>
+        <div class="opt-box" onclick="setP(this, 'عطرين 50ml', 1300, 1.0)">👯 عطرين (توفير)</div>
+        <div class="opt-box" onclick="setP(this, 'عرض العائلة', 2500, 1.1)">👨‍👩‍👧 عرض 3 عطور</div>
+        <div class="opt-box" style="border-color:var(--gold); grid-column: span 2;" onclick="setP(this, 'عرض الأسرار VIP', 3500, 1.15)">🎁 4 عطور + شحن مجاني</div>
+        <div class="opt-box" style="border-color:var(--gold); grid-column: span 2;" onclick="setP(this, 'صندوق الفخامة', 4500, 1.2)">👑 صندوق 6 عطور فاخرة</div>
     </div>
 
-    <div class="section-title">✍️ 3. التخصيص (30 خطاً ملكياً)</div>
-    <input type="text" id="pName" placeholder="الاسم المراد طباعته..." oninput="up()">
-    <select id="fSel" onchange="up()">
-        <optgroup label="خطوط عربية ملكية">
-            <option value="'Cairo'">1. كايرو عصري</option><option value="'Amiri'">2. أميري ملكي</option>
-            <option value="'Jomhuria'">3. الجمهورية عريض</option><option value="'Aref Ruqaa'">4. الرقعة</option>
-            <option value="'Tajawal'">5. تجول</option><option value="'Reem Kufi'">6. ريم كوفي</option>
-            <option value="'Almarai'">7. المراعي</option><option value="'Lalezar'">8. لاليزار</option>
-            <option value="'Lemonada'">9. ليمونادة</option><option value="'Rakkas'">10. رقاص</option>
-            <option value="'Changa'">11. شانغا</option><option value="'Mada'">12. مدى</option>
-            <option value="'Kufam'">13. كوفام</option><option value="'El Messiri'">14. المسيري</option>
-            <option value="'Harmattan'">15. هرمتان</option>
-        </optgroup>
-        <optgroup label="Latin & Signature VIP">
-            <option value="'Vibes'">16. Signature VIP</option><option value="'Lobster'">17. Lobster Style</option>
-            <option value="'Pacifico'">18. Pacifico</option><option value="'Dancing Script'">19. Dancing</option>
-            <option value="'Satisfy'">20. Satisfy Elegant</option><option value="'Kaushan Script'">21. Kaushan</option>
-            <option value="'Great Vibes'">22. Great Vibes</option><option value="'Playball'">23. Playball</option>
-            <option value="'Shadows Into Light'">24. Shadows</option><option value="'Tulpen One'">25. Slim Style</option>
-            <option value="'Satisfy'">26. Luxury Script</option><option value="'Dancing Script'">27. Romantic</option>
-            <option value="'Cairo'">28. Bold Modern</option><option value="'Amiri'">29. Traditional</option>
-            <option value="'Cairo'">30. V8 Original</option>
-        </optgroup>
-    </select>
+    <div class="section-title">🖋️ تخصيص الهوية (الاسم والخط)</div>
+    <input type="text" id="pName" placeholder="اكتب الاسم المطلوب حفره هنا..." oninput="up()">
+    
+    <div class="font-selector" id="fontList"></div>
 
-    <div class="preview-container">
-        <div class="bottle-preview" id="bottle"><div id="overlay">V8 LUXURY</div></div>
+    <div class="preview-box">
+        <div class="bottle" id="bottle">
+            <div class="cap"></div>
+            <div id="bottleText">V8 LUXURY</div>
+        </div>
+        <p id="fontDisplayLabel" style="font-size:10px; color:var(--gold); margin-top:20px;">نوع الخط: Cairo</p>
     </div>
 
-    <button class="add-to-cart-btn" onclick="addToCart()">➕ إضافة القارورة للسلة</button>
+    <textarea id="specialNotes" placeholder="أي إضافات أو ملاحظات خاصة بك..."></textarea>
 
-    <div class="cart-section" id="cartSection">
-        <h3 style="color:var(--gold)">🛒 سلة الطلبات:</h3>
+    <button class="add-btn" onclick="addToCart()">➕ حفظ التصميم وإضافته للسلة</button>
+
+    <div class="cart-box" id="cartSection">
+        <h3 style="color:var(--gold); margin:0 0 15px 0;">🛒 سلة طلباتك:</h3>
         <div id="cartItems"></div>
-        <div id="totalDisplay" style="text-align:center; font-size:22px; color:var(--gold); margin-top:20px; font-weight:bold;"></div>
+        <div id="totalDisplay" style="text-align:center; font-size:20px; color:var(--gold); font-weight:bold; margin: 15px 0;"></div>
+        <button style="background:none; border:none; color:red; width:100%; cursor:pointer; font-size:11px;" onclick="clearCart()">🗑️ إفراغ السلة</button>
     </div>
 
-    <div class="section-title">📍 4. معلومات التوصيل</div>
-    <div style="display: flex; gap: 10px;">
-        <input type="text" id="custName" placeholder="الاسم الشخصي">
-        <input type="text" id="custLastName" placeholder="اللقب">
-    </div>
+    <div class="section-title">📍 معلومات الاستلام والشحن</div>
+    <input type="text" id="custName" placeholder="الاسم الكامل">
     <select id="wil" onchange="handleW()"></select>
-    <input type="text" id="addr" placeholder="العنوان (البلدية والحي)">
     <input type="tel" id="phone" placeholder="رقم الهاتف">
 
-    <button class="order-btn" onclick="sendOrder()">تأكيد الطلب عبر واتساب 🚀</button>
+    <button class="order-btn" onclick="sendOrder()">إرسال الطلب عبر واتساب 🚀</button>
 </div>
 
 <script>
-    let price=700, size="50ml", ship=500, cart=[], currentSels={};
+    let price=700, size="50ml", ship=500, cart=[], currentSels={}, selectedFont="Cairo";
     const wilayas = ["أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار", "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو", "الجزائر", "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر", "ورقلة", "وهران", "البيض", "إليزي", "ب.ب.عريج", "بومرداس", "الطارف", "تندوف", "تيسمسيلت", "الوادي", "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "ع.تموشنت", "غرداية", "غليزان", "تيميمون", "ب.ب.مختار", "أولاد جلال", "بني عباس", "إن صالح", "إن قزام", "تقرت", "جانت", "المغير", "المنيعة"];
+    const fonts = ["Cairo", "Amiri", "Tajawal", "Lalezar", "Reem Kufi", "Changa", "Lemonada", "Vibes", "Cinzel", "Great Vibes", "Pacifico", "Playfair Display", "Lobster", "Righteous", "Dancing Script", "Satisfy", "Kaushan Script", "Abril Fatface", "Montserrat", "Kufam"];
 
     const quizData = [
-        {q: "الجنس", a: ["ذكر", "أنثى", "للجنسين", "طفل", "هدية"]},
-        {q: "قوة الشخصية", a: ["هادئ ورزين", "قيادي مسيطر", "اجتماعي محبوب", "غامض ومثير", "حالم ورومانسي", "جريء ومغامر"]},
-        {q: "الانطباع المطلوب", a: ["فخامة ملكية", "نظافة وانتعاش", "قوة وحضور", "إثارة وجاذبية", "دفء وطمأنينة", "تميز واختلاف"]},
-        {q: "الوقت المفضل", a: ["صباحي باكر", "أوقات العمل", "مسائي هادئ", "سهرات خاصة", "كل الأوقات"]},
-        {q: "المكان والمناسبة", a: ["العمل والمكتب", "أعراس وحفلات", "استعمال يومي", "نادي رياضي", "موعد رومانسي", "اجتماع رسمي"]},
-        {q: "نوع الروائح المفضلة", a: ["أخشاب وعود", "زهور وورود", "بخور وعنبر", "فواكه وحمضيات", "توابل شرقية", "نسيم البحر", "جلود غزال"]},
-        {q: "درجة الثبات", a: ["يوم كامل (24سا)", "12 ساعة", "6 ساعات", "فائق (يومين)", "متوسط"]},
-        {q: "الفصل والمناخ", a: ["شتاء بارد", "صيف حار", "خريف معتدل", "ربيع منعش", "كل الفصول"]},
-        {q: "ستايل اللباس", a: ["كلاسيك (بذلة)", "كاجوال (مريح)", "تقليدي", "رياضي", "عصري"]},
-        {q: "العمر", a: ["مراهقين", "شباب (20-30)", "نضوج (30-45)", "وقار (45+)", "VIP Class"]},
-        {q: "طبيعة البشرة", a: ["جافة", "دهنية", "عادية", "حساسة", "مختلطة"]},
-        {q: "الخبرة في العطور", a: ["هاوي", "خبير (Niche)", "أول مرة", "جامع عطور"]},
-        {q: "الميزانية المخصصة", a: ["اقتصادية", "متوسطة", "فاخرة", "بدون حدود"]},
-        {q: "الغرض من الشراء", a: ["استعمال شخصي", "هدية صديق", "هدية شريك", "هدية رسمية"]},
-        {q: "تركيز العطر", a: ["خفيف (EDT)", "متوسط (EDP)", "قوي (Parfum)", "زيتي مركز"]},
-        {q: "نوع التغليف", a: ["بسيط", "صندوق ملكي", "تغليف هدايا", "بطاقة إهداء", "VIP Box"]}
+        {q: "الجنس", a: ["ذكر", "أنثى", "للجنسين", "طفل", "هدية لرجل", "هدية لامرأة"]},
+        {q: "عائلة النوتات", a: ["أخشاب وعود", "زهور فرنسية", "بخور شرقي", "حمضيات منعشة", "تبغ وجلود", "فانيليا وسكر", "مسك بودري", "نوتات بحرية"]},
+        {q: "الفوحان", a: ["نووي", "فائق", "ملحوظ", "متوازن", "هادئ", "شخصي خفيف"]},
+        {q: "الثبات", a: ["+48 ساعة", "24 ساعة", "12 ساعة", "8 ساعات", "6 ساعات"]},
+        {q: "الشخصية", a: ["قيادي", "رومنسي", "غامض", "اجتماعي", "رياضي", "كلاسيكي", "متمرد", "هادئ"]},
+        {q: "البيئة", a: ["مكتب", "أفراح", "يومي", "نادي رياضي", "لقاء خاص", "منزل", "سفر"]},
+        {q: "اللباس", a: ["رسمي", "كاجوال", "تقليدي", "رياضي", "عصري"]},
+        {q: "العمر", a: ["تحت 20", "20-30", "30-40", "40-50", "50-60", "فوق 60"]},
+        {q: "المناخ", a: ["برد قارس", "صيف حار", "ربيع منعش", "خريف دافئ", "رطوبة عالية"]},
+        {q: "المشروب", a: ["قهوة سوداء", "قهوة حليب", "شاي أحمر", "عصير", "غازي", "ماء"]},
+        {q: "اللون", a: ["أسود", "ذهبي", "أزرق", "أحمر", "أبيض", "أخضر", "بني", "رمادي"]},
+        {q: "وقت الرش", a: ["صباحاً", "ظهراً", "مساءً", "عند النوم", "كل الأوقات"]},
+        {q: "البشرة", a: ["دهنية", "دهنية خفيفة", "جافة", "عادية", "حساسة"]},
+        {q: "المزاج", a: ["ثقة", "تميز", "راحة", "طاقة", "هيبة", "جاذبية"]},
+        {q: "الغرض", a: ["شخصي", "هدية زواج", "هدية ميلاد", "مجموعة نادرة", "تغيير"]},
+        {q: "التركيز", a: ["زيتي خام", "بخاخ مركز", "بخاخ خفيف", "كريم عطري"]},
+        {q: "التغليف", a: ["VIP خشب", "صندوق فخم", "حقيبة مخمل", "ورق راقي", "بسيط"]},
+        {q: "البرج", a: ["ناري", "مائي", "هوائي", "ترابي", "لا أهتم"]},
+        {q: "الهواية", a: ["رياضة", "مطالعة", "سفر", "تكنولوجيا", "طبخ", "رسم"]},
+        {q: "الذكرى", a: ["تراب المطر", "بخور قديم", "بستان ورد", "مخبوزات", "جلود سيارة", "بحر", "بودرة"]},
+        {q: "الميزانية", a: ["اقتصادية", "متوسطة", "فاخرة", "ملكية", "مفتوحة"]},
+        {q: "الحضور", a: ["ملفت جداً", "يترك أثراً", "متزن", "شخصي جداً", "كلاسيكي"]},
+        {q: "المكان", a: ["شاطئ", "جبال", "مدن", "ريف هادئ", "قصور", "غابات"]},
+        {q: "القوام", a: ["بودرية", "مدخنة", "سكرية", "ترابية", "حامضية", "صابونية"]},
+        {q: "التأثير", a: ["جذب انتباه", "إثارة فضول", "فرض هيبة", "راحة", "غموض"]},
+        {q: "الانتشار", a: ["فوري", "تدريجي", "طويل الأمد", "ثابت"]},
+        {q: "الموسم", a: ["خريف", "ربيع", "شتاء", "صيف", "دائم"]},
+        {q: "إضافة V8", a: ["مسك+", "عود خفيف", "انتعاش+", "لمسة سكر", "توازن", "قوة مضاعفة"]}
     ];
 
     function init() {
         const qC = document.getElementById('quizContainer');
         quizData.forEach((item, i) => {
-            let opts = `<div class="grid-style">`;
+            let opts = `<div class="quiz-grid">`;
             item.a.forEach(val => opts += `<div class="opt-box" onclick="rec(this, '${item.q}', '${val}')">${val}</div>`);
-            qC.innerHTML += `<p style="font-size:12px; margin:20px 0 10px; color:var(--gold); font-weight:bold;">${i+1}. ${item.q}</p>${opts}</div>`;
+            qC.innerHTML += `<div class="section-title">${i+1}. ${item.q}</div>${opts}</div>`;
         });
+        const fL = document.getElementById('fontList');
+        fonts.forEach(f => fL.innerHTML += `<div class="font-option ${f==='Cairo'?'active':''}" onclick="setFont(this, '${f}')" style="font-family:'${f}'">${f}</div>`);
         const ws = document.getElementById('wil');
-        ws.innerHTML = '<option value="">اختر الولاية</option>';
+        ws.innerHTML = '<option value="">اختر ولايتك</option>';
         wilayas.forEach((w, i) => ws.innerHTML += `<option value="${i+1}">${i+1} - ${w}</option>`);
     }
 
     function rec(el, q, v) {
+        if (window.navigator.vibrate) window.navigator.vibrate(10);
         el.parentElement.querySelectorAll('.opt-box').forEach(o=>o.classList.remove('active'));
-        el.classList.add('active'); currentSels[q] = v;
+        el.classList.add('active'); 
+        currentSels[q] = v;
+        let p = Math.round((Object.keys(currentSels).length / 28) * 100);
+        document.getElementById('progress-fill').style.width = p + "%";
+        document.getElementById('progText').innerText = p + "%";
+    }
+
+    function setFont(el, f) {
+        document.querySelectorAll('.font-option').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+        selectedFont = f;
+        document.getElementById('bottleText').style.fontFamily = f;
+        document.getElementById('fontDisplayLabel').innerText = `نوع الخط: ${f}`;
     }
 
     function setP(el, sz, np, sc) {
@@ -148,41 +183,39 @@
         handleW();
     }
 
+    function up() { document.getElementById('bottleText').innerText = document.getElementById('pName').value || "V8 LUXURY"; }
+
     function addToCart() {
-        if(Object.keys(currentSels).length < 1) return alert("أجب على أسئلة التحليل أولاً");
-        cart.push({ size, price, name: document.getElementById('pName').value || "V8", details: {...currentSels} });
-        updateCart(); alert("تمت الإضافة للسلة ✅");
-        currentSels = {}; document.querySelectorAll('#quizContainer .opt-box').forEach(o=>o.classList.remove('active'));
+        if(Object.keys(currentSels).length < 28) return alert("يرجى الإجابة على جميع الأسئلة الـ 28 لتصميم عطرك.");
+        cart.push({ size, price, font: selectedFont, label: document.getElementById('pName').value || "V8 LUXURY", notes: document.getElementById('specialNotes').value, details: {...currentSels} });
+        updateCart(); alert("تم حفظ التصميم بنجاح ✅");
     }
 
     function updateCart() {
-        const container = document.getElementById('cartItems');
-        document.getElementById('cartSection').style.display = cart.length ? "block" : "none";
-        container.innerHTML = ""; let total = 0;
-        cart.forEach((item, i) => { total += item.price; container.innerHTML += `<div class="cart-item"><span><b>#${i+1} ${item.size} (${item.name})</b></span><span>${item.price} دج</span></div>`; });
-        document.getElementById('totalDisplay').innerText = `المجموع النهائي مع الشحن: ${total + ship} دج`;
+        const cBox = document.getElementById('cartSection');
+        cBox.style.display = cart.length ? "block" : "none";
+        const items = document.getElementById('cartItems'); items.innerHTML = ""; let t = 0;
+        cart.forEach((it, i) => { t += it.price; items.innerHTML += `<div style="padding:10px 0; border-bottom:1px solid #222; font-size:12px;">📦 عطر: ${it.label} (${it.size})</div>`; });
+        document.getElementById('totalDisplay').innerText = `المجموع النهائي: ${t + ship} دج`;
     }
+
+    function clearCart() { cart=[]; updateCart(); }
 
     function handleW() {
         const w = document.getElementById('wil').value;
-        const hasMystery = cart.some(i => i.size.includes("عرض")) || size.includes("عرض");
-        ship = (w === "26" || w === "16" || hasMystery) ? 0 : 500;
+        const free = cart.some(i => i.size.includes("عرض")) || size.includes("عرض");
+        ship = (w === "26" || w === "16" || free) ? 0 : 500;
         updateCart();
     }
 
-    function up() {
-        const o = document.getElementById('overlay');
-        o.innerText = document.getElementById('pName').value || "V8 LUXURY";
-        o.style.fontFamily = document.getElementById('fSel').value;
-    }
-
     function sendOrder() {
-        const n = document.getElementById('custName').value, l = document.getElementById('custLastName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text, ph = document.getElementById('phone').value;
-        if(!cart.length || !n || !l || !ph || !w) return alert("يرجى ملء كافة البيانات");
-        let msg = `*طلب V8 LUXURY الجديد*%0A*العميل:* ${n} ${l}%0A*الهاتف:* ${ph}%0A*الولاية:* ${w}%0A%0A`;
-        cart.forEach((item, i) => {
-            msg += `*--- القارورة ${i+1} (${item.size}) ---*%0A- الاسم: ${item.name}%0A*التحليل:*%0A`;
-            for (const [q, v] of Object.entries(item.details)) msg += `🔹 ${q}: ${v}%0A`;
+        const n = document.getElementById('custName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex]?.text, ph = document.getElementById('phone').value;
+        if(!cart.length || !n || !ph || !w) return alert("يرجى ملء معلومات الشحن وحفظ تصميم واحد على الأقل.");
+        let msg = `*طلب جديد: V8 LUXURY*%0A*المستلم:* ${n}%0A*الولاية:* ${w}%0A*الهاتف:* ${ph}%0A%0A`;
+        cart.forEach((it, i) => {
+            msg += `*--- العطر ${i+1} ---*%0A*الحجم:* ${it.size}%0A*اسم الحفر:* ${it.label}%0A*الخط:* ${it.font}%0A`;
+            if(it.notes) msg += `📝 ملاحظة: ${it.notes}%0A`;
+            for (const [q, v] of Object.entries(it.details)) msg += `▪️ ${q}: ${v}%0A`;
             msg += `%0A`;
         });
         window.open(`https://wa.me/213783147002?text=${msg}`);
