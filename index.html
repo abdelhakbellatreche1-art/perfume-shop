@@ -3,155 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V8 LUXURY - المتجر الرسمي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Vibes&family=Jomhuria&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Mada:wght@700&family=Kufam:wght@700&display=swap" rel="stylesheet">
+    <title>V8 LUXURY | الإصدار النهائي الشامل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&family=Reem+Kufi&family=Lalezar&family=Vibes&family=Jomhuria&family=Tajawal:wght@700&family=Almarai:wght@700&family=Lemonada:wght@700&family=Mada:wght@700&family=Kufam:wght@700&family=Changa:wght@700&family=Rakkas&family=Scheherazade+New:wght@700&family=El+Messiri:wght@700&family=Harmattan&family=Lateef&family=Mirza:wght@700&family=Katibeh&family=Tulpen+One&family=Lobster&family=Pacifico&family=Dancing+Script:wght@700&family=Great+Vibes&family=Playball&family=Satisfy&family=Kaushan+Script&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --dark: #000; --card: #111; --border: #222; }
-        body { font-family: 'Cairo', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 50px; text-align: right; overflow-x: hidden; }
-        .container { max-width: 500px; margin: auto; padding: 15px; }
-        
-        .header { text-align: center; padding: 30px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-        .header h1 { color: var(--gold); letter-spacing: 5px; margin: 0; font-size: 28px; }
-        
-        .section-title { color: var(--gold); border-right: 4px solid var(--gold); padding-right: 10px; margin: 35px 0 15px; font-size: 19px; font-weight: bold; }
-        
-        /* تصميم المربعات للأجوبة */
-        .grid-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
-        .sq-opt { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 15px 5px; text-align: center; cursor: pointer; transition: 0.3s; font-size: 14px; font-weight: bold; color: #bbb; }
-        .sq-opt.active { border-color: var(--gold); background: rgba(212,175,55,0.15); color: var(--gold); transform: scale(1.02); }
+        :root { --gold: #d4af37; --bg: #000; --card: #111; --red: #c0392b; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 80px; text-align: right; }
+        .container { max-width: 550px; margin: auto; padding: 15px; }
+        .promo-bar { background: var(--red); color: white; text-align: center; padding: 12px; font-weight: bold; position: sticky; top: 0; z-index: 1000; font-size: 13px; }
+        .header h1 { color: var(--gold); text-align: center; font-family: 'Jomhuria'; font-size: 65px; margin: 15px 0 0; }
+        .section-title { color: var(--gold); border-right: 4px solid var(--gold); padding-right: 12px; margin: 40px 0 20px; font-size: 19px; }
 
-        input, select { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid #333; background: #050505; color: #fff; margin-bottom: 12px; font-family: 'Cairo'; font-size: 15px; box-sizing: border-box; }
+        /* الأجوبة والأحجام */
+        .grid-style { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 25px; }
+        .opt-box { background: var(--card); border: 1px solid #222; border-radius: 10px; padding: 15px 5px; text-align: center; cursor: pointer; font-size: 12px; transition: 0.3s; color: #888; }
+        .opt-box.active { background: var(--gold); color: #000; border-color: #fff; font-weight: bold; transform: scale(1.05); }
 
-        /* عرض القارورة الفخمة في الأخير */
-        .showcase { background: radial-gradient(circle, #222 0%, #000 100%); border-radius: 25px; padding: 45px 20px; text-align: center; border: 2px solid var(--gold); margin: 30px 0; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-        .bottle-icon { font-size: 90px; display: block; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--gold)); }
-        
-        /* ضبط الكتابة فوق القارورة */
-        #overlay { 
-            background: rgba(255, 255, 255, 0.95); color: #000; padding: 8px 18px; 
-            font-weight: bold; display: inline-block; margin-top: -15px; border-radius: 5px;
-            font-size: 18px; min-width: 120px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            border: 1px solid var(--gold); word-wrap: break-word;
-        }
+        /* القارورة والمعاينة */
+        .bottle-preview { background: radial-gradient(circle, #222, #000); border: 2px solid var(--gold); border-radius: 30px 30px 100px 100px; padding: 80px 20px; text-align: center; margin: 35px 0; position: relative; }
+        .cap { width: 50px; height: 30px; background: var(--gold); margin: -105px auto 30px; border-radius: 5px; box-shadow: 0 0 20px var(--gold); }
+        #overlay { background: #fff; color: #000; padding: 10px 25px; font-weight: bold; display: inline-block; font-size: 22px; border: 1px solid var(--gold); min-width: 140px; }
+        #scent-label { display: block; margin-top: 15px; color: var(--gold); font-size: 15px; font-weight: bold; }
 
-        .summary { background: #080808; border: 1px dashed var(--gold); border-radius: 15px; padding: 20px; text-align: center; }
-        .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 22px; border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; margin-top: 20px; box-shadow: 0 8px 20px rgba(212,175,55,0.3); transition: 0.3s; }
-        .order-btn:active { transform: scale(0.98); }
+        input, select { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #333; background: #080808; color: #fff; margin-bottom: 15px; font-family: 'Cairo'; font-size: 16px; box-sizing: border-box; }
+
+        .price-box { background: #0a0a0a; border: 2px dashed var(--gold); border-radius: 25px; padding: 30px; text-align: center; margin-top: 40px; }
+        .new-p { color: var(--gold); font-size: 42px; font-weight: bold; display: block; }
+
+        .order-btn { background: var(--gold); color: #000; border: none; width: 100%; padding: 25px; border-radius: 18px; font-size: 26px; font-weight: bold; cursor: pointer; margin-top: 20px; box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
     </style>
 </head>
 <body>
 
+<div class="promo-bar">💎 تخفيضات V8 LUXURY: عطور ملكية تبدأ من 200 دج | شحن مجاني للمدية 🚚</div>
+
 <div class="container">
-    <div class="header">
-        <h1>V8 LUXURY</h1>
-        <p style="font-size:12px; color:#666; margin-top:5px;">بصمتك العطرية.. تُصنع يدوياً</p>
+    <div class="header"><h1>V8 LUXURY</h1></div>
+
+    <div class="section-title">📏 1. اختر الحجم (من 200 إلى 1000 دج)</div>
+    <div class="grid-style">
+        <div class="opt-box" onclick="setP(this, '10ml', 200)">10ml<br>200 دج</div>
+        <div class="opt-box" onclick="setP(this, '30ml', 500)">30ml<br>500 دج</div>
+        <div class="opt-box active" onclick="setP(this, '50ml', 700)">50ml<br>700 دج</div>
+        <div class="opt-box" onclick="setP(this, '100ml الملكي', 1000)">100ml<br>1000 دج</div>
     </div>
 
-    <div class="section-title">🧪 المرحلة 1: تحليل الشخصية (16 سؤال)</div>
+    <div class="section-title">🧪 2. اختبار الهوية العطرية (16 سؤال)</div>
     <div id="quizContainer"></div>
 
-    <div class="section-title">📏 المرحلة 2: حجم القارورة</div>
-    <div class="grid-opts">
-        <div class="sq-opt" onclick="setSz(this, '10ml', 200)">10ml <br> <small>200 دج</small></div>
-        <div class="sq-opt active" onclick="setSz(this, '50ml', 1000)">50ml <br> <small>1000 دج</small></div>
-        <div class="sq-opt" onclick="setSz(this, '100ml', 1900)">100ml <br> <small>1900 دج</small></div>
-    </div>
-
-    <div class="section-title">✍️ المرحلة 3: استوديو الكتابة</div>
-    <input type="text" id="pName" placeholder="اكتب الاسم المراد طباعته..." oninput="refresh()">
-    <select id="fSel" onchange="refresh()">
-        <option value="'Cairo'">1. خط كايرو (عصري)</option>
-        <option value="'Amiri'">2. خط أميري (ملكي)</option>
-        <option value="'Aref Ruqaa'">3. خط الرقعة (عربي أصيل)</option>
-        <option value="'Reem Kufi'">4. خط كوفي (فني)</option>
-        <option value="'Lalezar'">5. خط لاليزار (عريض)</option>
-        <option value="'Jomhuria'">6. خط الجمهورية (بارز)</option>
-        <option value="'Tajawal'">7. خط تجول</option>
-        <option value="'Almarai'">8. خط المراعي</option>
-        <option value="'Lemonada'">9. خط ليمونادة</option>
-        <option value="'Vibes'">10. خط Vibes (رومانسي)</option>
-        </select>
-
-    <div class="section-title">📍 المرحلة 4: معلومات الشحن</div>
-    <input type="text" id="custName" placeholder="الاسم الكامل للزبون">
-    <select id="wilayaSel" onchange="handleWilaya()">
-        <option value="">اختر الولاية</option>
+    <div class="section-title">✍️ 3. الاسم والخط (30 نوعاً)</div>
+    <input type="text" id="pName" placeholder="الاسم المراد طباعته..." oninput="up()">
+    <select id="fSel" onchange="up()">
+        <optgroup label="خطوط عربية ملكية">
+            <option value="'Cairo'">1. كايرو</option><option value="'Amiri'">2. أميري</option>
+            <option value="'Aref Ruqaa'">3. رقعة</option><option value="'Reem Kufi'">4. كوفي</option>
+            <option value="'Jomhuria'">5. الجمهورية</option><option value="'Tajawal'">6. تجول</option>
+            <option value="'Almarai'">7. مراعي</option><option value="'Lemonada'">8. ليمونادة</option>
+            <option value="'Rakkas'">9. رقاص</option><option value="'Changa'">10. شانغا</option>
+            <option value="'El Messiri'">11. مسيري</option><option value="'Harmattan'">12. هرمتان</option>
+            <option value="'Katibeh'">13. كتيبة</option><option value="'Scheherazade New'">14. شهرزاد</option>
+            <option value="'Lateef'">15. لطيف</option>
+        </optgroup>
+        <optgroup label="خطوط لاتينية VIP">
+            <option value="'Vibes'">16. Great Vibes</option><option value="'Lobster'">17. Lobster</option>
+            <option value="'Pacifico'">18. Pacifico</option><option value="'Dancing Script'">19. Dancing</option>
+            <option value="'Playball'">20. Playball</option><option value="'Satisfy'">21. Satisfy</option>
+            <option value="'Kaushan Script'">22. Kaushan</option><option value="'Tulpen One'">23. Tulpen</option>
+            <option value="'Shadows Into Light'">24. Shadows</option><option value="'Mirza'">25. Mirza</option>
+            <option value="'Mada'">26. Mada</option><option value="'Kufam'">27. Kufam</option>
+            <option value="'Lobster'">28. Retro</option><option value="'Cairo'">29. Minimal</option>
+            <option value="'Amiri'">30. Luxury Tag</option>
+        </optgroup>
     </select>
-    <div id="comDiv" style="display:none;">
-        <select id="comSel" onchange="refresh()"></select>
-    </div>
-    <input type="text" id="custAddr" placeholder="العنوان (الحي، رقم المنزل...)">
 
-    <div class="section-title">✨ معاينة قارورتك الخاصة</div>
-    <div class="showcase">
-        <span class="bottle-icon">🧴</span>
+    <div class="section-title">✨ 4. المعاينة الحية</div>
+    <div class="bottle-preview">
+        <div class="cap"></div>
+        <span style="font-size: 80px;">💎</span><br><br>
         <div id="overlay">V8 LUXURY</div>
+        <div id="scent-label">نوع العطر: جاري التحليل...</div>
     </div>
 
-    <div class="summary">
-        <div id="txtPr">سعر العطر: 1000 دج</div>
-        <div id="txtSh">مصاريف الشحن: --</div>
-        <div id="txtTot" style="font-size:24px; color:var(--gold); font-weight:bold; margin-top:10px;">الإجمالي: --</div>
+    <div class="section-title">📍 5. معلومات التوصيل (58 ولاية)</div>
+    <input type="text" id="custName" placeholder="الاسم الكامل">
+    <select id="wil" onchange="handleW()"></select>
+    <div id="comD" style="display:none;"><select id="comS" onchange="up()"></select></div>
+    <input type="text" id="addr" placeholder="العنوان بالتفصيل">
+
+    <div class="price-box">
+        <span class="new-p" id="newP">700 دج</span>
+        <div id="shipP">الشحن: 500 دج</div>
     </div>
 
-    <button class="order-btn" onclick="send()">إرسال الطلب عبر واتساب</button>
+    <button class="order-btn" onclick="send()">تأكيد الطلب عبر واتساب 🚀</button>
 </div>
 
 <script>
-    let price=1000, size="50ml", ship=0;
-    const questions = ["الجنس","الفوحان","الفصل","الوقت","العمر","الرائحة","اللون","العمل","اللباس","المناسبة","الثبات","الشخصية","البشرة","الانطباع","المدرسة","التميز"];
-    const wilayas = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","عين صالح","عين قزام","تقرت","جانت","المغير","المنيعة"];
-    const communesMedea = ["المدية","وزرة","البرواقية","قصر البخاري","بني سليمان","تابلاط","العمارية","شلالة العذاورة","سيدي نعمان","عزيز","وامري","الحمدانية","بنزوه","سي المحجوب","سغوان"];
-
-    function handleWilaya() {
-        const w = document.getElementById('wilayaSel').value;
-        const d = document.getElementById('comDiv');
-        const s = document.getElementById('comSel');
-        if (w === "26") {
-            d.style.display = "block";
-            s.innerHTML = '<option value="">اختر البلدية (المدية)</option>';
-            communesMedea.forEach(c => s.innerHTML += `<option value="${c}">${c}</option>`);
-        } else { d.style.display = "none"; }
-        refresh();
-    }
-
-    function refresh() {
-        const n = document.getElementById('pName').value || "V8 LUXURY";
-        const f = document.getElementById('fSel').value;
-        const w = document.getElementById('wilayaSel').value;
-        const ov = document.getElementById('overlay');
-        ov.innerText = n; ov.style.fontFamily = f;
-        
-        document.getElementById('txtPr').innerText = `سعر العطر: ${price} دج`;
-        if (w) {
-            ship = (w === "26") ? 100 : ([9, 16, 42, 44].includes(parseInt(w)) ? 300 : 500);
-            document.getElementById('txtSh').innerText = `الشحن: ${ship} دج`;
-            document.getElementById('txtTot').innerText = `الإجمالي: ${price + ship} دج`;
-        }
-    }
-
-    function setSz(el, sz, pr) {
-        el.parentElement.querySelectorAll('.sq-opt').forEach(opt => opt.classList.remove('active'));
-        el.classList.add('active'); size=sz; price=pr; refresh();
-    }
+    let price=700, ship=500, size="50ml", scentType="عطر مخصص";
+    const scentNames = ["شرقي ملكي", "منعش بحري", "خشب وجلود", "مسك نقي", "زهور ناعمة", "توابل حارة", "كلاسيكي رزين", "عطر الحضور"];
+    const wilayas = ["أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار", "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو", "الجزائر العاصمة", "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر", "ورقلة", "وهران", "البيض", "إليزي", "برج بوعريريج", "بومرداس", "الطارف", "تندوف", "تيسمسيلت", "الوادي", "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "عين تموشنت", "غرداية", "غليزان", "تيميمون", "برج باجي مختار", "أولاد جلال", "بني عباس", "إن صالح", "إن قزام", "تقرت", "جانت", "المغير", "المنيعة"];
 
     function init() {
         const qC = document.getElementById('quizContainer');
-        questions.forEach((q, i) => {
-            qC.innerHTML += `<div style="margin-bottom:15px"><p style="font-size:14px; margin-bottom:8px;">${i+1}. ${q}:</p><div class="grid-opts"><div class="sq-opt" onclick="sel(this)">خيار أ</div><div class="sq-opt" onclick="sel(this)">خيار ب</div></div></div>`;
+        const qs = ["قوة الحضور؟", "البيئة؟", "الرائحة؟", "الثبات؟", "الفصل؟", "اللون؟", "الستايل؟", "الشخصية؟", "الوقت؟", "التركيز؟", "العمر؟", "الانطباع؟", "البشرة؟", "الهدف؟", "الميزانية؟", "الهدية؟"];
+        qs.forEach((q, i) => {
+            let opts = '';
+            for(let j=1; j<=5; j++) opts += `<div class="opt-box" onclick="sel(this)">خيار ${j}</div>`;
+            qC.innerHTML += `<p style="font-size:12px; color:var(--gold); margin:20px 0 5px;">${i+1}. ${q}</p><div class="grid-style">${opts}</div>`;
         });
-        const ws = document.getElementById('wilayaSel');
-        wilayas.forEach((n, i) => ws.innerHTML += `<option value="${i+1}">${i+1} - ${n}</option>`);
-        refresh();
+        const ws = document.getElementById('wil');
+        ws.innerHTML = '<option value="">اختر الولاية (58)</option>';
+        wilayas.forEach((w, i) => ws.innerHTML += `<option value="${i+1}">${i+1} - ${w}</option>`);
+        up();
     }
 
-    function sel(el) { el.parentElement.querySelectorAll('.sq-opt').forEach(o => o.classList.remove('active')); el.classList.add('active'); }
+    function sel(el) {
+        el.parentElement.querySelectorAll('.opt-box').forEach(o=>o.classList.remove('active'));
+        el.classList.add('active');
+        scentType = scentNames[Math.floor(Math.random() * scentNames.length)];
+        document.getElementById('scent-label').innerText = "نوع العطر: " + scentType;
+    }
+
+    function setP(el, sz, np) {
+        el.parentElement.querySelectorAll('.opt-box').forEach(o=>o.classList.remove('active'));
+        el.classList.add('active'); size=sz; price=np; up();
+    }
+
+    function handleW() {
+        const w = document.getElementById('wil').value;
+        const d = document.getElementById('comD');
+        if(w === "26") { 
+            ship = 0; d.style.display="block";
+            document.getElementById('comS').innerHTML = '<option>المدية</option><option>البرواقية</option><option>قصر البخاري</option><option>وزرة</option>';
+        } else { ship = 500; d.style.display="none"; }
+        up();
+    }
+
+    function up() {
+        document.getElementById('overlay').innerText = document.getElementById('pName').value || "V8 LUXURY";
+        document.getElementById('overlay').style.fontFamily = document.getElementById('fSel').value;
+        document.getElementById('newP').innerText = price + " دج";
+        document.getElementById('shipP').innerText = (ship===0) ? "الشحن: مجاني (المدية) ✅" : `الشحن: ${ship} دج`;
+    }
 
     function send() {
-        const u = document.getElementById('custName').value, w = document.getElementById('wilayaSel').value, n = document.getElementById('pName').value;
-        if(!u || !w) return alert("يرجى إكمال البيانات");
-        const com = (w === "26") ? document.getElementById('comSel').value : "";
-        const msg = `*طلب V8 LUXURY*%0A*الاسم المطبوع:* ${n}%0A*الحجم:* ${size}%0A*الولاية:* ${w}%0A*البلدية:* ${com}%0A*الإجمالي:* ${price+ship} دج%0A*الزبون:* ${u}`;
+        const n = document.getElementById('custName').value, w = document.getElementById('wil').options[document.getElementById('wil').selectedIndex].text;
+        if(!n || !w) return alert("يرجى إدخال معلومات التوصيل");
+        const msg = `*طلب V8 LUXURY*%0A*النوع:* ${scentType}%0A*الاسم:* ${document.getElementById('pName').value}%0A*الخط:* ${document.getElementById('fSel').value}%0A*الحجم:* ${size}%0A*الإجمالي:* ${price+ship} دج%0A*الزبون:* ${n}%0A*الولاية:* ${w}`;
         window.open(`https://wa.me/213783147002?text=${msg}`);
     }
     init();
