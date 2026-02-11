@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>متجر الملابس الجزائري</title>
+<style>
+body {
+    font-family: Arial;
+    background: #f2f2f2;
+    margin: 0;
+    direction: rtl;
+}
+
+header {
+    background: #000;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* الغلاف */
+#banner {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#banner img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.5);
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+
+.banner-text h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.banner-text p {
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+
+/* سلة المشتريات */
+.cart {
+    background: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* المنتجات */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 15px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.price {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card input, .card select {
+    width: 90%;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #444;
+}
+
+/* سلة العناصر */
+#cartItems {
+    background: white;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+/* التوصيل */
+#delivery {
+    background: #fff;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519" alt="لوغو">
+<h1>متجر الملابس الجزائري</h1>
+</header>
+
+<!-- الغلاف -->
+<section id="banner">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c" alt="غلاف المتجر">
+<div class="banner-text">
+  <h2>مرحبا بكم في متجرنا!</h2>
+  <p>أفضل الملابس بأحدث الألوان والأسعار بين 1500 و5000 دج</p>
+</div>
+</section>
+
+<div class="cart">
+🛒 السلة: <span id="count">0</span> منتج |
+المجموع: <span id="total">0</span> دج
+</div>
+
+<section class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1593032465171-8c5f6b3f5d52" alt="قميص صيفي">
+<h3>قميص صيفي</h3>
+<p class="price">1500 دج</p>
+<select id="color1">
+  <option value="أحمر">أحمر</option>
+  <option value="أزرق">أزرق</option>
+  <option value="أخضر">أخضر</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note1">
+<button onclick="addToCart('قميص صيفي',1500,'note1','color1')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1516826957135-700dedea698c" alt="قميص أسود">
+<h3>قميص أسود</h3>
+<p class="price">1800 دج</p>
+<select id="color2">
+  <option value="أسود">أسود</option>
+  <option value="رمادي">رمادي</option>
+  <option value="أزرق">أزرق</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note2">
+<button onclick="addToCart('قميص أسود',1800,'note2','color2')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246" alt="سروال جينز">
+<h3>سروال جينز</h3>
+<p class="price">3000 دج</p>
+<select id="color3">
+  <option value="أزرق">أزرق</option>
+  <option value="أسود">أسود</option>
+  <option value="رمادي">رمادي</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note3">
+<button onclick="addToCart('سروال جينز',3000,'note3','color3')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf" alt="سترة شبابية">
+<h3>سترة شبابية</h3>
+<p class="price">3500 دج</p>
+<select id="color4">
+  <option value="أحمر">أحمر</option>
+  <option value="أزرق">أزرق</option>
+  <option value="أسود">أسود</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note4">
+<button onclick="addToCart('سترة شبابية',3500,'note4','color4')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475" alt="بدلة رياضية">
+<h3>بدلة رياضية</h3>
+<p class="price">4000 دج</p>
+<select id="color5">
+  <option value="أسود">أسود</option>
+  <option value="رمادي">رمادي</option>
+  <option value="أزرق">أزرق</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note5">
+<button onclick="addToCart('بدلة رياضية',4000,'note5','color5')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519" alt="حذاء رياضي">
+<h3>حذاء رياضي</h3>
+<p class="price">5000 دج</p>
+<select id="color6">
+  <option value="أبيض">أبيض</option>
+  <option value="أسود">أسود</option>
+  <option value="أحمر">أحمر</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note6">
+<button onclick="addToCart('حذاء رياضي',5000,'note6','color6')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1593032465171-8c5f6b3f5d52" alt="قبعة">
+<h3>قبعة</h3>
+<p class="price">1700 دج</p>
+<select id="color7">
+  <option value="أسود">أسود</option>
+  <option value="أزرق">أزرق</option>
+  <option value="أحمر">أحمر</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note7">
+<button onclick="addToCart('قبعة',1700,'note7','color7')">شراء</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1612438673845-b1e6d32a0b9b" alt="جاكيت شتوي">
+<h3>جاكيت شتوي</h3>
+<p class="price">2800 دج</p>
+<select id="color8">
+  <option value="أسود">أسود</option>
+  <option value="بني">بني</option>
+  <option value="رمادي">رمادي</option>
+</select>
+<input type="text" placeholder="اكتب ملاحظة هنا..." id="note8">
+<button onclick="addToCart('جاكيت شتوي',2800,'note8','color8')">شراء</button>
+</div>
+
+</section>
+
+<div id="cartItems">
+<h3>المشتريات:</h3>
+<ul id="items"></ul>
+</div>
+
+<div id="delivery">
+<h3>التوصيل</h3>
+<p>للطلبات والاستفسار، اتصل بنا على الرقم: <strong>0783147002</strong></p>
+<p>خدمة التوصيل متاحة لكل الولايات الجزائرية.</p>
+</div>
+
+<footer>
+© جميع الحقوق محفوظة - الجزائر
+</footer>
+
+<script>
+let count = 0;
+let total = 0;
+
+function addToCart(name, price, noteId, colorId) {
+    let note = document.getElementById(noteId).value;
+    let color = document.getElementById(colorId).value;
+    count++;
+    total += price;
+
+    document.getElementById("count").innerText = count;
+    document.getElementById("total").innerText = total + " دج";
+
+    let li = document.createElement("li");
+    li.innerHTML = name + " - " + price + " دج" +
+        (color ? " | اللون: " + color : "") +
+        (note ? " | ملاحظة: " + note : "") +
+        ' <button onclick="removeItem(this,'+price+')">حذف</button>';
+    document.getElementById("items").appendChild(li);
+
+    document.getElementById(noteId).value = "";
+}
+
+function removeItem(btn, price) {
+    btn.parentElement.remove();
+    count--;
+    total -= price;
+
+    document.getElementById("count").innerText = count;
+    document.getElementById("total").innerText = total + " دج";
+}
+</script>
+
+</body>
+</html>
